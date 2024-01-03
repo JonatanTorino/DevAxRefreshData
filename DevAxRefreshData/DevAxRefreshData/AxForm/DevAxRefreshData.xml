@@ -132,18 +132,88 @@ public class DevAxRefreshData extends FormRun
             if (response == DialogButton::Yes)
             {
                 AxxDocEInvoiceWSParameters parameters;
-
+          
                 ttsbegin;
                 select firstonly forupdate parameters
                     where parameters.ServiceId == DevAxRefreshDataEInvoiceParameters.ServiceId;
 
+                parameters.ECertificateStr = DevAxRefreshDataEInvoiceParameters.ECertificateStr;
                 parameters.CertificateFile = DevAxRefreshDataEInvoiceParameters.CertificateFile;
                 parameters.CertificatePass = DevAxRefreshDataEInvoiceParameters.CertificatePass;
                 parameters.Url = DevAxRefreshDataEInvoiceParameters.Url;
-                parameters.UrlLogin = DevAxRefreshDataEInvoiceParameters.UrlLogin;
+                parameters.UrlLogin = DevAxRefreshDataEInvoiceParameters.UrlLogin;          
 
                 parameters.update();                
                 ttscommit;        
+            }
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>ButtonControl</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            DialogButton response = Box::yesNo("¿Está seguro de que desea realizar los cambios?", DialogButton::Yes);
+
+            if (response == DialogButton::Yes)
+            {
+                OperationalInsightsRegistry insightsRegistry;
+                SysIntegrationRegistry integrationRegistry;
+                SysEnvironmentModeMap modeMap;
+                OperationalInsightsEnvMap envMap;
+                DevAxRefreshDataEnvironmentTable environmentTable;
+                         
+                ttsbegin;
+
+                str currentUrl = URLUtility::getUrl();
+                currentUrl = new System.Uri(currentUrl).Host;
+
+                while select environmentTable
+                {
+                    str envUrl = environmentTable.EnvUrl;
+                    envUrl = new System.Uri(environmentTable.envUrl).Host;
+                    if(envUrl == currentUrl)
+                    {
+                        break;
+                    }
+                }
+
+                if(environmentTable)
+                {
+                    int environmentSelectionInt = environmentTable.EnviornmentMode;
+                    EnvironmentSelection environmentSelection = environmentSelectionInt;
+
+                    update_recordset insightsRegistry
+                  setting  InstrumentationKey = DevAxRefreshDataTelemetryParameters.SysAppURI,
+                           EnvironmentSelection = environmentSelection;
+
+                    update_recordset integrationRegistry
+                  setting SysAppURI = DevAxRefreshDataTelemetryParameters.SysAppURI,
+                          EnvironmentMode = environmentTable.EnviornmentMode;
+
+                    update_recordset modeMap
+                  setting SysEnvironmentid = environmentTable.SysEnvironmentid,
+                          EnvironmentMode = environmentTable.EnviornmentMode;
+                    
+                    update_recordset envMap
+                  setting EnvironmentId = environmentTable.SysEnvironmentid,
+                          EnvironmentSelection = environmentSelection;
+                }
+                
+                                         
+                ttscommit;
             }
         }
 
@@ -195,6 +265,63 @@ public class DevAxRefreshData extends FormRun
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
 					<DataField>UrlLogin</DataField>
+				</AxFormDataSourceField>
+			</Fields>
+			<ReferencedDataSources />
+			<DataSourceLinks />
+			<DerivedDataSources />
+		</AxFormDataSource>
+		<AxFormDataSource xmlns="">
+			<Name>DevAxRefreshDataTelemetryParameters</Name>
+			<Table>DevAxRefreshDataTelemetryParameters</Table>
+			<Fields>
+				<AxFormDataSourceField>
+					<DataField>DataAreaId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Partition</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RecId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>SysAppURI</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>TableId</DataField>
+				</AxFormDataSourceField>
+			</Fields>
+			<ReferencedDataSources />
+			<DataSourceLinks />
+			<DerivedDataSources />
+		</AxFormDataSource>
+		<AxFormDataSource xmlns="">
+			<Name>DevAxRefreshDataEnvironmentTable</Name>
+			<Table>DevAxRefreshDataEnvironmentTable</Table>
+			<Fields>
+				<AxFormDataSourceField>
+					<DataField>DataAreaId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>EnviornmentMode</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>EnvUrl</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Name</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Partition</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RecId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>SysEnvironmentid</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>TableId</DataField>
 				</AxFormDataSourceField>
 			</Fields>
 			<ReferencedDataSources />
@@ -345,7 +472,7 @@ public class DevAxRefreshData extends FormRun
 							</AxFormControl>
 							<AxFormControl xmlns=""
 								i:type="AxFormTabControl">
-								<Name>RefreshDataTabControl2</Name>
+								<Name>RefreshDataTabControl</Name>
 								<Type>Tab</Type>
 								<FormControlExtension
 									i:nil="true" />
@@ -513,6 +640,226 @@ public class DevAxRefreshData extends FormRun
 							</AxFormControl>
 						</Controls>
 						<Caption>Web Service Afip</Caption>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>AplicationInsightsRegistryTabPageControl</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>AplicationInsightsRegistryGroupControl</Name>
+								<Skip>Yes</Skip>
+								<Type>Group</Type>
+								<WidthMode>SizeToAvailable</WidthMode>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>FormStaticTextControl5</Name>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Style>MainInstruction</Style>
+										<Text>Aplication Insights Registry</Text>
+									</AxFormControl>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>FormStaticTextControl6</Name>
+										<ExtendedStyle>dialog_secondaryInstruction</ExtendedStyle>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Text>Parametros para cambiar datos en las tablas monitoring and telemetry parameters y Operational Insights, con el fin de editar o agregar parametros</Text>
+									</AxFormControl>
+								</Controls>
+								<AllowUserSetup>No</AllowUserSetup>
+								<FrameType>None</FrameType>
+								<Style>TOCTitleContainer</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>AplicationInsightsRegistryTabControl</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>AplicationInsightsRegistryTabPageControl2</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl2</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataTelemetryParameters_SysAppURI</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>SysAppURI</DataField>
+														<DataSource>DevAxRefreshDataTelemetryParameters</DataSource>
+													</AxFormControl>
+												</Controls>
+												<Columns>2</Columns>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>FormGroupControl3</Name>
+												<Pattern>ToolbarList</Pattern>
+												<PatternVersion>1.2</PatternVersion>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormActionPaneControl">
+														<Name>FormActionPaneControl1</Name>
+														<Type>ActionPane</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Controls>
+															<AxFormControl xmlns=""
+																i:type="AxFormActionPaneTabControl">
+																<Name>FormActionPaneTabControl1</Name>
+																<Type>ActionPaneTab</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<Controls>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormButtonGroupControl">
+																		<Name>FormButtonGroupControl1</Name>
+																		<Type>ButtonGroup</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<Controls>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormCommandButtonControl">
+																				<Name>NewRegistryCommandButton</Name>
+																				<Type>CommandButton</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<Command>New</Command>
+																			</AxFormControl>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormCommandButtonControl">
+																				<Name>DeleteCommandButton</Name>
+																				<Type>CommandButton</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<Command>DeleteRecord</Command>
+																			</AxFormControl>
+																		</Controls>
+																	</AxFormControl>
+																</Controls>
+															</AxFormControl>
+														</Controls>
+														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+														<Style>Strip</Style>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormGroupControl">
+														<Name>FormGroupControl4</Name>
+														<Pattern>CustomFilters</Pattern>
+														<PatternVersion>1.1</PatternVersion>
+														<Type>Group</Type>
+														<WidthMode>SizeToAvailable</WidthMode>
+														<FormControlExtension
+															i:nil="true" />
+														<Controls />
+														<ArrangeMethod>HorizontalLeft</ArrangeMethod>
+														<FrameType>None</FrameType>
+														<Style>CustomFilter</Style>
+														<ViewEditMode>Edit</ViewEditMode>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormGridControl">
+														<Name>FormGridControl2</Name>
+														<Type>Grid</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Controls>
+															<AxFormControl xmlns=""
+																i:type="AxFormStringControl">
+																<Name>DevAxRefreshDataEnvironmentTable_Name</Name>
+																<Type>String</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<DataField>Name</DataField>
+																<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormStringControl">
+																<Name>DevAxRefreshDataEnvironmentTable_SysEnvironmentid</Name>
+																<Type>String</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<DataField>SysEnvironmentid</DataField>
+																<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormComboBoxControl">
+																<Name>DevAxRefreshDataEnvironmentTable_EnviornmentMode</Name>
+																<Type>ComboBox</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<DataField>EnviornmentMode</DataField>
+																<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+																<Items />
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormStringControl">
+																<Name>DevAxRefreshDataEnvironmentTable_EnvUrl</Name>
+																<Type>String</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<DataField>EnvUrl</DataField>
+																<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+															</AxFormControl>
+														</Controls>
+														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>ButtonGroupControl</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>ButtonControl</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>replace</Text>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+						</Controls>
+						<Caption>Aplication Insights Registry</Caption>
 					</AxFormControl>
 				</Controls>
 				<Style>VerticalTabs</Style>
