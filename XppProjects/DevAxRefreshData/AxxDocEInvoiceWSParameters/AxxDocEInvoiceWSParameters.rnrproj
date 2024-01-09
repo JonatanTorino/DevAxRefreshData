@@ -32,31 +32,40 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Form Extensions\" />
+    <Folder Include="Base Enums\" />
     <Folder Include="Forms\" />
-    <Folder Include="Table Extensions\" />
     <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AxFormExtension\AxxDocEInvoiceWSParameters.DevAxRefreshData">
+    <Content Include="AxEnum\SearchUser">
       <SubType>Content</SubType>
-      <Name>AxxDocEInvoiceWSParameters.DevAxRefreshData</Name>
-      <Link>Form Extensions\AxxDocEInvoiceWSParameters.DevAxRefreshData</Link>
+      <Name>SearchUser</Name>
+      <Link>Base Enums\SearchUser</Link>
     </Content>
     <Content Include="AxForm\DevAxRefreshData">
       <SubType>Content</SubType>
       <Name>DevAxRefreshData</Name>
       <Link>Forms\DevAxRefreshData</Link>
     </Content>
-    <Content Include="AxTableExtension\AxxDocEInvoiceWSParameters.DevAxRefreshData">
-      <SubType>Content</SubType>
-      <Name>AxxDocEInvoiceWSParameters.DevAxRefreshData</Name>
-      <Link>Table Extensions\AxxDocEInvoiceWSParameters.DevAxRefreshData</Link>
-    </Content>
     <Content Include="AxTable\DevAxRefreshDataEInvoiceParameters">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataEInvoiceParameters</Name>
       <Link>Tables\DevAxRefreshDataEInvoiceParameters</Link>
+    </Content>
+    <Content Include="AxTable\DevAxRefreshDataEnvironmentTable">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnvironmentTable</Name>
+      <Link>Tables\DevAxRefreshDataEnvironmentTable</Link>
+    </Content>
+    <Content Include="AxTable\DevAxRefreshDataTelemetryParameters">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataTelemetryParameters</Name>
+      <Link>Tables\DevAxRefreshDataTelemetryParameters</Link>
+    </Content>
+    <Content Include="AxTable\DevAxRefreshDataUsersTable">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUsersTable</Name>
+      <Link>Tables\DevAxRefreshDataUsersTable</Link>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
