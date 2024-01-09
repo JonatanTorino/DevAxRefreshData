@@ -32,10 +32,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="Base Enums\" />
     <Folder Include="Forms\" />
     <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AxEnum\SearchUser">
+      <SubType>Content</SubType>
+      <Name>SearchUser</Name>
+      <Link>Base Enums\SearchUser</Link>
+    </Content>
     <Content Include="AxForm\DevAxRefreshData">
       <SubType>Content</SubType>
       <Name>DevAxRefreshData</Name>
@@ -55,6 +61,11 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataTelemetryParameters</Name>
       <Link>Tables\DevAxRefreshDataTelemetryParameters</Link>
+    </Content>
+    <Content Include="AxTable\DevAxRefreshDataUsersTable">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUsersTable</Name>
+      <Link>Tables\DevAxRefreshDataUsersTable</Link>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
