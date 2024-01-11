@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Base Enums\" />
+    <Folder Include="Display Menu Items\" />
     <Folder Include="Forms\" />
     <Folder Include="Tables\" />
   </ItemGroup>
@@ -46,6 +47,11 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshData</Name>
       <Link>Forms\DevAxRefreshData</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\DevAxRefreshData">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData</Name>
+      <Link>Display Menu Items\DevAxRefreshData</Link>
     </Content>
     <Content Include="AxTable\DevAxRefreshDataEInvoiceParameters">
       <SubType>Content</SubType>
