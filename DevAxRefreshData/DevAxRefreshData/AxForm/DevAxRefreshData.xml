@@ -29,14 +29,22 @@ public class DevAxRefreshData extends FormRun
     private void enableControls()
     {
         str urlD365Prod = DevAxRefreshDataEInvoiceParameters.UrlD365Prod;
-        urlD365Prod = new System.Uri(urlD365Prod).Host;
 
-        str currentUrl = URLUtility::getUrl();
-        currentUrl = new System.Uri(currentUrl).Host;
+        if (urlD365Prod)
+        {
+            urlD365Prod = new System.Uri(urlD365Prod).Host;
 
-        boolean enableUrl = currentUrl != urlD365Prod;
+            str currentUrl = URLUtility::getUrl();
+            currentUrl = new System.Uri(currentUrl).Host;
 
-        ButtonControlRefreshData.enabled(enableUrl);
+            boolean enableUrl = currentUrl != urlD365Prod;
+
+            ButtonControlRefreshData.enabled(enableUrl);
+        }
+        else
+        {
+            ButtonControlRefreshData.enabled(false);
+        }
     }
 
 ]]></Source>
@@ -262,6 +270,73 @@ public class DevAxRefreshData extends FormRun
                                          
                 ttscommit;
             }
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>ChannelProfileButtonControl</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            RetailChannelProfile channelProfile;
+            RetailChannelProfileProperty profileProperty;
+
+            ttsbegin;
+            delete_from profileProperty
+                exists join channelProfile
+                    where profileProperty.ChannelProfile == channelProfile.RecId 
+                        && channelProfile.Name == "Default";
+   
+            delete_from channelProfile
+                where channelProfile.Name == "Default";
+
+            channelProfile.clear();
+            channelProfile.Name = "Default";
+            channelProfile.ChannelProfileType = RetailChannelProfileType::RetailServer;
+            channelProfile.insert();
+
+            str currentUrl = URLUtility::getUrl();
+            currentUrl = new System.Uri(currentUrl).Host;
+
+            int urlLen = strLen(currentUrl);
+            int axCloudPosition = strScan(currentUrl, "axcloud", 1, urlLen);
+
+            if (axCloudPosition > 0)
+            {
+                int startPosition = axCloudPosition - 4;
+                str baseUrl = strDel(currentUrl, startPosition, 3);
+                str retUrl = strIns(baseUrl, "ret", startPosition);
+                retUrl = "https://" + baseUrl + "/Commerce";
+            
+                profileProperty.clear();
+                profileProperty.ChannelProfile = channelProfile.RecId;
+                profileProperty.Key = RetailServerProfilePropertyKey::InternalUrl;
+                profileProperty.Value = retUrl;
+                profileProperty.insert();
+
+                str posUrl = strIns(baseUrl, "pos", startPosition);
+                posUrl = "https://" + posUrl;
+
+                profileProperty.clear();
+                profileProperty.ChannelProfile = channelProfile.RecId;
+                profileProperty.Key = RetailServerProfilePropertyKey::CloudPOSUrl;
+                profileProperty.Value = posUrl;
+                profileProperty.insert();
+            }
+
+
+            ttscommit;
         }
 
 ]]></Source>
@@ -1039,12 +1114,97 @@ public class DevAxRefreshData extends FormRun
 												</Controls>
 											</AxFormControl>
 										</Controls>
+										<Caption>Aplication Insights Registy</Caption>
 									</AxFormControl>
 								</Controls>
 								<Style>FastTabs</Style>
 							</AxFormControl>
 						</Controls>
 						<Caption>Aplication Insights Registry</Caption>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>CommerceTabPageControl</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>CommerceGroupControl</Name>
+								<Skip>Yes</Skip>
+								<Type>Group</Type>
+								<WidthMode>SizeToAvailable</WidthMode>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>CommerceStaticTextControl</Name>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Style>MainInstruction</Style>
+										<Text>Commerce</Text>
+									</AxFormControl>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>CommerceDescriptionStaticTextControl</Name>
+										<ExtendedStyle>dialog_secondaryInstruction</ExtendedStyle>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Text>Description</Text>
+									</AxFormControl>
+								</Controls>
+								<AllowUserSetup>No</AllowUserSetup>
+								<FrameType>None</FrameType>
+								<Style>TOCTitleContainer</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>CommerceTabControl</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>ChannelProfileTabPageControl</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>ChannelProfileGroupControl</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonControl">
+														<Name>ChannelProfileButtonControl</Name>
+														<Type>Button</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Text>Add urls</Text>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+										</Controls>
+										<Caption>Channel Profile</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+						</Controls>
+						<Caption>Commerce</Caption>
 					</AxFormControl>
 				</Controls>
 				<Style>VerticalTabs</Style>
