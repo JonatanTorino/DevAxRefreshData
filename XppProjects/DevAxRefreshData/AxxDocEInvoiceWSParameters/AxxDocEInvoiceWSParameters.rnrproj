@@ -32,12 +32,34 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="Action Menu Items\" />
     <Folder Include="Base Enums\" />
+    <Folder Include="Classes\" />
     <Folder Include="Display Menu Items\" />
     <Folder Include="Forms\" />
     <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AxClass\DevAxRefreshDataApplyAppInsightRegistry">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataApplyAppInsightRegistry</Name>
+      <Link>Classes\DevAxRefreshDataApplyAppInsightRegistry</Link>
+    </Content>
+    <Content Include="AxClass\DevAxRefreshDataApplyChannelProfileConfig">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataApplyChannelProfileConfig</Name>
+      <Link>Classes\DevAxRefreshDataApplyChannelProfileConfig</Link>
+    </Content>
+    <Content Include="AxClass\DevAxRefreshDataEnableUsers">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnableUsers</Name>
+      <Link>Classes\DevAxRefreshDataEnableUsers</Link>
+    </Content>
+    <Content Include="AxClass\DevAxRefreshDataReplaceAfipParams">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataReplaceAfipParams</Name>
+      <Link>Classes\DevAxRefreshDataReplaceAfipParams</Link>
+    </Content>
     <Content Include="AxEnum\SearchUser">
       <SubType>Content</SubType>
       <Name>SearchUser</Name>
@@ -47,6 +69,26 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshData</Name>
       <Link>Forms\DevAxRefreshData</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\DevAxRefreshDataApplyAppInsightRegistry">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataApplyAppInsightRegistry</Name>
+      <Link>Action Menu Items\DevAxRefreshDataApplyAppInsightRegistry</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\DevAxRefreshDataApplyChannelProfileConfig">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataApplyChannelProfileConfig</Name>
+      <Link>Action Menu Items\DevAxRefreshDataApplyChannelProfileConfig</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\DevAxRefreshDataEnableUsers">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnableUsers</Name>
+      <Link>Action Menu Items\DevAxRefreshDataEnableUsers</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\DevAxRefreshDataReplaceAfipParams">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataReplaceAfipParams</Name>
+      <Link>Action Menu Items\DevAxRefreshDataReplaceAfipParams</Link>
     </Content>
     <Content Include="AxMenuItemDisplay\DevAxRefreshData">
       <SubType>Content</SubType>

@@ -13,6 +13,18 @@ public class DevAxRefreshData extends FormRun
 ]]></Source>
 			</Method>
 			<Method>
+				<Name>init</Name>
+				<Source><![CDATA[
+    public void init()
+    {
+        //find or create params
+        DevAxRefreshDataEInvoiceParameters::find();
+        super();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
 				<Name>run</Name>
 				<Source><![CDATA[
     public void run()
@@ -39,85 +51,39 @@ public class DevAxRefreshData extends FormRun
 
             boolean enableUrl = currentUrl != urlD365Prod;
 
-            ButtonControlRefreshData.enabled(enableUrl);
+            DevAxRefreshDataReplaceAfipParams.enabled(enableUrl);                    
         }
         else
         {
-            ButtonControlRefreshData.enabled(false);
+            DevAxRefreshDataReplaceAfipParams.enabled(false);
         }
     }
 
 ]]></Source>
 			</Method>
-		</Methods>
-		<DataSources xmlns="">
-			<DataSource>
-				<Name>DevAxRefreshDataEInvoiceParameters</Name>
-				<Methods>
-					<Method>
-						<Name>init</Name>
-						<Source><![CDATA[
-        public void init()
-        {
-            super();
-            //find or create params
-            DevAxRefreshDataEInvoiceParameters::find();     
-        }
-
-]]></Source>
-					</Method>
-				</Methods>
-				<Fields />
-			</DataSource>
-		</DataSources>
-		<DataControls xmlns="">
-			<Control>
-				<Name>EnableUserFormButtonControl</Name>
-				<Type>Button</Type>
-				<Methods>
-					<Method>
-						<Name>clicked</Name>
-						<Source><![CDATA[
-        /// <summary>
-        ///
-        /// </summary>
-        public void clicked()
-        {
-            super();
-            UserInfo userInfo;
-            DevAxRefreshDataUsersTable usersTable;
-           
-            ttsBegin;
+			<Method>
+				<Name>ReadFullyBytes</Name>
+				<Source><![CDATA[
+    public System.Byte[] ReadFullyBytes(System.IO.Stream input)
+    {
+        int read;
+        System.Byte[] buffer = new System.Byte[32*1024]();
+        System.IO.MemoryStream ms = new System.IO.MemoryStream();
             
-            while select firstOnly forupdate userInfo
-                join usersTable
-                where usersTable.SearchUser == 0 &&
-                        userInfo.networkAlias == usersTable.Email &&
-                            !userInfo.enable
-            {
-              userInfo.enable = true;
-              userInfo.update();
-            }
-                   
-
-            while select forupdate userInfo
-                join usersTable
-                    where usersTable.SearchUser == 1 &&
-                        userInfo.networkAlias like '%' + usersTable.Email + '%' 
-                            && !userInfo.enable
-            {
-              userInfo.enable = true;
-              userInfo.update();
-            }
-                
-
-            ttsCommit;
+        read = input.Read(buffer, 0, buffer.Length);
+        while (read > 0)
+        {
+            ms.Write(buffer, 0, read);
+            read = input.Read(buffer, 0, buffer.Length);
         }
+        return ms.ToArray();
+    }
 
 ]]></Source>
-					</Method>
-				</Methods>
-			</Control>
+			</Method>
+		</Methods>
+		<DataSources xmlns="" />
+		<DataControls xmlns="">
 			<Control>
 				<Name>RefreshDataFileUpload</Name>
 				<Type>Custom</Type>
@@ -132,211 +98,12 @@ public class DevAxRefreshData extends FormRun
 
             System.IO.Stream pfxMemoryStream = axxDocEInvoicePfxUploadResult.openResult();
 
-            System.Byte[] asBytes = this.ReadFullyBytes(pfxMemoryStream);
+            System.Byte[] asBytes = element.ReadFullyBytes(pfxMemoryStream);
 
             str AsBase64String = System.Convert::ToBase64String(asBytes);
 
             DevAxRefreshDataEInvoiceParameters.CertificateFile = axxDocEInvoicePfxUploadResult.getFileName();
-            DevAxRefreshDataEInvoiceParameters.ECertificateStr  = AsBase64String; //reader.ReadToEnd();
-
-        }
-
-]]></Source>
-					</Method>
-					<Method>
-						<Name>ReadFullyBytes</Name>
-						<Source><![CDATA[
-        public System.Byte[] ReadFullyBytes(System.IO.Stream input)
-        {
-            int read;
-            System.Byte[] buffer = new System.Byte[32*1024]();
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            
-            read = input.Read(buffer, 0, buffer.Length);
-            while (read > 0)
-            {
-                ms.Write(buffer, 0, read);
-                read = input.Read(buffer, 0, buffer.Length);
-            }
-            return ms.ToArray();
-            
-        }
-
-]]></Source>
-					</Method>
-				</Methods>
-			</Control>
-			<Control>
-				<Name>ButtonControlRefreshData</Name>
-				<Type>Button</Type>
-				<Methods>
-					<Method>
-						<Name>clicked</Name>
-						<Source><![CDATA[
-        public void clicked()
-        {
-            super();
-            
-            DialogButton response = Box::yesNo("Esta configuracion realizara cambios en el registro de web service afip ¿desea realizar los cambios?\n\nSe recomienda discreción y precaución al realizar esta acción.", DialogButton::Yes);
-
-            // Preguntar al usuario si está seguro de realizar los cambios
-            if (response == DialogButton::Yes)
-            {
-                response = Box::yesNo("¿Está seguro de que desea realizar los cambios?", DialogButton::Yes);             
-            }
-            if (response == DialogButton::Yes)
-            {
-                AxxDocEInvoiceWSParameters parameters;
-          
-                ttsbegin;
-                select firstonly forupdate parameters
-                    where parameters.ServiceId == DevAxRefreshDataEInvoiceParameters.ServiceId;
-
-                parameters.ECertificateStr = DevAxRefreshDataEInvoiceParameters.ECertificateStr;
-                parameters.CertificateFile = DevAxRefreshDataEInvoiceParameters.CertificateFile;
-                parameters.CertificatePass = DevAxRefreshDataEInvoiceParameters.CertificatePass;
-                parameters.Url = DevAxRefreshDataEInvoiceParameters.Url;
-                parameters.UrlLogin = DevAxRefreshDataEInvoiceParameters.UrlLogin;          
-
-                parameters.update();                
-                ttscommit;        
-            }
-        }
-
-]]></Source>
-					</Method>
-				</Methods>
-			</Control>
-			<Control>
-				<Name>ButtonControl</Name>
-				<Type>Button</Type>
-				<Methods>
-					<Method>
-						<Name>clicked</Name>
-						<Source><![CDATA[
-        /// <summary>
-        ///
-        /// </summary>
-        public void clicked()
-        {
-            super();
-            DialogButton response = Box::yesNo("¿Está seguro de que desea realizar los cambios?", DialogButton::Yes);
-
-            if (response == DialogButton::Yes)
-            {
-                OperationalInsightsRegistry insightsRegistry;
-                SysIntegrationRegistry integrationRegistry;
-                SysEnvironmentModeMap modeMap;
-                OperationalInsightsEnvMap envMap;
-                DevAxRefreshDataEnvironmentTable environmentTable;
-                         
-                ttsbegin;
-
-                str currentUrl = URLUtility::getUrl();
-                currentUrl = new System.Uri(currentUrl).Host;
-
-                while select environmentTable
-                {
-                    str envUrl = environmentTable.EnvUrl;
-                    envUrl = new System.Uri(environmentTable.envUrl).Host;
-                    if(envUrl == currentUrl)
-                    {
-                        break;
-                    }
-                }
-
-                if(environmentTable)
-                {
-                    int environmentSelectionInt = environmentTable.EnviornmentMode;
-                    EnvironmentSelection environmentSelection = environmentSelectionInt;
-
-                    update_recordset insightsRegistry
-                  setting  InstrumentationKey = DevAxRefreshDataTelemetryParameters.SysAppURI,
-                           EnvironmentSelection = environmentSelection;
-
-                    update_recordset integrationRegistry
-                  setting SysAppURI = DevAxRefreshDataTelemetryParameters.SysAppURI,
-                          EnvironmentMode = environmentTable.EnviornmentMode;
-
-                    update_recordset modeMap
-                  setting SysEnvironmentid = environmentTable.SysEnvironmentid,
-                          EnvironmentMode = environmentTable.EnviornmentMode;
-                    
-                    update_recordset envMap
-                  setting EnvironmentId = environmentTable.SysEnvironmentid,
-                          EnvironmentSelection = environmentSelection;
-                }
-                
-                                         
-                ttscommit;
-            }
-        }
-
-]]></Source>
-					</Method>
-				</Methods>
-			</Control>
-			<Control>
-				<Name>ChannelProfileButtonControl</Name>
-				<Type>Button</Type>
-				<Methods>
-					<Method>
-						<Name>clicked</Name>
-						<Source><![CDATA[
-        /// <summary>
-        ///
-        /// </summary>
-        public void clicked()
-        {
-            super();
-            RetailChannelProfile channelProfile;
-            RetailChannelProfileProperty profileProperty;
-
-            ttsbegin;
-            delete_from profileProperty
-                exists join channelProfile
-                    where profileProperty.ChannelProfile == channelProfile.RecId 
-                        && channelProfile.Name == "Default";
-   
-            delete_from channelProfile
-                where channelProfile.Name == "Default";
-
-            channelProfile.clear();
-            channelProfile.Name = "Default";
-            channelProfile.ChannelProfileType = RetailChannelProfileType::RetailServer;
-            channelProfile.insert();
-
-            str currentUrl = URLUtility::getUrl();
-            currentUrl = new System.Uri(currentUrl).Host;
-
-            int urlLen = strLen(currentUrl);
-            int axCloudPosition = strScan(currentUrl, "axcloud", 1, urlLen);
-
-            if (axCloudPosition > 0)
-            {
-                int startPosition = axCloudPosition - 4;
-                str baseUrl = strDel(currentUrl, startPosition, 3);
-                str retUrl = strIns(baseUrl, "ret", startPosition);
-                retUrl = "https://" + baseUrl + "/Commerce";
-            
-                profileProperty.clear();
-                profileProperty.ChannelProfile = channelProfile.RecId;
-                profileProperty.Key = RetailServerProfilePropertyKey::InternalUrl;
-                profileProperty.Value = retUrl;
-                profileProperty.insert();
-
-                str posUrl = strIns(baseUrl, "pos", startPosition);
-                posUrl = "https://" + posUrl;
-
-                profileProperty.clear();
-                profileProperty.ChannelProfile = channelProfile.RecId;
-                profileProperty.Key = RetailServerProfilePropertyKey::CloudPOSUrl;
-                profileProperty.Value = posUrl;
-                profileProperty.insert();
-            }
-
-
-            ttscommit;
+            DevAxRefreshDataEInvoiceParameters.ECertificateStr  = AsBase64String;
         }
 
 ]]></Source>
@@ -352,7 +119,6 @@ public class DevAxRefreshData extends FormRun
 			<Table>DevAxRefreshDataEInvoiceParameters</Table>
 			<Fields>
 				<AxFormDataSourceField>
-					<AllowEdit>No</AllowEdit>
 					<DataField>CertificateFile</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
@@ -571,7 +337,7 @@ public class DevAxRefreshData extends FormRun
 									</AxFormControl>
 									<AxFormControl xmlns=""
 										i:type="AxFormTabPageControl">
-										<Name>UsersTabPageControl3</Name>
+										<Name>UsersTabPageControl</Name>
 										<Pattern>ToolbarList</Pattern>
 										<PatternVersion>1.2</PatternVersion>
 										<Type>TabPage</Type>
@@ -616,11 +382,13 @@ public class DevAxRefreshData extends FormRun
 																		<Command>DeleteRecord</Command>
 																	</AxFormControl>
 																	<AxFormControl xmlns=""
-																		i:type="AxFormButtonControl">
-																		<Name>EnableUserFormButtonControl</Name>
-																		<Type>Button</Type>
+																		i:type="AxFormMenuFunctionButtonControl">
+																		<Name>DevAxRefreshDataEnableUsers</Name>
+																		<Type>MenuFunctionButton</Type>
 																		<FormControlExtension
 																			i:nil="true" />
+																		<MenuItemName>DevAxRefreshDataEnableUsers</MenuItemName>
+																		<MenuItemType>Action</MenuItemType>
 																		<Text>EnableUser</Text>
 																	</AxFormControl>
 																</Controls>
@@ -679,6 +447,105 @@ public class DevAxRefreshData extends FormRun
 											</AxFormControl>
 										</Controls>
 										<Caption>User</Caption>
+									</AxFormControl>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>EnvironmentTabPageControl</Name>
+										<Pattern>ToolbarList</Pattern>
+										<PatternVersion>1.2</PatternVersion>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormActionPaneControl">
+												<Name>EnvironmentActionPaneControl</Name>
+												<Type>ActionPane</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormActionPaneTabControl">
+														<Name>FormActionPaneTabControl3</Name>
+														<Type>ActionPaneTab</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Controls>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonGroupControl">
+																<Name>FormButtonGroupControl3</Name>
+																<Type>ButtonGroup</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<Controls>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormCommandButtonControl">
+																		<Name>FormCommandButtonControl1</Name>
+																		<Type>CommandButton</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<Command>New</Command>
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormCommandButtonControl">
+																		<Name>FormCommandButtonControl2</Name>
+																		<Type>CommandButton</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<Command>DeleteRecord</Command>
+																	</AxFormControl>
+																</Controls>
+															</AxFormControl>
+														</Controls>
+													</AxFormControl>
+												</Controls>
+												<Style>Strip</Style>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>EnvironmentGroupControl</Name>
+												<Pattern>CustomFilters</Pattern>
+												<PatternVersion>1.1</PatternVersion>
+												<Type>Group</Type>
+												<WidthMode>SizeToAvailable</WidthMode>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls />
+												<ArrangeMethod>HorizontalLeft</ArrangeMethod>
+												<FrameType>None</FrameType>
+												<Style>CustomFilter</Style>
+												<ViewEditMode>Edit</ViewEditMode>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGridControl">
+												<Name>EnvironmentGridControl</Name>
+												<Type>Grid</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataEnvironmentTable_Name1</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Name</DataField>
+														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataEnvironmentTable_SysEnvironmentid1</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>SysEnvironmentid</DataField>
+														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+													</AxFormControl>
+												</Controls>
+												<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+											</AxFormControl>
+										</Controls>
+										<Caption>Environment</Caption>
 									</AxFormControl>
 								</Controls>
 								<Style>FastTabs</Style>
@@ -877,15 +744,15 @@ public class DevAxRefreshData extends FormRun
 													i:nil="true" />
 												<Controls>
 													<AxFormControl xmlns=""
-														i:type="AxFormButtonControl">
-														<Name>ButtonControlRefreshData</Name>
+														i:type="AxFormMenuFunctionButtonControl">
+														<Name>DevAxRefreshDataReplaceAfipParams</Name>
 														<AutoDeclaration>Yes</AutoDeclaration>
-														<Height>16</Height>
-														<Type>Button</Type>
-														<WidthMode>Auto</WidthMode>
+														<Type>MenuFunctionButton</Type>
 														<FormControlExtension
 															i:nil="true" />
-														<Text>Replace data</Text>
+														<MenuItemName>DevAxRefreshDataReplaceAfipParams</MenuItemName>
+														<MenuItemType>Action</MenuItemType>
+														<Text>Replace Data</Text>
 													</AxFormControl>
 												</Controls>
 												<Columns>2</Columns>
@@ -1104,12 +971,14 @@ public class DevAxRefreshData extends FormRun
 													i:nil="true" />
 												<Controls>
 													<AxFormControl xmlns=""
-														i:type="AxFormButtonControl">
-														<Name>ButtonControl</Name>
-														<Type>Button</Type>
+														i:type="AxFormMenuFunctionButtonControl">
+														<Name>DevAxRefreshDataApplyAppInsightRegistry</Name>
+														<Type>MenuFunctionButton</Type>
 														<FormControlExtension
 															i:nil="true" />
-														<Text>replace</Text>
+														<MenuItemName>DevAxRefreshDataApplyAppInsightRegistry</MenuItemName>
+														<MenuItemType>Action</MenuItemType>
+														<Text>Replace</Text>
 													</AxFormControl>
 												</Controls>
 											</AxFormControl>
@@ -1188,12 +1057,14 @@ public class DevAxRefreshData extends FormRun
 													i:nil="true" />
 												<Controls>
 													<AxFormControl xmlns=""
-														i:type="AxFormButtonControl">
-														<Name>ChannelProfileButtonControl</Name>
-														<Type>Button</Type>
+														i:type="AxFormMenuFunctionButtonControl">
+														<Name>DevAxRefreshDataApplyChannelProfileConfig</Name>
+														<Type>MenuFunctionButton</Type>
 														<FormControlExtension
 															i:nil="true" />
-														<Text>Add urls</Text>
+														<MenuItemName>DevAxRefreshDataApplyChannelProfileConfig</MenuItemName>
+														<MenuItemType>Action</MenuItemType>
+														<Text>Apply Url</Text>
 													</AxFormControl>
 												</Controls>
 											</AxFormControl>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshDataReplaceAfipParams</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class DevAxRefreshDataReplaceAfipParams
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        DevAxRefreshDataReplaceAfipParams afipParams = new DevAxRefreshDataReplaceAfipParams();
+        afipParams.run();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    public void run()
+    {
+        DialogButton response = Box::yesNo("Esta configuracion realizara cambios en el registro de web service afip ¿desea realizar los cambios?\n\nSe recomienda discreción y precaución al realizar esta acción.", DialogButton::Yes);
+
+        // Preguntar al usuario si está seguro de realizar los cambios
+        if (response == DialogButton::Yes)
+        {
+            response = Box::yesNo("¿Está seguro de que desea realizar los cambios?", DialogButton::Yes);
+        }
+        if (response == DialogButton::Yes)
+        {
+            AxxDocEInvoiceWSParameters parameters;
+            DevAxRefreshDataEInvoiceParameters invoiceParameters;
+          
+            ttsbegin;
+            select firstonly forupdate parameters
+                    where parameters.ServiceId == invoiceParameters.ServiceId;
+
+            parameters.ECertificateStr = invoiceParameters.ECertificateStr;
+            parameters.CertificateFile = invoiceParameters.CertificateFile;
+            parameters.CertificatePass = invoiceParameters.CertificatePass;
+            parameters.Url = invoiceParameters.Url;
+            parameters.UrlLogin = invoiceParameters.UrlLogin;
+
+            parameters.update();
+            ttscommit;
+        }
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

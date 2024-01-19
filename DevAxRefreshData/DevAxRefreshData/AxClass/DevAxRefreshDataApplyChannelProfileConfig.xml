@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshDataApplyChannelProfileConfig</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class DevAxRefreshDataApplyChannelProfileConfig
+{
+    RetailChannelProfile channelProfile;
+    RetailChannelProfileProperty profileProperty;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        DevAxRefreshDataApplyChannelProfileConfig profileConfig = new DevAxRefreshDataApplyChannelProfileConfig();
+        profileConfig.run();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    public void run()
+    {
+        //TODO bg: mover todo este código a otro método, y el rum debería llamar a este método anterior mencionado y an otro nuevo
+        this.ApplyChannelProfileConfig();
+        this.InsertRetailCDXDataStoreChannel();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>ApplyChannelProfileConfig</Name>
+				<Source><![CDATA[
+    public void ApplyChannelProfileConfig()
+    {
+        ttsbegin;
+        delete_from profileProperty
+                exists join channelProfile
+                    where profileProperty.ChannelProfile == channelProfile.RecId
+                        && channelProfile.Name == "Default";
+   
+        delete_from channelProfile
+                where channelProfile.Name == "Default";
+
+        channelProfile.clear();
+        channelProfile.Name = "Default";
+        channelProfile.ChannelProfileType = RetailChannelProfileType::RetailServer;
+        channelProfile.insert();
+
+        str currentUrl = URLUtility::getUrl();
+        currentUrl = new System.Uri(currentUrl).Host;
+
+        int urlLen = strLen(currentUrl);
+        int axCloudPosition = strScan(currentUrl, "axcloud", 1, urlLen);
+
+        if (axCloudPosition > 0)
+        {
+            int startPosition = axCloudPosition - 4;
+            str baseUrl = strDel(currentUrl, startPosition, 3);
+            str retUrl = strIns(baseUrl, "ret", startPosition);
+            retUrl = "https://" + retUrl + "/Commerce";
+            
+                profileProperty.clear();
+            profileProperty.ChannelProfile = channelProfile.RecId;
+            profileProperty.Key = RetailServerProfilePropertyKey::InternalUrl;
+            profileProperty.Value = retUrl;
+            profileProperty.insert();
+
+            str posUrl = strIns(baseUrl, "pos", startPosition);
+            posUrl = "https://" + posUrl;
+
+                profileProperty.clear();
+            profileProperty.ChannelProfile = channelProfile.RecId;
+            profileProperty.Key = RetailServerProfilePropertyKey::CloudPOSUrl;
+            profileProperty.Value = posUrl;
+            profileProperty.insert();
+        }
+
+        ttscommit;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>InsertRetailCDXDataStoreChannel</Name>
+				<Source><![CDATA[
+    public void InsertRetailCDXDataStoreChannel()
+    {
+        ttsBegin;
+
+        // Obtener RetailConnChannelSchema
+        RetailConnChannelSchema channelSchema;
+        select firstOnly RecId from channelSchema
+            where channelSchema.SchemaName == "AX7";
+
+        // Obtener o crear RetailCDXDatabaGroup
+        RetailCDXDataGroup dataGroup;
+        select firstOnly RecId from dataGroup
+            where dataGroup.Name == "Default";
+
+        if (!dataGroup)
+        {
+            dataGroup.clear();
+            dataGroup.Name = "Default";
+            dataGroup.ChannelSchema = channelSchema.RecId;
+            dataGroup.insert();
+        }
+
+        // Obtener o crear RetailConnDatabaseProfile
+        RetailConnDatabaseProfile databaseProfile;
+        select firstOnly RecId from databaseProfile
+            where databaseProfile.Name == "CommerceSDK";
+
+        if (!databaseProfile)
+        {
+            databaseProfile.clear();
+            databaseProfile.Name = "CommerceSDK";
+            databaseProfile.DataGroup = dataGroup.RecId;
+            databaseProfile.insert();
+        }
+
+        // Insertar en RetailCDXDataStoreChannel
+        RetailChannelTable channelTable;    
+        RetailCDXDataStoreChannel storeChannel;
+        RetailCDXDataStoreChannel storeChannelNotExist;
+        RecId databaseProfileRecId = databaseProfile.RecId;
+
+        insert_recordset storeChannel
+            (Channel, DatabaseProfile)
+            select RecId, databaseProfileRecId
+                from channelTable
+                notexists join storeChannelNotExist
+            where storeChannelNotExist.Channel == channelTable.RecId &&
+            storeChannelNotExist.DatabaseProfile == databaseProfile.RecId
+            ;
+                
+        ttsCommit;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
