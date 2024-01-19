@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshDataEnableUsers</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class DevAxRefreshDataEnableUsers
+{
+    UserInfo userInfo;
+    DevAxRefreshDataUsersTable usersTable;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        DevAxRefreshDataEnableUsers enableUsers = new DevAxRefreshDataEnableUsers();
+        enableUsers.run();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    public void run()
+    {
+        //TODO bg: pasar a update_recordset
+        ttsbegin;
+
+        update_recordset userInfo
+        setting enable = true
+            join usersTable
+                  where usersTable.SearchUser == SearchUser::User &&
+                        userInfo.networkAlias == usersTable.Email &&
+                        !userInfo.enable;
+
+        update_recordset userInfo
+        setting enable = true
+            join usersTable
+                  where usersTable.SearchUser == SearchUser::Pattern &&
+                        userInfo.networkAlias like '%' + usersTable.Email + '%' &&
+                        !userInfo.enable;
+
+        ttscommit;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
