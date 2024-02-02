@@ -50,6 +50,11 @@
       <Name>DevAxRefreshDataApplyChannelProfileConfig</Name>
       <Link>Classes\DevAxRefreshDataApplyChannelProfileConfig</Link>
     </Content>
+    <Content Include="AxClass\DevAxRefreshDataApplyPersonalization">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataApplyPersonalization</Name>
+      <Link>Classes\DevAxRefreshDataApplyPersonalization</Link>
+    </Content>
     <Content Include="AxClass\DevAxRefreshDataEnableUsers">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataEnableUsers</Name>
@@ -59,6 +64,11 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataReplaceAfipParams</Name>
       <Link>Classes\DevAxRefreshDataReplaceAfipParams</Link>
+    </Content>
+    <Content Include="AxClass\DevAxRefreshDataUploadBanner">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUploadBanner</Name>
+      <Link>Classes\DevAxRefreshDataUploadBanner</Link>
     </Content>
     <Content Include="AxEnum\SearchUser">
       <SubType>Content</SubType>
@@ -80,6 +90,11 @@
       <Name>DevAxRefreshDataApplyChannelProfileConfig</Name>
       <Link>Action Menu Items\DevAxRefreshDataApplyChannelProfileConfig</Link>
     </Content>
+    <Content Include="AxMenuItemAction\DevAxRefreshDataApplyPersonalization">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataApplyPersonalization</Name>
+      <Link>Action Menu Items\DevAxRefreshDataApplyPersonalization</Link>
+    </Content>
     <Content Include="AxMenuItemAction\DevAxRefreshDataEnableUsers">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataEnableUsers</Name>
@@ -89,6 +104,11 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataReplaceAfipParams</Name>
       <Link>Action Menu Items\DevAxRefreshDataReplaceAfipParams</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\DevAxRefreshDataUploadBanner">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUploadBanner</Name>
+      <Link>Action Menu Items\DevAxRefreshDataUploadBanner</Link>
     </Content>
     <Content Include="AxMenuItemDisplay\DevAxRefreshData">
       <SubType>Content</SubType>
