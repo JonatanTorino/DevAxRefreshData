@@ -188,6 +188,9 @@ public class DevAxRefreshData extends FormRun
 			<Table>DevAxRefreshDataEnvironmentTable</Table>
 			<Fields>
 				<AxFormDataSourceField>
+					<DataField>ColorTheme</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
 					<DataField>DataAreaId</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
@@ -195,6 +198,9 @@ public class DevAxRefreshData extends FormRun
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
 					<DataField>EnvUrl</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ImageBannerLogo</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
 					<DataField>Name</DataField>
@@ -332,8 +338,171 @@ public class DevAxRefreshData extends FormRun
 													</AxFormControl>
 												</Controls>
 											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>ApplyPersonalizationGroupControl</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormMenuFunctionButtonControl">
+														<Name>DevAxRefreshDataApplyPersonalization</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>MenuFunctionButton</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+														<MenuItemName>DevAxRefreshDataApplyPersonalization</MenuItemName>
+														<MenuItemType>Action</MenuItemType>
+														<Text>Apply</Text>
+													</AxFormControl>
+												</Controls>
+												<Caption>Apply Personalization</Caption>
+											</AxFormControl>
 										</Controls>
+										<Columns>2</Columns>
 										<Caption>Url </Caption>
+									</AxFormControl>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>PersonalizationTabPageControl</Name>
+										<Pattern>ToolbarList</Pattern>
+										<PatternVersion>1.2</PatternVersion>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormActionPaneControl">
+												<Name>PersonalizationActionPaneControl</Name>
+												<Type>ActionPane</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormActionPaneTabControl">
+														<Name>FormActionPaneTabControl3</Name>
+														<Type>ActionPaneTab</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Controls>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonGroupControl">
+																<Name>FormButtonGroupControl3</Name>
+																<Type>ButtonGroup</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<Controls>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormCommandButtonControl">
+																		<Name>NewCommandButtonControl</Name>
+																		<Type>CommandButton</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<Command>New</Command>
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormCommandButtonControl">
+																		<Name>DeleteCommandButtonControl</Name>
+																		<Type>CommandButton</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<Command>DeleteRecord</Command>
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormMenuFunctionButtonControl">
+																		<Name>DevAxRefreshDataUploadBanner</Name>
+																		<Type>MenuFunctionButton</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<MenuItemName>DevAxRefreshDataUploadBanner</MenuItemName>
+																		<MenuItemType>Action</MenuItemType>
+																		<Text>UploadBanner</Text>
+																	</AxFormControl>
+																</Controls>
+																<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+															</AxFormControl>
+														</Controls>
+													</AxFormControl>
+												</Controls>
+												<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+												<Style>Strip</Style>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>PersonalizationGroupControl</Name>
+												<Pattern>CustomFilters</Pattern>
+												<PatternVersion>1.1</PatternVersion>
+												<Type>Group</Type>
+												<WidthMode>SizeToAvailable</WidthMode>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls />
+												<ArrangeMethod>HorizontalLeft</ArrangeMethod>
+												<FrameType>None</FrameType>
+												<Style>CustomFilter</Style>
+												<ViewEditMode>Edit</ViewEditMode>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGridControl">
+												<Name>PersonalizationGridControl</Name>
+												<Type>Grid</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataEnvironmentTable_Name1</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Name</DataField>
+														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataEnvironmentTable_SysEnvironmentid1</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>SysEnvironmentid</DataField>
+														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataEnvironmentTable_EnvUrl1</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>EnvUrl</DataField>
+														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormImageControl">
+														<Name>DevAxRefreshDataEnvironmentTable_ImageBannerLogo</Name>
+														<Type>Image</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>ImageBannerLogo</DataField>
+														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>DevAxRefreshDataEnvironmentTable_ColorTheme</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>ColorTheme</DataField>
+														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+														<Items />
+													</AxFormControl>
+												</Controls>
+												<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+											</AxFormControl>
+										</Controls>
+										<Caption>Personalization</Caption>
 									</AxFormControl>
 									<AxFormControl xmlns=""
 										i:type="AxFormTabPageControl">
@@ -447,105 +616,6 @@ public class DevAxRefreshData extends FormRun
 											</AxFormControl>
 										</Controls>
 										<Caption>User</Caption>
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormTabPageControl">
-										<Name>EnvironmentTabPageControl</Name>
-										<Pattern>ToolbarList</Pattern>
-										<PatternVersion>1.2</PatternVersion>
-										<Type>TabPage</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<Controls>
-											<AxFormControl xmlns=""
-												i:type="AxFormActionPaneControl">
-												<Name>EnvironmentActionPaneControl</Name>
-												<Type>ActionPane</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<Controls>
-													<AxFormControl xmlns=""
-														i:type="AxFormActionPaneTabControl">
-														<Name>FormActionPaneTabControl3</Name>
-														<Type>ActionPaneTab</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<Controls>
-															<AxFormControl xmlns=""
-																i:type="AxFormButtonGroupControl">
-																<Name>FormButtonGroupControl3</Name>
-																<Type>ButtonGroup</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<Controls>
-																	<AxFormControl xmlns=""
-																		i:type="AxFormCommandButtonControl">
-																		<Name>FormCommandButtonControl1</Name>
-																		<Type>CommandButton</Type>
-																		<FormControlExtension
-																			i:nil="true" />
-																		<Command>New</Command>
-																	</AxFormControl>
-																	<AxFormControl xmlns=""
-																		i:type="AxFormCommandButtonControl">
-																		<Name>FormCommandButtonControl2</Name>
-																		<Type>CommandButton</Type>
-																		<FormControlExtension
-																			i:nil="true" />
-																		<Command>DeleteRecord</Command>
-																	</AxFormControl>
-																</Controls>
-															</AxFormControl>
-														</Controls>
-													</AxFormControl>
-												</Controls>
-												<Style>Strip</Style>
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormGroupControl">
-												<Name>EnvironmentGroupControl</Name>
-												<Pattern>CustomFilters</Pattern>
-												<PatternVersion>1.1</PatternVersion>
-												<Type>Group</Type>
-												<WidthMode>SizeToAvailable</WidthMode>
-												<FormControlExtension
-													i:nil="true" />
-												<Controls />
-												<ArrangeMethod>HorizontalLeft</ArrangeMethod>
-												<FrameType>None</FrameType>
-												<Style>CustomFilter</Style>
-												<ViewEditMode>Edit</ViewEditMode>
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormGridControl">
-												<Name>EnvironmentGridControl</Name>
-												<Type>Grid</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<Controls>
-													<AxFormControl xmlns=""
-														i:type="AxFormStringControl">
-														<Name>DevAxRefreshDataEnvironmentTable_Name1</Name>
-														<Type>String</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<DataField>Name</DataField>
-														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
-													</AxFormControl>
-													<AxFormControl xmlns=""
-														i:type="AxFormStringControl">
-														<Name>DevAxRefreshDataEnvironmentTable_SysEnvironmentid1</Name>
-														<Type>String</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<DataField>SysEnvironmentid</DataField>
-														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
-													</AxFormControl>
-												</Controls>
-												<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
-											</AxFormControl>
-										</Controls>
-										<Caption>Environment</Caption>
 									</AxFormControl>
 								</Controls>
 								<Style>FastTabs</Style>

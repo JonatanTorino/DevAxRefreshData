@@ -6,7 +6,6 @@
 public class DevAxRefreshDataEnvironmentTable extends common
 {
 }
-
 ]]></Declaration>
 		<Methods />
 	</SourceCode>
@@ -63,6 +62,18 @@ public class DevAxRefreshDataEnvironmentTable extends common
 			<ExtendedDataType>AxxDocURL</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 			<Label>Url</Label>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldContainer">
+			<Name>ImageBannerLogo</Name>
+			<ExtendedDataType>Bitmap</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+			<Label>@SYS312412</Label>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>ColorTheme</Name>
+			<EnumType>SysUserInfoTheme</EnumType>
 		</AxTableField>
 	</Fields>
 	<FullTextIndexes />
