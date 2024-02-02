@@ -8,7 +8,7 @@ Copy and past
 ```powershell# Task 1: Clone the repository
 $repositoryUrl = "https://github.com/JonatanTorino/DevAxRefreshData"
 $localPath = "K:\Axxon\GitHub.JonatanTorino\DevAxRefreshData"
-$modelName = "DevAxCmmRtsLog"
+$modelName = "DevAxRefreshData"
 
 # Clone or pull the repository
 try {
