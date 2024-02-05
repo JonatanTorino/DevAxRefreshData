@@ -27,7 +27,6 @@ public class DevAxRefreshDataApplyChannelProfileConfig
 				<Source><![CDATA[
     public void run()
     {
-        //TODO bg: mover todo este código a otro método, y el rum debería llamar a este método anterior mencionado y an otro nuevo
         this.ApplyChannelProfileConfig();
         this.InsertRetailCDXDataStoreChannel();
     }

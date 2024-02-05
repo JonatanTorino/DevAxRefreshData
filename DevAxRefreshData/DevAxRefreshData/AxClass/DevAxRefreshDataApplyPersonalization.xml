@@ -40,9 +40,9 @@ public class DevAxRefreshDataApplyPersonalization
 
         if (envUrl == currentUrl)
         {
-            SysUserInfo sysUserInfo;
             int colorThemeValue = _environmentTable.ColorTheme;
 
+            SysUserInfo sysUserInfo;
             update_recordset sysUserInfo
                 setting Theme = colorThemeValue;
 
@@ -61,41 +61,6 @@ public class DevAxRefreshDataApplyPersonalization
 			<Method>
 				<Name>changeImageBanner</Name>
 				<Source><![CDATA[
-    //public void changeImageBannerOld(DevAxRefreshDataEnvironmentTable _environmentTable)
-    //{
-    //    ttsbegin;
-
-    //    str currentUrl = URLUtility::getUrl();
-    //    currentUrl = new System.Uri(currentUrl).Host;
-
-    //    str envUrl = _environmentTable.EnvUrl;
-    //    envUrl = new System.Uri(_environmentTable.envUrl).Host;
-
-    //    if (envUrl == currentUrl)
-    //    {
-    //        // Obtener la instancia de DashboardImageType para la opción 'banner'
-    //        DashboardImageType dashboardImageType = DashboardImageType::find(DashboardImageType::Banner);
-
-    //        if (dashboardImageType)
-    //        {
-    //            // Actualizar el campo extendido en DashboardImageType con la imagen del banner desde DevAxRefreshDataEnvironmentTable
-    //            dashboardImageType.s
-
-    //            info("La imagen del banner se ha actualizado exitosamente.");
-    //        }
-    //        else
-    //        {
-    //            warning("No se encontró una instancia de DashboardImageType para 'banner'.");
-    //        }
-    //    }
-    //    else
-    //    {
-    //        warning("La URL del entorno no coincide con la URL actual del sistema. No se puede cambiar la imagen del banner.");
-    //    }
-
-    //    ttscommit;
-    //}
-
     public void changeImageBanner(container _imageContainer, CompanyImageType _imageType)
     {
         ttsbegin;
