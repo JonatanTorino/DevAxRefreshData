@@ -42,42 +42,6 @@ public class DevAxRefreshDataUploadBanner
         }
     }
 
-   
-    
-    //public void saveImage(DevAxRefreshDataEnvironmentTable _environmentTable)
-    //{
-
-    //    ttsbegin;
-
-    //    if(envUrl == currentUrl)
-    //    {
-    //        CompanyImage companyImage = CompanyImage::find(_environmentTable.DataAreaId, _environmentTable.TableId, _environmentTable.RecId, true, CompanyImageType::DashboardLogo);
-
-    //        if(!companyImage)
-    //        {
-
-    //            companyImage.RefCompanyId = _environmentTable.DataAreaId;
-    //            companyImage.RefTableId = _environmentTable.TableId;
-    //            companyImage.RefRecId = _environmentTable.RecId;
-    //            companyImage.Image = _environmentTable.ImageBannerLogo;
-    //            companyImage.ImageType = CompanyImageType::DashboardLogo;
-    //            companyImage.insert();
-    //        }
-    //        else
-    //        {
-    //            companyImage.Image = _environmentTable.ImageBannerLogo;
-    //            companyImage.update();
-    //        }
-
-    //    }
-    //    else
-    //    {
-    //        warning("La URL del entorno no coincide con la URL actual del sistema. No se puede cambiar la imagen.");
-    //    }
-
-    //    ttscommit;
-    //}
-
 ]]></Source>
 			</Method>
 		</Methods>
