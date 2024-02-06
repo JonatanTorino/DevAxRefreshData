@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshDataApplyPersonalization</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class DevAxRefreshDataApplyPersonalization
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        DevAxRefreshDataApplyPersonalization applyPersonalization = new DevAxRefreshDataApplyPersonalization();
+
+        if(_args.record() && _args.record().TableId == tableNum(DevAxRefreshDataEnvironmentTable))
+        {
+            DevAxRefreshDataEnvironmentTable environmentTable = _args.record();
+            applyPersonalization.changeColorTheme(environmentTable);
+            applyPersonalization.changeImageBanner(environmentTable.ImageBannerLogo,CompanyImageType::DashboardBanner);
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>changeColorTheme</Name>
+				<Source><![CDATA[
+    public void changeColorTheme(DevAxRefreshDataEnvironmentTable _environmentTable)
+    {
+        ttsbegin;
+
+        str currentUrl = URLUtility::getUrl();
+        currentUrl = new System.Uri(currentUrl).Host;
+
+        str envUrl = _environmentTable.EnvUrl;
+        envUrl = new System.Uri(_environmentTable.envUrl).Host;
+
+        if (envUrl == currentUrl)
+        {
+            int colorThemeValue = _environmentTable.ColorTheme;
+
+            SysUserInfo sysUserInfo;
+            update_recordset sysUserInfo
+                setting Theme = colorThemeValue;
+
+            appl.setTheme(colorThemeValue);
+        }
+        else
+        {
+            warning("La URL del entorno no coincide con la URL actual del sistema. No se puede cambiar el tema.");
+        }
+
+        ttscommit;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>changeImageBanner</Name>
+				<Source><![CDATA[
+    public void changeImageBanner(container _imageContainer, CompanyImageType _imageType)
+    {
+        ttsbegin;
+  
+        CompanyInfo companyInfo = CompanyInfo::find();
+        CompanyImage companyImage;
+  
+        companyImage = CompanyImage::find(companyInfo.DataAreaId, companyInfo.TableId, companyInfo.RecId, true, _imageType);
+
+        if (!companyImage)
+        {
+            companyImage.RefRecId = companyInfo.RecId;
+            companyImage.RefCompanyId = companyInfo.DataAreaId;
+            companyImage.RefTableId = companyInfo.TableId;
+            companyImage.Image = _imageContainer;
+            companyImage.ImageType = _imageType;
+            companyImage.insert();
+        }
+        else
+        {
+            companyImage.Image = _imageContainer;
+            companyImage.update();
+        }
+
+        ttscommit;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

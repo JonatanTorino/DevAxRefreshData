@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshDataUploadBanner</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class DevAxRefreshDataUploadBanner
+{   
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        DevAxRefreshDataUploadBanner uploadBanner = new DevAxRefreshDataUploadBanner();
+
+        if(_args.record() && _args.record().TableId == tableNum(DevAxRefreshDataEnvironmentTable))
+        {
+            DevAxRefreshDataEnvironmentTable environmentTable = _args.record();
+            uploadBanner.uploadImage(environmentTable);
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>uploadImage</Name>
+				<Source><![CDATA[
+    public void uploadImage(DevAxRefreshDataEnvironmentTable _environmentTable)
+    {
+
+        FileUploadTemporaryStorageResult fileUploadResult = File::GetFileFromUser() as FileUploadTemporaryStorageResult;
+        if(fileUploadResult != null && fileUploadResult.getUploadStatus())
+        {
+            _environmentTable.ImageBannerLogo = ImageReference::GetPackedBinaryData(fileUploadResult.getDownloadUrl());
+            _environmentTable.write();
+        }
+        else
+        {
+            warning("@SYS89176");
+        }
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

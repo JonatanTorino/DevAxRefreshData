@@ -28,10 +28,7 @@ public class DevAxRefreshDataApplyAppInsightRegistry
 
         if (response == DialogButton::Yes)
         {
-            OperationalInsightsRegistry insightsRegistry; //TODO bg: mover más cerca a donde se usa por primera vez, eso con todas las variables
-            SysIntegrationRegistry integrationRegistry;
-            SysEnvironmentModeMap modeMap;
-            OperationalInsightsEnvMap envMap;
+                      
             DevAxRefreshDataEnvironmentTable environmentTable;
             DevAxRefreshDataTelemetryParameters telemetryParameters;
                          
@@ -56,18 +53,25 @@ public class DevAxRefreshDataApplyAppInsightRegistry
 
                 int environmentSelectionInt = environmentTable.EnviornmentMode;
                 EnvironmentSelection environmentSelection = environmentSelectionInt;
+                OperationalInsightsRegistry insightsRegistry;
 
                 update_recordset insightsRegistry
                   setting  InstrumentationKey = telemetryParameters.SysAppURI,
                            EnvironmentSelection = environmentSelection;
+                
+                SysIntegrationRegistry integrationRegistry;
 
                 update_recordset integrationRegistry
                   setting SysAppURI = telemetryParameters.SysAppURI,
                           EnvironmentMode = environmentTable.EnviornmentMode;
 
+                SysEnvironmentModeMap modeMap;
+
                 update_recordset modeMap
                   setting SysEnvironmentid = environmentTable.SysEnvironmentid,
                           EnvironmentMode = environmentTable.EnviornmentMode;
+
+                OperationalInsightsEnvMap envMap;
                     
                 update_recordset envMap
                   setting EnvironmentId = environmentTable.SysEnvironmentid,
