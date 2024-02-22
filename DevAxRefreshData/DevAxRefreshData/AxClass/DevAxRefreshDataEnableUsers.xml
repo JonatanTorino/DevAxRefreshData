@@ -27,7 +27,6 @@ public class DevAxRefreshDataEnableUsers
 				<Source><![CDATA[
     public void run()
     {
-        //TODO bg: pasar a update_recordset
         ttsbegin;
 
         update_recordset userInfo

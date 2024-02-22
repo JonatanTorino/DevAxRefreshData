@@ -50,8 +50,8 @@ public class DevAxRefreshData extends FormRun
             currentUrl = new System.Uri(currentUrl).Host;
 
             boolean enableUrl = currentUrl != urlD365Prod;
-
-            DevAxRefreshDataReplaceAfipParams.enabled(enableUrl);                    
+ 
+            DevAxRefreshDataReplaceAfipParams.enabled(enableUrl);
         }
         else
         {
