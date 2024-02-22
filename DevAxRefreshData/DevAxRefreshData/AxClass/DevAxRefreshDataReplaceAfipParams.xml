@@ -4,7 +4,7 @@
 	<SourceCode>
 		<Declaration><![CDATA[
 public class DevAxRefreshDataReplaceAfipParams
-{
+{         
 }
 ]]></Declaration>
 		<Methods>
@@ -14,7 +14,8 @@ public class DevAxRefreshDataReplaceAfipParams
     public static void main(Args _args)
     {
         DevAxRefreshDataReplaceAfipParams afipParams = new DevAxRefreshDataReplaceAfipParams();
-        afipParams.run();
+        DevAxRefreshDataEInvoiceParameters invoiceParameters = _args.record();
+        afipParams.run(invoiceParameters);
     }
 
 ]]></Source>
@@ -22,7 +23,7 @@ public class DevAxRefreshDataReplaceAfipParams
 			<Method>
 				<Name>run</Name>
 				<Source><![CDATA[
-    public void run()
+    public void run(DevAxRefreshDataEInvoiceParameters invoiceParameters)
     {
         DialogButton response = Box::yesNo("Esta configuracion realizara cambios en el registro de web service afip ¿desea realizar los cambios?\n\nSe recomienda discreción y precaución al realizar esta acción.", DialogButton::Yes);
 
@@ -31,23 +32,26 @@ public class DevAxRefreshDataReplaceAfipParams
         {
             response = Box::yesNo("¿Está seguro de que desea realizar los cambios?", DialogButton::Yes);
         }
+
         if (response == DialogButton::Yes)
         {
+
             AxxDocEInvoiceWSParameters parameters;
-            DevAxRefreshDataEInvoiceParameters invoiceParameters;
-          
+
             ttsbegin;
-            select firstonly forupdate parameters
-                    where parameters.ServiceId == invoiceParameters.ServiceId;
+          
+                select firstonly forupdate parameters
+                where parameters.ServiceId == invoiceParameters.ServiceId;
+        
+                parameters.ECertificateStr = invoiceParameters.ECertificateStr;
+                parameters.CertificateFile = invoiceParameters.CertificateFile;
+                parameters.CertificatePass = invoiceParameters.CertificatePass;
+                parameters.Url = invoiceParameters.Url;
+                parameters.UrlLogin = invoiceParameters.UrlLogin;
 
-            parameters.ECertificateStr = invoiceParameters.ECertificateStr;
-            parameters.CertificateFile = invoiceParameters.CertificateFile;
-            parameters.CertificatePass = invoiceParameters.CertificatePass;
-            parameters.Url = invoiceParameters.Url;
-            parameters.UrlLogin = invoiceParameters.UrlLogin;
-
-            parameters.update();
-            ttscommit;
+                parameters.update();
+                
+             ttscommit;            
         }
     }
 
