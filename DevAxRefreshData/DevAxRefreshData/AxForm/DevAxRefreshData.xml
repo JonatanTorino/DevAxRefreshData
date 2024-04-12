@@ -338,32 +338,66 @@ public class DevAxRefreshData extends FormRun
 													</AxFormControl>
 												</Controls>
 											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormGroupControl">
-												<Name>ApplyPersonalizationGroupControl</Name>
-												<Type>Group</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<Controls>
-													<AxFormControl xmlns=""
-														i:type="AxFormMenuFunctionButtonControl">
-														<Name>DevAxRefreshDataApplyPersonalization</Name>
-														<AutoDeclaration>Yes</AutoDeclaration>
-														<Type>MenuFunctionButton</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
-														<MenuItemName>DevAxRefreshDataApplyPersonalization</MenuItemName>
-														<MenuItemType>Action</MenuItemType>
-														<Text>Apply</Text>
-													</AxFormControl>
-												</Controls>
-												<Caption>Apply Personalization</Caption>
-											</AxFormControl>
 										</Controls>
 										<Columns>2</Columns>
 										<Caption>Url </Caption>
 									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+						</Controls>
+						<Caption>General</Caption>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>Personalization</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>PersGrpControl</Name>
+								<Skip>Yes</Skip>
+								<Type>Group</Type>
+								<WidthMode>SizeToAvailable</WidthMode>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>FormStaticTextControl7</Name>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Style>MainInstruction</Style>
+										<Text>Personalization</Text>
+									</AxFormControl>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>FormStaticTextControl2Copy1</Name>
+										<ExtendedStyle>dialog_secondaryInstruction</ExtendedStyle>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Text>Permite seleccionar y aplicar el banner y el color del ambiente</Text>
+									</AxFormControl>
+								</Controls>
+								<AllowUserSetup>No</AllowUserSetup>
+								<FrameType>None</FrameType>
+								<Style>TOCTitleContainer</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>PersTabControl</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
 									<AxFormControl xmlns=""
 										i:type="AxFormTabPageControl">
 										<Name>PersonalizationTabPageControl</Name>
@@ -501,9 +535,88 @@ public class DevAxRefreshData extends FormRun
 												</Controls>
 												<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
 											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>ApplyPersonalizationGroupControl</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormMenuFunctionButtonControl">
+														<Name>DevAxRefreshDataApplyPersonalization</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>MenuFunctionButton</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+														<MenuItemName>DevAxRefreshDataApplyPersonalization</MenuItemName>
+														<MenuItemType>Action</MenuItemType>
+														<Text>Apply</Text>
+													</AxFormControl>
+												</Controls>
+												<Caption>Apply Personalization</Caption>
+											</AxFormControl>
 										</Controls>
 										<Caption>Personalization</Caption>
 									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+						</Controls>
+						<Caption>Personalization</Caption>
+						<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>EnableUsers</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>UsersGrpControl</Name>
+								<Skip>Yes</Skip>
+								<Type>Group</Type>
+								<WidthMode>SizeToAvailable</WidthMode>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>FormStaticTextControl7Copy1</Name>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Style>MainInstruction</Style>
+										<Text>Enable Users</Text>
+									</AxFormControl>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>FormStaticTextControl2Copy1Copy1</Name>
+										<ExtendedStyle>dialog_secondaryInstruction</ExtendedStyle>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Text>Habilita Usuarios en el entorno</Text>
+									</AxFormControl>
+								</Controls>
+								<AllowUserSetup>No</AllowUserSetup>
+								<FrameType>None</FrameType>
+								<Style>TOCTitleContainer</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>UsersTabControl</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
 									<AxFormControl xmlns=""
 										i:type="AxFormTabPageControl">
 										<Name>UsersTabPageControl</Name>
@@ -554,6 +667,7 @@ public class DevAxRefreshData extends FormRun
 																		i:type="AxFormMenuFunctionButtonControl">
 																		<Name>DevAxRefreshDataEnableUsers</Name>
 																		<Type>MenuFunctionButton</Type>
+																		<Visible>No</Visible>
 																		<FormControlExtension
 																			i:nil="true" />
 																		<MenuItemName>DevAxRefreshDataEnableUsers</MenuItemName>
@@ -614,6 +728,25 @@ public class DevAxRefreshData extends FormRun
 												</Controls>
 												<DataSource>DevAxRefreshDataUsersTable</DataSource>
 											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>ButtonGroupControlCopy1</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormMenuFunctionButtonControl">
+														<Name>DevAxRefreshDataEnableUsersButton</Name>
+														<Type>MenuFunctionButton</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<MenuItemName>DevAxRefreshDataEnableUsers</MenuItemName>
+														<MenuItemType>Action</MenuItemType>
+														<Text>Enable Users</Text>
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
 										</Controls>
 										<Caption>User</Caption>
 									</AxFormControl>
@@ -621,7 +754,8 @@ public class DevAxRefreshData extends FormRun
 								<Style>FastTabs</Style>
 							</AxFormControl>
 						</Controls>
-						<Caption>General</Caption>
+						<Caption>Enable Users</Caption>
+						<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
 					</AxFormControl>
 					<AxFormControl xmlns=""
 						i:type="AxFormTabPageControl">
@@ -1097,7 +1231,7 @@ public class DevAxRefreshData extends FormRun
 										<WidthMode>SizeToAvailable</WidthMode>
 										<FormControlExtension
 											i:nil="true" />
-										<Text>Description</Text>
+										<Text>1- Completa los datos de RetailCommerce y POS del ambiente. 2- Completa esquema de canal y Bases de datos de canal con las tiendas</Text>
 									</AxFormControl>
 								</Controls>
 								<AllowUserSetup>No</AllowUserSetup>

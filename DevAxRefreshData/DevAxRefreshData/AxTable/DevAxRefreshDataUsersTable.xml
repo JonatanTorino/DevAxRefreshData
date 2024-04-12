@@ -13,6 +13,7 @@ public class DevAxRefreshDataUsersTable extends common
 		<Read>Allow</Read>
 	</SubscriberAccessLevel>
 	<AllowRowVersionChangeTracking>Yes</AllowRowVersionChangeTracking>
+	<PrimaryIndex>PK</PrimaryIndex>
 	<DeleteActions />
 	<FieldGroups>
 		<AxTableFieldGroup>
@@ -51,7 +52,16 @@ public class DevAxRefreshDataUsersTable extends common
 		</AxTableField>
 	</Fields>
 	<FullTextIndexes />
-	<Indexes />
+	<Indexes>
+		<AxTableIndex>
+			<Name>PK</Name>
+			<Fields>
+				<AxTableIndexField>
+					<DataField>Email</DataField>
+				</AxTableIndexField>
+			</Fields>
+		</AxTableIndex>
+	</Indexes>
 	<Mappings />
 	<Relations />
 	<StateMachines />

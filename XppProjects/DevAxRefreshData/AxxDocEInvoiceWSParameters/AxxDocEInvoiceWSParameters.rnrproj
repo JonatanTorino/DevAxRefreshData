@@ -35,8 +35,10 @@
     <Folder Include="Action Menu Items\" />
     <Folder Include="Base Enums\" />
     <Folder Include="Classes\" />
+    <Folder Include="Data Entities\" />
     <Folder Include="Display Menu Items\" />
     <Folder Include="Forms\" />
+    <Folder Include="Security Privileges\" />
     <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +71,16 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataUploadBanner</Name>
       <Link>Classes\DevAxRefreshDataUploadBanner</Link>
+    </Content>
+    <Content Include="AxDataEntityView\DevAxRefreshDataEnvironmentTableEntity">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnvironmentTableEntity</Name>
+      <Link>Data Entities\DevAxRefreshDataEnvironmentTableEntity</Link>
+    </Content>
+    <Content Include="AxDataEntityView\DevAxRefreshDataUsersTableEntity">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUsersTableEntity</Name>
+      <Link>Data Entities\DevAxRefreshDataUsersTableEntity</Link>
     </Content>
     <Content Include="AxEnum\SearchUser">
       <SubType>Content</SubType>
@@ -115,6 +127,26 @@
       <Name>DevAxRefreshData</Name>
       <Link>Display Menu Items\DevAxRefreshData</Link>
     </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataEnvironmentTableEntityMaintain">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnvironmentTableEntityMaintain</Name>
+      <Link>Security Privileges\DevAxRefreshDataEnvironmentTableEntityMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataEnvironmentTableEntityView">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnvironmentTableEntityView</Name>
+      <Link>Security Privileges\DevAxRefreshDataEnvironmentTableEntityView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataUsersTableEntityMaintain">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUsersTableEntityMaintain</Name>
+      <Link>Security Privileges\DevAxRefreshDataUsersTableEntityMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataUsersTableEntityView">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUsersTableEntityView</Name>
+      <Link>Security Privileges\DevAxRefreshDataUsersTableEntityView</Link>
+    </Content>
     <Content Include="AxTable\DevAxRefreshDataEInvoiceParameters">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataEInvoiceParameters</Name>
@@ -124,6 +156,11 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataEnvironmentTable</Name>
       <Link>Tables\DevAxRefreshDataEnvironmentTable</Link>
+    </Content>
+    <Content Include="AxTable\DevAxRefreshDataEnvironmentTableStaging">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnvironmentTableStaging</Name>
+      <Link>Tables\DevAxRefreshDataEnvironmentTableStaging</Link>
     </Content>
     <Content Include="AxTable\DevAxRefreshDataTelemetryParameters">
       <SubType>Content</SubType>
@@ -135,7 +172,12 @@
       <Name>DevAxRefreshDataUsersTable</Name>
       <Link>Tables\DevAxRefreshDataUsersTable</Link>
     </Content>
+    <Content Include="AxTable\DevAxRefreshDataUsersTableStaging">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUsersTableStaging</Name>
+      <Link>Tables\DevAxRefreshDataUsersTableStaging</Link>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
-  <Import Project="$(BuildTasksDirectory)\Microsoft.Dynamics.Framework.Tools.BuildTasks.targets" />
+  <Import Project="$(BuildTasksDirectory)\Microsoft.Dynamics.Framework.Tools.BuildTasks.17.0.targets" />
 </Project>
