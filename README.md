@@ -7,9 +7,9 @@ Modelo de D365FO para actualizar configuraciones después de un RefreshData desd
 Copy and past
 ```powershell
 # Task 1: Clone the repository
-$repositoryUrl = "https://github.com/JonatanTorino/DevAxCmmUtils"
-$localRepoPath = "K:\Axxon\GitHub.JonatanTorino\DevAxCmmUtils"
-$modelName = "DevAxCmmUtils"
+$repositoryUrl = "https://github.com/JonatanTorino/DevAxRefreshData"
+$localRepoPath = "K:\Axxon\GitHub.JonatanTorino\DevAxRefreshData"
+$modelName = "DevAxRefreshData"
 
 # Clone or pull the repository
 git clone $repositoryUrl $localRepoPath | Wait-Process
