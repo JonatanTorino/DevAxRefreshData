@@ -38,6 +38,7 @@
     <Folder Include="Data Entities\" />
     <Folder Include="Display Menu Items\" />
     <Folder Include="Forms\" />
+    <Folder Include="Menu Extensions\" />
     <Folder Include="Security Privileges\" />
     <Folder Include="Tables\" />
   </ItemGroup>
@@ -92,6 +93,11 @@
       <Name>DevAxRefreshData</Name>
       <Link>Forms\DevAxRefreshData</Link>
     </Content>
+    <Content Include="AxMenuExtension\SystemAdministration.DevAxRefreshData">
+      <SubType>Content</SubType>
+      <Name>SystemAdministration.DevAxRefreshData</Name>
+      <Link>Menu Extensions\SystemAdministration.DevAxRefreshData</Link>
+    </Content>
     <Content Include="AxMenuItemAction\DevAxRefreshDataApplyAppInsightRegistry">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataApplyAppInsightRegistry</Name>
@@ -137,6 +143,11 @@
       <Name>DevAxRefreshDataEnvironmentTableEntityView</Name>
       <Link>Security Privileges\DevAxRefreshDataEnvironmentTableEntityView</Link>
     </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataMaintain">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataMaintain</Name>
+      <Link>Security Privileges\DevAxRefreshDataMaintain</Link>
+    </Content>
     <Content Include="AxSecurityPrivilege\DevAxRefreshDataUsersTableEntityMaintain">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataUsersTableEntityMaintain</Name>
@@ -146,6 +157,11 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataUsersTableEntityView</Name>
       <Link>Security Privileges\DevAxRefreshDataUsersTableEntityView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataView">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataView</Name>
+      <Link>Security Privileges\DevAxRefreshDataView</Link>
     </Content>
     <Content Include="AxTable\DevAxRefreshDataEInvoiceParameters">
       <SubType>Content</SubType>
