@@ -1,0 +1,17 @@
+﻿NewLabel0=Label files created on 05/26/2025 16:51:30 for label file Id DevAxRefreshData and language es
+ ;Label file comment - see above label
+RFDTA001=Facilitador post-bajada de datos
+RFDTA002=Actualiza los botones según el ID de cuadrícula, reemplazando los existentes por los configurados en esta tabla.
+RFDTA003=Reemplazar datos
+RFDTA004=¿Está seguro de que desea realizar los cambios?
+RFDTA005=Los cambios se aplicaron correctamente
+RFDTA006=General
+RFDTA007=Debe completarse el campo URL Producción para validar y restringir la ejecución de procesos en el entorno de producción.
+RFDTA008=URL de producción
+RFDTA009=Personalización
+RFDTA010=URL
+RFDTA011=Permite aplicar personalizaciones al entorno, como la asignación del banner, el esquema de color y otras configuraciones visuales.
+RFDTA012=Aplicar configuraciones
+RFDTA013=Habilitación de usuarios
+RFDTA014=Usuarios
+RFDTA015=Facilita la habilitación de usuarios para operar en el entorno actual.

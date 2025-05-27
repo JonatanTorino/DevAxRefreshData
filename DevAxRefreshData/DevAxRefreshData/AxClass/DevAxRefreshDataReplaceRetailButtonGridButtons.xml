@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshDataReplaceRetailButtonGridButtons</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class DevAxRefreshDataReplaceRetailButtonGridButtons
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        DevAxRefreshDataReplaceRetailButtonGridButtons replaceRetailButtonGridButtons = new DevAxRefreshDataReplaceRetailButtonGridButtons();
+        replaceRetailButtonGridButtons.run();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    public void run()
+    {
+        DialogButton response = Box::yesNo("@DevAxRefreshData:RFDTA004", DialogButton::Yes);
+
+        if (response == DialogButton::Yes)
+        {
+            DevAxRefreshDataRetailButtonGridButtons devAxRefreshDataRetailButtonGridButtons;
+            RetailButtonGridButtons retailButtonGridButtons;
+
+            while select buttonGridId from devAxRefreshDataRetailButtonGridButtons
+                group by devAxRefreshDataRetailButtonGridButtons.buttonGridId
+            {
+                delete_from retailButtonGridButtons
+                where retailButtonGridButtons.buttonGridId == devAxRefreshDataRetailButtonGridButtons.buttonGridId;
+            }
+
+            int newButtonId;
+            select maxof(ID) from retailButtonGridButtons;
+            newButtonId = retailButtonGridButtons.ID;
+
+            ttsbegin;
+            while select devAxRefreshDataRetailButtonGridButtons
+            {
+                retailButtonGridButtons.clear();
+
+                newButtonId++;
+                retailButtonGridButtons.buttonGridId = devAxRefreshDataRetailButtonGridButtons.buttonGridId;
+                retailButtonGridButtons.ID = newButtonId;
+                retailButtonGridButtons.Action = devAxRefreshDataRetailButtonGridButtons.Action;
+                retailButtonGridButtons.ActionProperty = devAxRefreshDataRetailButtonGridButtons.ActionProperty;
+                retailButtonGridButtons.Col = devAxRefreshDataRetailButtonGridButtons.Col;
+                retailButtonGridButtons.colour = devAxRefreshDataRetailButtonGridButtons.colour;
+                retailButtonGridButtons.ColSpan = devAxRefreshDataRetailButtonGridButtons.ColSpan;
+                retailButtonGridButtons.DisplayText = devAxRefreshDataRetailButtonGridButtons.DisplayText;
+                retailButtonGridButtons.FontSize = devAxRefreshDataRetailButtonGridButtons.FontSize;
+                retailButtonGridButtons.FontStyle = devAxRefreshDataRetailButtonGridButtons.FontStyle;
+                retailButtonGridButtons.imageAlignment = devAxRefreshDataRetailButtonGridButtons.imageAlignment;
+                retailButtonGridButtons.PictureId = devAxRefreshDataRetailButtonGridButtons.PictureId;
+                retailButtonGridButtons.RowNum = devAxRefreshDataRetailButtonGridButtons.RowNum;
+                retailButtonGridButtons.RowSpan = devAxRefreshDataRetailButtonGridButtons.RowSpan;
+                retailButtonGridButtons.BackColor = devAxRefreshDataRetailButtonGridButtons.BackColor;
+                retailButtonGridButtons.BackColor2 = devAxRefreshDataRetailButtonGridButtons.BackColor2;
+                retailButtonGridButtons.BorderColor = devAxRefreshDataRetailButtonGridButtons.BorderColor;
+                retailButtonGridButtons.FontColor = devAxRefreshDataRetailButtonGridButtons.FontColor;
+                retailButtonGridButtons.GradientMode = devAxRefreshDataRetailButtonGridButtons.GradientMode;
+                retailButtonGridButtons.UseCustomLookAndFeel = devAxRefreshDataRetailButtonGridButtons.UseCustomLookAndFeel;
+                retailButtonGridButtons.NewImageAlignment = devAxRefreshDataRetailButtonGridButtons.NewImageAlignment;
+                retailButtonGridButtons.NewTextAlignment = devAxRefreshDataRetailButtonGridButtons.NewTextAlignment;
+                retailButtonGridButtons.EnableCustomFontForPOS = devAxRefreshDataRetailButtonGridButtons.EnableCustomFontForPOS;
+                retailButtonGridButtons.HideButtonText = devAxRefreshDataRetailButtonGridButtons.HideButtonText;
+                retailButtonGridButtons.Tooltip = devAxRefreshDataRetailButtonGridButtons.Tooltip;
+                retailButtonGridButtons.EnableLiveContent = devAxRefreshDataRetailButtonGridButtons.EnableLiveContent;
+                retailButtonGridButtons.NotificationContentAlignment = devAxRefreshDataRetailButtonGridButtons.NotificationContentAlignment;
+               
+                retailButtonGridButtons.insert();
+            }
+
+            ttscommit;
+
+            info("@DevAxRefreshData:RFDTA005");
+        }
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

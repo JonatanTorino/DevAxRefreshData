@@ -38,6 +38,7 @@
     <Folder Include="Data Entities\" />
     <Folder Include="Display Menu Items\" />
     <Folder Include="Forms\" />
+    <Folder Include="Label Files\" />
     <Folder Include="Menu Extensions\" />
     <Folder Include="Security Privileges\" />
     <Folder Include="Tables\" />
@@ -68,6 +69,11 @@
       <Name>DevAxRefreshDataReplaceAfipParams</Name>
       <Link>Classes\DevAxRefreshDataReplaceAfipParams</Link>
     </Content>
+    <Content Include="AxClass\DevAxRefreshDataReplaceRetailButtonGridButtons">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataReplaceRetailButtonGridButtons</Name>
+      <Link>Classes\DevAxRefreshDataReplaceRetailButtonGridButtons</Link>
+    </Content>
     <Content Include="AxClass\DevAxRefreshDataUploadBanner">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataUploadBanner</Name>
@@ -77,6 +83,11 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataEnvironmentTableEntity</Name>
       <Link>Data Entities\DevAxRefreshDataEnvironmentTableEntity</Link>
+    </Content>
+    <Content Include="AxDataEntityView\DevAxRefreshDataRetailButtonGridButtonsEntity">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataRetailButtonGridButtonsEntity</Name>
+      <Link>Data Entities\DevAxRefreshDataRetailButtonGridButtonsEntity</Link>
     </Content>
     <Content Include="AxDataEntityView\DevAxRefreshDataUsersTableEntity">
       <SubType>Content</SubType>
@@ -92,6 +103,16 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshData</Name>
       <Link>Forms\DevAxRefreshData</Link>
+    </Content>
+    <Content Include="AxLabelFile\DevAxRefreshData_en-US">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData_en-US</Name>
+      <Link>Label Files\DevAxRefreshData_en-US</Link>
+    </Content>
+    <Content Include="AxLabelFile\DevAxRefreshData_es">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData_es</Name>
+      <Link>Label Files\DevAxRefreshData_es</Link>
     </Content>
     <Content Include="AxMenuExtension\SystemAdministration.DevAxRefreshData">
       <SubType>Content</SubType>
@@ -123,6 +144,11 @@
       <Name>DevAxRefreshDataReplaceAfipParams</Name>
       <Link>Action Menu Items\DevAxRefreshDataReplaceAfipParams</Link>
     </Content>
+    <Content Include="AxMenuItemAction\DevAxRefreshDataReplaceRetailButtonGridButtons">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataReplaceRetailButtonGridButtons</Name>
+      <Link>Action Menu Items\DevAxRefreshDataReplaceRetailButtonGridButtons</Link>
+    </Content>
     <Content Include="AxMenuItemAction\DevAxRefreshDataUploadBanner">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataUploadBanner</Name>
@@ -147,6 +173,16 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataMaintain</Name>
       <Link>Security Privileges\DevAxRefreshDataMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataRetailButtonGridButtonsEntityMaintain">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataRetailButtonGridButtonsEntityMaintain</Name>
+      <Link>Security Privileges\DevAxRefreshDataRetailButtonGridButtonsEntityMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataRetailButtonGridButtonsEntityView">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataRetailButtonGridButtonsEntityView</Name>
+      <Link>Security Privileges\DevAxRefreshDataRetailButtonGridButtonsEntityView</Link>
     </Content>
     <Content Include="AxSecurityPrivilege\DevAxRefreshDataUsersTableEntityMaintain">
       <SubType>Content</SubType>
@@ -178,6 +214,16 @@
       <Name>DevAxRefreshDataEnvironmentTableStaging</Name>
       <Link>Tables\DevAxRefreshDataEnvironmentTableStaging</Link>
     </Content>
+    <Content Include="AxTable\DevAxRefreshDataRetailButtonGridButtons">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataRetailButtonGridButtons</Name>
+      <Link>Tables\DevAxRefreshDataRetailButtonGridButtons</Link>
+    </Content>
+    <Content Include="AxTable\DevAxRefreshDataRetailButtonGridButtonsStaging">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataRetailButtonGridButtonsStaging</Name>
+      <Link>Tables\DevAxRefreshDataRetailButtonGridButtonsStaging</Link>
+    </Content>
     <Content Include="AxTable\DevAxRefreshDataTelemetryParameters">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataTelemetryParameters</Name>
@@ -192,6 +238,16 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataUsersTableStaging</Name>
       <Link>Tables\DevAxRefreshDataUsersTableStaging</Link>
+    </Content>
+    <Content Include="DevAxRefreshData.en-US.label.txt">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData.en-US.label.txt</Name>
+      <DependentUpon>AxLabelFile\DevAxRefreshData_en-US</DependentUpon>
+    </Content>
+    <Content Include="DevAxRefreshData.es.label.txt">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData.es.label.txt</Name>
+      <DependentUpon>AxLabelFile\DevAxRefreshData_es</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />

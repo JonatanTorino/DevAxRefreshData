@@ -1,0 +1,17 @@
+﻿NewLabel0=Label files created on 05/26/2025 16:51:30 for label file Id DevAxRefreshData and language en-US
+ ;Label file comment - see above label
+RFDTA001=Post-download data facilitator
+RFDTA002=Updates buttons based on the grid ID, replacing existing ones with those configured in this table.
+RFDTA003=Replace data
+RFDTA004=Are you sure you want to make these changes?
+RFDTA005=Changes were successfully applied
+RFDTA006=General
+RFDTA007=The Production URL field must be completed to validate and restrict the execution of processes in the production environment.
+RFDTA008=Production URL
+RFDTA009=Personalization
+RFDTA010=URL
+RFDTA011=Allows applying environment customizations such as the banner, color scheme, and other configurable elements.
+RFDTA012=Apply settings
+RFDTA013=Enable users
+RFDTA014=Users
+RFDTA015=Enables user activation within the current environment.

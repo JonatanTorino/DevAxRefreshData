@@ -80,14 +80,13 @@ public class DevAxRefreshDataEInvoiceParameters extends common
 			<Name>UrlD365Prod</Name>
 			<ExtendedDataType>AxxDocURL</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
-			<Label>Url Produccion</Label>
+			<Label>@DevAxRefreshData:RFDTA008</Label>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldString">
 			<Name>Url</Name>
 			<ExtendedDataType>AxxDocURL</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
-			<Label>@Axxon:LD_Setup125</Label>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldString">

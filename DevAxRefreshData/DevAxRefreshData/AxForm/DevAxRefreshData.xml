@@ -82,7 +82,30 @@ public class DevAxRefreshData extends FormRun
 ]]></Source>
 			</Method>
 		</Methods>
-		<DataSources xmlns="" />
+		<DataSources xmlns="">
+			<DataSource>
+				<Name>DevAxRefreshDataRetailButtonGridButtons</Name>
+				<Methods>
+					<Method>
+						<Name>write</Name>
+						<Source><![CDATA[
+        public void write()
+        {
+            DevAxRefreshDataRetailButtonGridButtons retailButtonGridButtonsLoc;
+
+            select maxOf(ID) from retailButtonGridButtonsLoc;
+
+            DevAxRefreshDataRetailButtonGridButtons.ID = retailButtonGridButtonsLoc.ID + 1;
+
+            super();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+				<Fields />
+			</DataSource>
+		</DataSources>
 		<DataControls xmlns="">
 			<Control>
 				<Name>RefreshDataFileUpload</Name>
@@ -219,6 +242,7 @@ public class DevAxRefreshData extends FormRun
 				</AxFormDataSourceField>
 			</Fields>
 			<ReferencedDataSources />
+			<InsertIfEmpty>No</InsertIfEmpty>
 			<DataSourceLinks />
 			<DerivedDataSources />
 		</AxFormDataSource>
@@ -246,6 +270,107 @@ public class DevAxRefreshData extends FormRun
 				</AxFormDataSourceField>
 			</Fields>
 			<ReferencedDataSources />
+			<InsertIfEmpty>No</InsertIfEmpty>
+			<DataSourceLinks />
+			<DerivedDataSources />
+		</AxFormDataSource>
+		<AxFormDataSource xmlns="">
+			<Name>DevAxRefreshDataRetailButtonGridButtons</Name>
+			<Table>DevAxRefreshDataRetailButtonGridButtons</Table>
+			<Fields>
+				<AxFormDataSourceField>
+					<DataField>Action</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ActionProperty</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>BackColor</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>BackColor2</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>BorderColor</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>buttonGridId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Col</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>colour</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ColSpan</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>DisplayText</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>EnableCustomFontForPOS</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>EnableLiveContent</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>FontColor</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>FontSize</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>FontStyle</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>GradientMode</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>HideButtonText</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ID</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>imageAlignment</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>NewImageAlignment</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>NewTextAlignment</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>NotificationContentAlignment</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Partition</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>PictureId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RecId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RowNum</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RowSpan</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>TableId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Tooltip</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>UseCustomLookAndFeel</DataField>
+				</AxFormDataSourceField>
+			</Fields>
+			<ReferencedDataSources />
+			<InsertIfEmpty>No</InsertIfEmpty>
 			<DataSourceLinks />
 			<DerivedDataSources />
 		</AxFormDataSource>
@@ -254,6 +379,7 @@ public class DevAxRefreshData extends FormRun
 		<Pattern xmlns="">TableOfContents</Pattern>
 		<PatternVersion xmlns="">1.1</PatternVersion>
 		<Style xmlns="">TableOfContents</Style>
+		<UseCaptionFromMenuItem xmlns="">Yes</UseCaptionFromMenuItem>
 		<Controls xmlns="">
 			<AxFormControl xmlns=""
 				i:type="AxFormTabControl">
@@ -287,7 +413,7 @@ public class DevAxRefreshData extends FormRun
 										<FormControlExtension
 											i:nil="true" />
 										<Style>MainInstruction</Style>
-										<Text>General</Text>
+										<Text>@DevAxRefreshData:RFDTA006</Text>
 									</AxFormControl>
 									<AxFormControl xmlns=""
 										i:type="AxFormStaticTextControl">
@@ -298,7 +424,7 @@ public class DevAxRefreshData extends FormRun
 										<WidthMode>SizeToAvailable</WidthMode>
 										<FormControlExtension
 											i:nil="true" />
-										<Text>El campo URL Producción es necesario como validación para impedir que un usuario ejecute por error algún proceso en el entorno de producción</Text>
+										<Text>@DevAxRefreshData:RFDTA007</Text>
 									</AxFormControl>
 								</Controls>
 								<AllowUserSetup>No</AllowUserSetup>
@@ -340,13 +466,13 @@ public class DevAxRefreshData extends FormRun
 											</AxFormControl>
 										</Controls>
 										<Columns>2</Columns>
-										<Caption>Url </Caption>
+										<Caption>@DevAxRefreshData:RFDTA010</Caption>
 									</AxFormControl>
 								</Controls>
 								<Style>FastTabs</Style>
 							</AxFormControl>
 						</Controls>
-						<Caption>General</Caption>
+						<Caption>@DevAxRefreshData:RFDTA006</Caption>
 					</AxFormControl>
 					<AxFormControl xmlns=""
 						i:type="AxFormTabPageControl">
@@ -373,7 +499,7 @@ public class DevAxRefreshData extends FormRun
 										<FormControlExtension
 											i:nil="true" />
 										<Style>MainInstruction</Style>
-										<Text>Personalization</Text>
+										<Text>@DevAxRefreshData:RFDTA009</Text>
 									</AxFormControl>
 									<AxFormControl xmlns=""
 										i:type="AxFormStaticTextControl">
@@ -384,7 +510,7 @@ public class DevAxRefreshData extends FormRun
 										<WidthMode>SizeToAvailable</WidthMode>
 										<FormControlExtension
 											i:nil="true" />
-										<Text>Permite seleccionar y aplicar el banner y el color del ambiente</Text>
+										<Text>@DevAxRefreshData:RFDTA011</Text>
 									</AxFormControl>
 								</Controls>
 								<AllowUserSetup>No</AllowUserSetup>
@@ -552,19 +678,17 @@ public class DevAxRefreshData extends FormRun
 														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
 														<MenuItemName>DevAxRefreshDataApplyPersonalization</MenuItemName>
 														<MenuItemType>Action</MenuItemType>
-														<Text>Apply</Text>
 													</AxFormControl>
 												</Controls>
-												<Caption>Apply Personalization</Caption>
 											</AxFormControl>
 										</Controls>
-										<Caption>Personalization</Caption>
+										<Caption>@DevAxRefreshData:RFDTA009</Caption>
 									</AxFormControl>
 								</Controls>
 								<Style>FastTabs</Style>
 							</AxFormControl>
 						</Controls>
-						<Caption>Personalization</Caption>
+						<Caption>@DevAxRefreshData:RFDTA009</Caption>
 						<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
 					</AxFormControl>
 					<AxFormControl xmlns=""
@@ -592,7 +716,7 @@ public class DevAxRefreshData extends FormRun
 										<FormControlExtension
 											i:nil="true" />
 										<Style>MainInstruction</Style>
-										<Text>Enable Users</Text>
+										<Text>@DevAxRefreshData:RFDTA013</Text>
 									</AxFormControl>
 									<AxFormControl xmlns=""
 										i:type="AxFormStaticTextControl">
@@ -603,7 +727,7 @@ public class DevAxRefreshData extends FormRun
 										<WidthMode>SizeToAvailable</WidthMode>
 										<FormControlExtension
 											i:nil="true" />
-										<Text>Habilita Usuarios en el entorno</Text>
+										<Text>@DevAxRefreshData:RFDTA015</Text>
 									</AxFormControl>
 								</Controls>
 								<AllowUserSetup>No</AllowUserSetup>
@@ -743,18 +867,17 @@ public class DevAxRefreshData extends FormRun
 															i:nil="true" />
 														<MenuItemName>DevAxRefreshDataEnableUsers</MenuItemName>
 														<MenuItemType>Action</MenuItemType>
-														<Text>Enable Users</Text>
 													</AxFormControl>
 												</Controls>
 											</AxFormControl>
 										</Controls>
-										<Caption>User</Caption>
+										<Caption>@DevAxRefreshData:RFDTA014</Caption>
 									</AxFormControl>
 								</Controls>
 								<Style>FastTabs</Style>
 							</AxFormControl>
 						</Controls>
-						<Caption>Enable Users</Caption>
+						<Caption>@DevAxRefreshData:RFDTA013</Caption>
 						<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
 					</AxFormControl>
 					<AxFormControl xmlns=""
@@ -1280,6 +1403,207 @@ public class DevAxRefreshData extends FormRun
 							</AxFormControl>
 						</Controls>
 						<Caption>Commerce</Caption>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>RetailButtonGridButtonsTab</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>RetailButtonGridButtonsHeader</Name>
+								<Skip>Yes</Skip>
+								<Type>Group</Type>
+								<WidthMode>SizeToAvailable</WidthMode>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>RetailButtonGridButtonsTitle</Name>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Style>MainInstruction</Style>
+										<Text>@RET2374</Text>
+									</AxFormControl>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>RetailButtonGridButtonsDescription</Name>
+										<ExtendedStyle>dialog_secondaryInstruction</ExtendedStyle>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Text>@DevAxRefreshData:RFDTA002</Text>
+									</AxFormControl>
+								</Controls>
+								<AllowUserSetup>No</AllowUserSetup>
+								<FrameType>None</FrameType>
+								<Style>TOCTitleContainer</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>RetailButtonGridButtonsBody</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>RetailButtonGridButtonsTabPage</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormActionPaneControl">
+												<Name>RetailButtonGridButtonsActionPane</Name>
+												<Type>ActionPane</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormActionPaneTabControl">
+														<Name>RetailButtonGridActionPaneTab</Name>
+														<ElementPosition>1431655764</ElementPosition>
+														<FilterExpression>%1</FilterExpression>
+														<HeightMode>Auto</HeightMode>
+														<Type>ActionPaneTab</Type>
+														<VerticalSpacing>-1</VerticalSpacing>
+														<WidthMode>Auto</WidthMode>
+														<FormControlExtension
+															i:nil="true" />
+														<Controls>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonGroupControl">
+																<Name>RetailButtonGridButtonGroup</Name>
+																<ElementPosition>1431655764</ElementPosition>
+																<FilterExpression>%1</FilterExpression>
+																<HeightMode>Auto</HeightMode>
+																<Left>0</Left>
+																<Type>ButtonGroup</Type>
+																<VerticalSpacing>-1</VerticalSpacing>
+																<WidthMode>Auto</WidthMode>
+																<FormControlExtension
+																	i:nil="true" />
+																<Controls>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormCommandButtonControl">
+																		<Name>NewButton</Name>
+																		<ElementPosition>1073741822</ElementPosition>
+																		<FilterExpression>%1</FilterExpression>
+																		<HeightMode>Auto</HeightMode>
+																		<Type>CommandButton</Type>
+																		<VerticalSpacing>-1</VerticalSpacing>
+																		<WidthMode>Auto</WidthMode>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<ButtonDisplay>TextWithImageLeft</ButtonDisplay>
+																		<Command>New</Command>
+																		<NormalImage>New</NormalImage>
+																		<Primary>Yes</Primary>
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormCommandButtonControl">
+																		<Name>DeleteButton</Name>
+																		<ElementPosition>1610612733</ElementPosition>
+																		<FilterExpression>%1</FilterExpression>
+																		<HeightMode>Auto</HeightMode>
+																		<Type>CommandButton</Type>
+																		<VerticalSpacing>-1</VerticalSpacing>
+																		<WidthMode>Auto</WidthMode>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<ButtonDisplay>TextWithImageLeft</ButtonDisplay>
+																		<Command>DeleteRecord</Command>
+																		<NormalImage>Delete</NormalImage>
+																		<Primary>Yes</Primary>
+																		<SaveRecord>No</SaveRecord>
+																		<Text>@SYS14425</Text>
+																	</AxFormControl>
+																</Controls>
+																<ArrangeMethod>Vertical</ArrangeMethod>
+															</AxFormControl>
+														</Controls>
+														<AlignChild>No</AlignChild>
+														<AlignChildren>No</AlignChildren>
+														<ArrangeMethod>Vertical</ArrangeMethod>
+													</AxFormControl>
+												</Controls>
+												<DataSource>DevAxRefreshDataRetailButtonGridButtons</DataSource>
+												<Style>Strip</Style>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGridControl">
+												<Name>RetailButtonGridButtonsGrid</Name>
+												<Type>Grid</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataRetailButtonGridButtons_buttonGridId</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>buttonGridId</DataField>
+														<DataSource>DevAxRefreshDataRetailButtonGridButtons</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormIntegerControl">
+														<Name>DevAxRefreshDataRetailButtonGridButtons_Action</Name>
+														<Type>Integer</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Action</DataField>
+														<DataSource>DevAxRefreshDataRetailButtonGridButtons</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataRetailButtonGridButtons_DisplayText</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>DisplayText</DataField>
+														<DataSource>DevAxRefreshDataRetailButtonGridButtons</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataRetailButtonGridButtons_ActionProperty</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>ActionProperty</DataField>
+														<DataSource>DevAxRefreshDataRetailButtonGridButtons</DataSource>
+													</AxFormControl>
+												</Controls>
+												<DataSource>DevAxRefreshDataRetailButtonGridButtons</DataSource>
+												<MultiSelect>No</MultiSelect>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormMenuFunctionButtonControl">
+												<Name>DevAxRefreshDataReplaceRetailButtonGridButtons</Name>
+												<Type>MenuFunctionButton</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<MenuItemName>DevAxRefreshDataReplaceRetailButtonGridButtons</MenuItemName>
+												<MenuItemType>Action</MenuItemType>
+											</AxFormControl>
+										</Controls>
+										<Caption>@Retail:ButtonGridTable</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+						</Controls>
+						<Caption>@RET2374</Caption>
 					</AxFormControl>
 				</Controls>
 				<Style>VerticalTabs</Style>
