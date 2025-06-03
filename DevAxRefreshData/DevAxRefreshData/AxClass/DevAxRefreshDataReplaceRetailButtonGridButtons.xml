@@ -38,10 +38,12 @@ public class DevAxRefreshDataReplaceRetailButtonGridButtons
                 where retailButtonGridButtons.buttonGridId == devAxRefreshDataRetailButtonGridButtons.buttonGridId;
             }
 
+            RecordInsertList retailButtonGridButtonsList = new RecordInsertList(tableNum(RetailButtonGridButtons), true, true, true, true, true);
+            
             int newButtonId;
             select maxof(ID) from retailButtonGridButtons;
             newButtonId = retailButtonGridButtons.ID;
-
+               
             ttsbegin;
             while select devAxRefreshDataRetailButtonGridButtons
             {
@@ -76,9 +78,10 @@ public class DevAxRefreshDataReplaceRetailButtonGridButtons
                 retailButtonGridButtons.EnableLiveContent = devAxRefreshDataRetailButtonGridButtons.EnableLiveContent;
                 retailButtonGridButtons.NotificationContentAlignment = devAxRefreshDataRetailButtonGridButtons.NotificationContentAlignment;
                
-                retailButtonGridButtons.insert();
+                retailButtonGridButtonsList.add(retailButtonGridButtons);
             }
-
+            
+            retailButtonGridButtonsList.insertDatabase();
             ttscommit;
 
             info("@DevAxRefreshData:RFDTA005");
