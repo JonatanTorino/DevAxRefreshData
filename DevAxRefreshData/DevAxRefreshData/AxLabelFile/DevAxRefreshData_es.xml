@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxLabelFile xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshData_es</Name>
+	<LabelContentFileName>DevAxRefreshData.es.label.txt</LabelContentFileName>
+	<LabelFileId>DevAxRefreshData</LabelFileId>
+	<Language>es</Language>
+	<RelativeUriInModelStore>DevAxRefreshData\DevAxRefreshData\AxLabelFile\LabelResources\es\DevAxRefreshData.es.label.txt</RelativeUriInModelStore>
+</AxLabelFile>
