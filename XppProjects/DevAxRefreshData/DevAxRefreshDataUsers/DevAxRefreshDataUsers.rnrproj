@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <BuildTasksDirectory Condition=" '$(BuildTasksDirectory)' == ''">$(MSBuildProgramFiles32)\MSBuild\Microsoft\Dynamics\AX</BuildTasksDirectory>
+    <Model>DevAxRefreshData</Model>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <OutputPath>bin</OutputPath>
+    <SchemaVersion>2.0</SchemaVersion>
+    <GenerateCrossReferences>True</GenerateCrossReferences>
+    <RunAppCheckerRules>False</RunAppCheckerRules>
+    <LogAppcheckerDiagsAsErrors>False</LogAppcheckerDiagsAsErrors>
+    <DeployOnline>False</DeployOnline>
+    <ProjectGuid>{484988cd-76f0-444c-a7cb-6f82b1e3382b}</ProjectGuid>
+    <Name>DevAxRefreshDataUsers</Name>
+    <RootNamespace>DevAxRefreshDataUsers</RootNamespace>
+    <StartupType>Class</StartupType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <Configuration>Debug</Configuration>
+    <DBSyncInBuild>False</DBSyncInBuild>
+    <GenerateFormAdaptors>False</GenerateFormAdaptors>
+    <Company>
+    </Company>
+    <Partition>initial</Partition>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DataEntityExpandParentChildRelations>False</DataEntityExpandParentChildRelations>
+    <DataEntityUseLabelTextAsFieldName>False</DataEntityUseLabelTextAsFieldName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Action Menu Items\" />
+    <Folder Include="Base Enums\" />
+    <Folder Include="Classes\" />
+    <Folder Include="Data Entities\" />
+    <Folder Include="Security Privileges\" />
+    <Folder Include="Tables\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AxClass\DevAxRefreshDataEnableUsers">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnableUsers</Name>
+      <Link>Classes\DevAxRefreshDataEnableUsers</Link>
+    </Content>
+    <Content Include="AxDataEntityView\DevAxRefreshDataUsersTableEntity">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUsersTableEntity</Name>
+      <Link>Data Entities\DevAxRefreshDataUsersTableEntity</Link>
+    </Content>
+    <Content Include="AxEnum\SearchUser">
+      <SubType>Content</SubType>
+      <Name>SearchUser</Name>
+      <Link>Base Enums\SearchUser</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\DevAxRefreshDataEnableUsers">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnableUsers</Name>
+      <Link>Action Menu Items\DevAxRefreshDataEnableUsers</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataUsersTableEntityMaintain">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUsersTableEntityMaintain</Name>
+      <Link>Security Privileges\DevAxRefreshDataUsersTableEntityMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataUsersTableEntityView">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUsersTableEntityView</Name>
+      <Link>Security Privileges\DevAxRefreshDataUsersTableEntityView</Link>
+    </Content>
+    <Content Include="AxTable\DevAxRefreshDataUsersTable">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUsersTable</Name>
+      <Link>Tables\DevAxRefreshDataUsersTable</Link>
+    </Content>
+    <Content Include="AxTable\DevAxRefreshDataUsersTableStaging">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUsersTableStaging</Name>
+      <Link>Tables\DevAxRefreshDataUsersTableStaging</Link>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
+  <Import Project="$(BuildTasksDirectory)\Microsoft.Dynamics.Framework.Tools.BuildTasks.17.0.targets" />
+</Project>

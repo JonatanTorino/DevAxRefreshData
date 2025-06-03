@@ -33,10 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Action Menu Items\" />
-    <Folder Include="Base Enums\" />
     <Folder Include="Classes\" />
-    <Folder Include="Data Entities\" />
-    <Folder Include="Security Privileges\" />
     <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
@@ -55,11 +52,6 @@
       <Name>DevAxRefreshDataApplyPersonalization</Name>
       <Link>Classes\DevAxRefreshDataApplyPersonalization</Link>
     </Content>
-    <Content Include="AxClass\DevAxRefreshDataEnableUsers">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataEnableUsers</Name>
-      <Link>Classes\DevAxRefreshDataEnableUsers</Link>
-    </Content>
     <Content Include="AxClass\DevAxRefreshDataReplaceAfipParams">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataReplaceAfipParams</Name>
@@ -69,16 +61,6 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataUploadBanner</Name>
       <Link>Classes\DevAxRefreshDataUploadBanner</Link>
-    </Content>
-    <Content Include="AxDataEntityView\DevAxRefreshDataUsersTableEntity">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataUsersTableEntity</Name>
-      <Link>Data Entities\DevAxRefreshDataUsersTableEntity</Link>
-    </Content>
-    <Content Include="AxEnum\SearchUser">
-      <SubType>Content</SubType>
-      <Name>SearchUser</Name>
-      <Link>Base Enums\SearchUser</Link>
     </Content>
     <Content Include="AxMenuItemAction\DevAxRefreshDataApplyAppInsightRegistry">
       <SubType>Content</SubType>
@@ -95,11 +77,6 @@
       <Name>DevAxRefreshDataApplyPersonalization</Name>
       <Link>Action Menu Items\DevAxRefreshDataApplyPersonalization</Link>
     </Content>
-    <Content Include="AxMenuItemAction\DevAxRefreshDataEnableUsers">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataEnableUsers</Name>
-      <Link>Action Menu Items\DevAxRefreshDataEnableUsers</Link>
-    </Content>
     <Content Include="AxMenuItemAction\DevAxRefreshDataReplaceAfipParams">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataReplaceAfipParams</Name>
@@ -110,16 +87,6 @@
       <Name>DevAxRefreshDataUploadBanner</Name>
       <Link>Action Menu Items\DevAxRefreshDataUploadBanner</Link>
     </Content>
-    <Content Include="AxSecurityPrivilege\DevAxRefreshDataUsersTableEntityMaintain">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataUsersTableEntityMaintain</Name>
-      <Link>Security Privileges\DevAxRefreshDataUsersTableEntityMaintain</Link>
-    </Content>
-    <Content Include="AxSecurityPrivilege\DevAxRefreshDataUsersTableEntityView">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataUsersTableEntityView</Name>
-      <Link>Security Privileges\DevAxRefreshDataUsersTableEntityView</Link>
-    </Content>
     <Content Include="AxTable\DevAxRefreshDataEInvoiceParameters">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataEInvoiceParameters</Name>
@@ -129,16 +96,6 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataTelemetryParameters</Name>
       <Link>Tables\DevAxRefreshDataTelemetryParameters</Link>
-    </Content>
-    <Content Include="AxTable\DevAxRefreshDataUsersTable">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataUsersTable</Name>
-      <Link>Tables\DevAxRefreshDataUsersTable</Link>
-    </Content>
-    <Content Include="AxTable\DevAxRefreshDataUsersTableStaging">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataUsersTableStaging</Name>
-      <Link>Tables\DevAxRefreshDataUsersTableStaging</Link>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
