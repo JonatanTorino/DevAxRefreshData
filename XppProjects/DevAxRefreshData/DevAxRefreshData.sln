@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.34301.259
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "AxxDocEInvoiceWSParameters (CUS) [DevAxRefreshData]", "AxxDocEInvoiceWSParameters\AxxDocEInvoiceWSParameters.rnrproj", "{A7FFB855-2B93-4712-8E2B-BAB1BC451E56}"
+EndProject
+Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "DevAxRefreshData (CUS) [DevAxRefreshData]", "DevAxRefreshData\DevAxRefreshData.rnrproj", "{2344C6AD-DC30-40EF-813C-1E3F6F024C42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,6 +14,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A7FFB855-2B93-4712-8E2B-BAB1BC451E56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A7FFB855-2B93-4712-8E2B-BAB1BC451E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2344C6AD-DC30-40EF-813C-1E3F6F024C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2344C6AD-DC30-40EF-813C-1E3F6F024C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

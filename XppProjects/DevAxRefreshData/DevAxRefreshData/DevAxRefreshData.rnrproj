@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <BuildTasksDirectory Condition=" '$(BuildTasksDirectory)' == ''">$(MSBuildProgramFiles32)\MSBuild\Microsoft\Dynamics\AX</BuildTasksDirectory>
+    <Model>DevAxRefreshData</Model>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <OutputPath>bin</OutputPath>
+    <SchemaVersion>2.0</SchemaVersion>
+    <GenerateCrossReferences>True</GenerateCrossReferences>
+    <RunAppCheckerRules>False</RunAppCheckerRules>
+    <LogAppcheckerDiagsAsErrors>False</LogAppcheckerDiagsAsErrors>
+    <DeployOnline>False</DeployOnline>
+    <ProjectGuid>{2344c6ad-dc30-40ef-813c-1e3f6f024c42}</ProjectGuid>
+    <Name>DevAxRefreshData</Name>
+    <RootNamespace>DevAxRefreshData</RootNamespace>
+    <StartupType>Class</StartupType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <Configuration>Debug</Configuration>
+    <DBSyncInBuild>False</DBSyncInBuild>
+    <GenerateFormAdaptors>False</GenerateFormAdaptors>
+    <Company>
+    </Company>
+    <Partition>initial</Partition>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DataEntityExpandParentChildRelations>False</DataEntityExpandParentChildRelations>
+    <DataEntityUseLabelTextAsFieldName>False</DataEntityUseLabelTextAsFieldName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Data Entities\" />
+    <Folder Include="Display Menu Items\" />
+    <Folder Include="Forms\" />
+    <Folder Include="Label Files\" />
+    <Folder Include="Menu Extensions\" />
+    <Folder Include="Security Privileges\" />
+    <Folder Include="Tables\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AxDataEntityView\DevAxRefreshDataEnvironmentTableEntity">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnvironmentTableEntity</Name>
+      <Link>Data Entities\DevAxRefreshDataEnvironmentTableEntity</Link>
+    </Content>
+    <Content Include="AxForm\DevAxRefreshData">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData</Name>
+      <Link>Forms\DevAxRefreshData</Link>
+    </Content>
+    <Content Include="AxLabelFile\DevAxRefreshData_en-US">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData_en-US</Name>
+      <Link>Label Files\DevAxRefreshData_en-US</Link>
+    </Content>
+    <Content Include="AxLabelFile\DevAxRefreshData_es">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData_es</Name>
+      <Link>Label Files\DevAxRefreshData_es</Link>
+    </Content>
+    <Content Include="AxMenuExtension\SystemAdministration.DevAxRefreshData">
+      <SubType>Content</SubType>
+      <Name>SystemAdministration.DevAxRefreshData</Name>
+      <Link>Menu Extensions\SystemAdministration.DevAxRefreshData</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\DevAxRefreshData">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData</Name>
+      <Link>Display Menu Items\DevAxRefreshData</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataEnvironmentTableEntityMaintain">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnvironmentTableEntityMaintain</Name>
+      <Link>Security Privileges\DevAxRefreshDataEnvironmentTableEntityMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataEnvironmentTableEntityView">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnvironmentTableEntityView</Name>
+      <Link>Security Privileges\DevAxRefreshDataEnvironmentTableEntityView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataMaintain">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataMaintain</Name>
+      <Link>Security Privileges\DevAxRefreshDataMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\DevAxRefreshDataView">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataView</Name>
+      <Link>Security Privileges\DevAxRefreshDataView</Link>
+    </Content>
+    <Content Include="AxTable\DevAxRefreshDataEnvironmentTable">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnvironmentTable</Name>
+      <Link>Tables\DevAxRefreshDataEnvironmentTable</Link>
+    </Content>
+    <Content Include="AxTable\DevAxRefreshDataEnvironmentTableStaging">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataEnvironmentTableStaging</Name>
+      <Link>Tables\DevAxRefreshDataEnvironmentTableStaging</Link>
+    </Content>
+    <Content Include="DevAxRefreshData.en-US.label.txt">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData.en-US.label.txt</Name>
+      <DependentUpon>AxLabelFile\DevAxRefreshData_en-US</DependentUpon>
+    </Content>
+    <Content Include="DevAxRefreshData.es.label.txt">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData.es.label.txt</Name>
+      <DependentUpon>AxLabelFile\DevAxRefreshData_es</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
+  <Import Project="$(BuildTasksDirectory)\Microsoft.Dynamics.Framework.Tools.BuildTasks.17.0.targets" />
+</Project>
