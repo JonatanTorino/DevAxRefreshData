@@ -1,0 +1,2 @@
+﻿NewLabel0=Label files created on 06/03/2025 17:51:58 for label file Id DevAxRefreshData and language en-US
+ ;Label file comment - see above label

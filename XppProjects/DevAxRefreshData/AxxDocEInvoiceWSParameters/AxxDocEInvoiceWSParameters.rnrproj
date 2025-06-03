@@ -38,6 +38,7 @@
     <Folder Include="Data Entities\" />
     <Folder Include="Display Menu Items\" />
     <Folder Include="Forms\" />
+    <Folder Include="Label Files\" />
     <Folder Include="Menu Extensions\" />
     <Folder Include="Security Privileges\" />
     <Folder Include="Tables\" />
@@ -92,6 +93,16 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshData</Name>
       <Link>Forms\DevAxRefreshData</Link>
+    </Content>
+    <Content Include="AxLabelFile\DevAxRefreshData_en-US">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData_en-US</Name>
+      <Link>Label Files\DevAxRefreshData_en-US</Link>
+    </Content>
+    <Content Include="AxLabelFile\DevAxRefreshData_es">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData_es</Name>
+      <Link>Label Files\DevAxRefreshData_es</Link>
     </Content>
     <Content Include="AxMenuExtension\SystemAdministration.DevAxRefreshData">
       <SubType>Content</SubType>
@@ -192,6 +203,16 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataUsersTableStaging</Name>
       <Link>Tables\DevAxRefreshDataUsersTableStaging</Link>
+    </Content>
+    <Content Include="DevAxRefreshData.en-US.label.txt">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData.en-US.label.txt</Name>
+      <DependentUpon>AxLabelFile\DevAxRefreshData_en-US</DependentUpon>
+    </Content>
+    <Content Include="DevAxRefreshData.es.label.txt">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshData.es.label.txt</Name>
+      <DependentUpon>AxLabelFile\DevAxRefreshData_es</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
