@@ -46,6 +46,11 @@
       <Name>DevAxRefreshDataEnableUsers</Name>
       <Link>Classes\DevAxRefreshDataEnableUsers</Link>
     </Content>
+    <Content Include="AxClass\DevAxRefreshDataReplaceUsersEmail">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataReplaceUsersEmail</Name>
+      <Link>Classes\DevAxRefreshDataReplaceUsersEmail</Link>
+    </Content>
     <Content Include="AxDataEntityView\DevAxRefreshDataUsersTableEntity">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataUsersTableEntity</Name>
@@ -61,6 +66,11 @@
       <Name>DevAxRefreshDataEnableUsers</Name>
       <Link>Action Menu Items\DevAxRefreshDataEnableUsers</Link>
     </Content>
+    <Content Include="AxMenuItemAction\DevAxRefreshDataReplaceUsersEmail">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataReplaceUsersEmail</Name>
+      <Link>Action Menu Items\DevAxRefreshDataReplaceUsersEmail</Link>
+    </Content>
     <Content Include="AxSecurityPrivilege\DevAxRefreshDataUsersTableEntityMaintain">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataUsersTableEntityMaintain</Name>
@@ -70,6 +80,11 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataUsersTableEntityView</Name>
       <Link>Security Privileges\DevAxRefreshDataUsersTableEntityView</Link>
+    </Content>
+    <Content Include="AxTable\DevAxRefreshDataReplaceUserEmail">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataReplaceUserEmail</Name>
+      <Link>Tables\DevAxRefreshDataReplaceUserEmail</Link>
     </Content>
     <Content Include="AxTable\DevAxRefreshDataUsersTable">
       <SubType>Content</SubType>

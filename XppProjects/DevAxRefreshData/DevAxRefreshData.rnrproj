@@ -108,6 +108,11 @@
       <Name>DevAxRefreshDataEnvironmentTableStaging</Name>
       <Link>Tables\DevAxRefreshDataEnvironmentTableStaging</Link>
     </Content>
+    <Content Include="AxTable\DevAxRefreshDataParameters">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataParameters</Name>
+      <Link>Tables\DevAxRefreshDataParameters</Link>
+    </Content>
     <Content Include="DevAxRefreshData.en-US.label.txt">
       <SubType>Content</SubType>
       <Name>DevAxRefreshData.en-US.label.txt</Name>
