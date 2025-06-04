@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AxMenuItemAction xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="Microsoft.Dynamics.AX.Metadata.V1">
-	<Name>DevAxRefreshDataEnableUsers</Name>
-	<Label>@DevAxRefreshData:RFDTA022</Label>
-	<Object>DevAxRefreshDataEnableUsers</Object>
+	<Name>DevAxRefreshDataReplaceUsersEmail</Name>
+	<Label>@DevAxRefreshData:RFDTA017</Label>
+	<Object>DevAxRefreshDataReplaceUsersEmail</Object>
 	<ObjectType>Class</ObjectType>
 	<SubscriberAccessLevel>
 		<Read xmlns="">Allow</Read>

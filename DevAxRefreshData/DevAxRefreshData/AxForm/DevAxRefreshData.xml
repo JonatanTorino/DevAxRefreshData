@@ -84,7 +84,50 @@ public class DevAxRefreshData extends FormRun
 ]]></Source>
 			</Method>
 		</Methods>
-		<DataSources xmlns="" />
+		<DataSources xmlns="">
+			<DataSource>
+				<Name>DevAxRefreshDataParameters</Name>
+				<Methods />
+				<Fields>
+					<Field>
+						<DataField>UserDefaultMailer</DataField>
+						<Methods>
+							<Method>
+								<Name>lookup</Name>
+								<Source><![CDATA[
+            public void lookup(FormControl _formControl, str _filterStr)
+            {
+                var sysEmailParameters = SysEmailParameters::find();
+
+                SysMailerTmp sysMailerTmp;
+
+                var mailers = SysMailerFactory::getMailers();
+
+                for (var i = 1; i <= conLen(sysEmailParameters.MailerInteractiveEnabled); i++)
+                {
+                    str mailerId = conPeek(sysEmailParameters.MailerInteractiveEnabled, i);
+
+                    if (mailers.exists(mailerId))
+                    {
+                        SysIMailer sysMailer = mailers.lookup(mailerId);
+
+                        sysMailerTmp.clear();
+                        sysMailerTmp.Id = sysMailer.getId();
+                        sysMailerTmp.Description = sysMailer.getDescription();
+                        sysMailerTmp.insert();
+                    }
+                }
+
+                sysMailerTmp.performFormLookup(_formControl);
+            }
+
+]]></Source>
+							</Method>
+						</Methods>
+					</Field>
+				</Fields>
+			</DataSource>
+		</DataSources>
 		<DataControls xmlns="">
 			<Control>
 				<Name>RefreshDataFileUpload</Name>
@@ -245,6 +288,48 @@ public class DevAxRefreshData extends FormRun
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
 					<DataField>TableId</DataField>
+				</AxFormDataSourceField>
+			</Fields>
+			<ReferencedDataSources />
+			<DataSourceLinks />
+			<DerivedDataSources />
+		</AxFormDataSource>
+		<AxFormDataSource xmlns="">
+			<Name>DevAxRefreshDataParameters</Name>
+			<Table>DevAxRefreshDataParameters</Table>
+			<Fields>
+				<AxFormDataSourceField>
+					<DataField>CreatedBy</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>CreatedDateTime</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>DataAreaId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Key</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ModifiedBy</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ModifiedDateTime</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Partition</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RecId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>TableId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>UserDefaultEmail</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>UserDefaultMailer</DataField>
 				</AxFormDataSourceField>
 			</Fields>
 			<ReferencedDataSources />
@@ -571,14 +656,14 @@ public class DevAxRefreshData extends FormRun
 					</AxFormControl>
 					<AxFormControl xmlns=""
 						i:type="AxFormTabPageControl">
-						<Name>EnableUsers</Name>
+						<Name>UsersTab</Name>
 						<Type>TabPage</Type>
 						<FormControlExtension
 							i:nil="true" />
 						<Controls>
 							<AxFormControl xmlns=""
 								i:type="AxFormGroupControl">
-								<Name>UsersGrpControl</Name>
+								<Name>UsersHeader</Name>
 								<Skip>Yes</Skip>
 								<Type>Group</Type>
 								<WidthMode>SizeToAvailable</WidthMode>
@@ -587,25 +672,25 @@ public class DevAxRefreshData extends FormRun
 								<Controls>
 									<AxFormControl xmlns=""
 										i:type="AxFormStaticTextControl">
-										<Name>FormStaticTextControl7Copy1</Name>
+										<Name>UsersHeaderTitle</Name>
 										<Skip>Yes</Skip>
 										<Type>StaticText</Type>
 										<WidthMode>SizeToAvailable</WidthMode>
 										<FormControlExtension
 											i:nil="true" />
 										<Style>MainInstruction</Style>
-										<Text>Enable Users</Text>
+										<Text>@DevAxRefreshData:RFDTA019</Text>
 									</AxFormControl>
 									<AxFormControl xmlns=""
 										i:type="AxFormStaticTextControl">
-										<Name>FormStaticTextControl2Copy1Copy1</Name>
+										<Name>UsersHeaderDescription</Name>
 										<ExtendedStyle>dialog_secondaryInstruction</ExtendedStyle>
 										<Skip>Yes</Skip>
 										<Type>StaticText</Type>
 										<WidthMode>SizeToAvailable</WidthMode>
 										<FormControlExtension
 											i:nil="true" />
-										<Text>Habilita Usuarios en el entorno</Text>
+										<Text>@DevAxRefreshData:RFDTA021</Text>
 									</AxFormControl>
 								</Controls>
 								<AllowUserSetup>No</AllowUserSetup>
@@ -614,37 +699,36 @@ public class DevAxRefreshData extends FormRun
 							</AxFormControl>
 							<AxFormControl xmlns=""
 								i:type="AxFormTabControl">
-								<Name>UsersTabControl</Name>
+								<Name>UsersBody</Name>
 								<Type>Tab</Type>
 								<FormControlExtension
 									i:nil="true" />
 								<Controls>
 									<AxFormControl xmlns=""
 										i:type="AxFormTabPageControl">
-										<Name>UsersTabPageControl</Name>
-										<Pattern>ToolbarList</Pattern>
-										<PatternVersion>1.2</PatternVersion>
+										<Name>UsersEnableTabPage</Name>
+										<Pattern>Custom</Pattern>
 										<Type>TabPage</Type>
 										<FormControlExtension
 											i:nil="true" />
 										<Controls>
 											<AxFormControl xmlns=""
 												i:type="AxFormActionPaneControl">
-												<Name>UsersActionPaneControl2</Name>
+												<Name>UsersEnableActionPane</Name>
 												<Type>ActionPane</Type>
 												<FormControlExtension
 													i:nil="true" />
 												<Controls>
 													<AxFormControl xmlns=""
 														i:type="AxFormActionPaneTabControl">
-														<Name>FormActionPaneTabControl2</Name>
+														<Name>UsersEnableActionPaneTab</Name>
 														<Type>ActionPaneTab</Type>
 														<FormControlExtension
 															i:nil="true" />
 														<Controls>
 															<AxFormControl xmlns=""
 																i:type="AxFormButtonGroupControl">
-																<Name>FormButtonGroupControl2</Name>
+																<Name>UsersEnableActionButtonGroup</Name>
 																<Type>ButtonGroup</Type>
 																<FormControlExtension
 																	i:nil="true" />
@@ -665,17 +749,6 @@ public class DevAxRefreshData extends FormRun
 																			i:nil="true" />
 																		<Command>DeleteRecord</Command>
 																	</AxFormControl>
-																	<AxFormControl xmlns=""
-																		i:type="AxFormMenuFunctionButtonControl">
-																		<Name>DevAxRefreshDataEnableUsers</Name>
-																		<Type>MenuFunctionButton</Type>
-																		<Visible>No</Visible>
-																		<FormControlExtension
-																			i:nil="true" />
-																		<MenuItemName>DevAxRefreshDataEnableUsers</MenuItemName>
-																		<MenuItemType>Action</MenuItemType>
-																		<Text>EnableUser</Text>
-																	</AxFormControl>
 																</Controls>
 																<DataSource>DevAxRefreshDataUsersTable</DataSource>
 															</AxFormControl>
@@ -686,24 +759,8 @@ public class DevAxRefreshData extends FormRun
 												<Style>Strip</Style>
 											</AxFormControl>
 											<AxFormControl xmlns=""
-												i:type="AxFormGroupControl">
-												<Name>FormGroupControl5</Name>
-												<Pattern>CustomFilters</Pattern>
-												<PatternVersion>1.1</PatternVersion>
-												<Type>Group</Type>
-												<WidthMode>SizeToAvailable</WidthMode>
-												<FormControlExtension
-													i:nil="true" />
-												<Controls />
-												<ArrangeMethod>HorizontalLeft</ArrangeMethod>
-												<DataSource>DevAxRefreshDataUsersTable</DataSource>
-												<FrameType>None</FrameType>
-												<Style>CustomFilter</Style>
-												<ViewEditMode>Edit</ViewEditMode>
-											</AxFormControl>
-											<AxFormControl xmlns=""
 												i:type="AxFormGridControl">
-												<Name>UsersGridControl1</Name>
+												<Name>UsersEnableGrid</Name>
 												<Type>Grid</Type>
 												<FormControlExtension
 													i:nil="true" />
@@ -731,33 +788,60 @@ public class DevAxRefreshData extends FormRun
 												<DataSource>DevAxRefreshDataUsersTable</DataSource>
 											</AxFormControl>
 											<AxFormControl xmlns=""
-												i:type="AxFormGroupControl">
-												<Name>ButtonGroupControlCopy1</Name>
-												<Type>Group</Type>
+												i:type="AxFormMenuFunctionButtonControl">
+												<Name>DevAxRefreshDataEnableUsersButton</Name>
+												<Type>MenuFunctionButton</Type>
 												<FormControlExtension
 													i:nil="true" />
-												<Controls>
-													<AxFormControl xmlns=""
-														i:type="AxFormMenuFunctionButtonControl">
-														<Name>DevAxRefreshDataEnableUsersButton</Name>
-														<Type>MenuFunctionButton</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<MenuItemName>DevAxRefreshDataEnableUsers</MenuItemName>
-														<MenuItemType>Action</MenuItemType>
-														<Text>Enable Users</Text>
-													</AxFormControl>
-												</Controls>
+												<MenuItemName>DevAxRefreshDataEnableUsers</MenuItemName>
+												<MenuItemType>Action</MenuItemType>
 											</AxFormControl>
 										</Controls>
-										<Caption>User</Caption>
+										<Caption>@DevAxRefreshData:RFDTA020</Caption>
+									</AxFormControl>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>UsersEmailTabPage</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormStringControl">
+												<Name>DevAxRefreshDataParameters_UserDefaultEmail</Name>
+												<Type>String</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<DataField>UserDefaultEmail</DataField>
+												<DataSource>DevAxRefreshDataParameters</DataSource>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormStringControl">
+												<Name>DevAxRefreshDataParameters_UserDefaultMailer</Name>
+												<Type>String</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<DataField>UserDefaultMailer</DataField>
+												<DataSource>DevAxRefreshDataParameters</DataSource>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormMenuFunctionButtonControl">
+												<Name>DevAxRefreshDataReplaceUsersEmail</Name>
+												<Type>MenuFunctionButton</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<MenuItemName>DevAxRefreshDataReplaceUsersEmail</MenuItemName>
+												<MenuItemType>Action</MenuItemType>
+											</AxFormControl>
+										</Controls>
+										<Caption>@DevAxRefreshData:RFDTA018</Caption>
 									</AxFormControl>
 								</Controls>
 								<Style>FastTabs</Style>
 							</AxFormControl>
 						</Controls>
-						<Caption>Enable Users</Caption>
-						<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+						<Caption>@DevAxRefreshData:RFDTA019</Caption>
 					</AxFormControl>
 					<AxFormControl xmlns=""
 						i:type="AxFormTabPageControl">
@@ -969,6 +1053,7 @@ public class DevAxRefreshData extends FormRun
 										<Caption>Afip connection Data</Caption>
 									</AxFormControl>
 								</Controls>
+								<DataSource>DevAxRefreshDataParameters</DataSource>
 								<Style>FastTabs</Style>
 							</AxFormControl>
 						</Controls>
