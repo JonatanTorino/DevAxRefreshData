@@ -34,7 +34,7 @@ public class DevAxRefreshDataRetailButtonsReplaceActionProps
     {     
         if(DevAxRefreshDataHelper::isProductionEnvironment())
         {
-            warning("@DevAxRefreshData:RFDTA007"); // "This operation cannot be performed in the production environment."
+            warning("@DevAxRefreshData:RFDTA007");
             return;
         }
 

@@ -4,7 +4,7 @@
 	<SourceCode>
 		<Declaration><![CDATA[
 public class DevAxRefreshDataApplyAppInsightRegistry
-{
+{ 
 }
 ]]></Declaration>
 		<Methods>
@@ -13,6 +13,11 @@ public class DevAxRefreshDataApplyAppInsightRegistry
 				<Source><![CDATA[
     public static void main(Args _args)
     {
+        if(!DevAxRefreshDataHelper::promptConfirmation("@DevAxRefreshData:RFDTA010"))
+        {
+            return;
+        }
+
         DevAxRefreshDataApplyAppInsightRegistry appInsightRegistry = new DevAxRefreshDataApplyAppInsightRegistry();
         appInsightRegistry.run();
     }
@@ -24,62 +29,72 @@ public class DevAxRefreshDataApplyAppInsightRegistry
 				<Source><![CDATA[
     public void run()
     {
-        DialogButton response = Box::yesNo("¿Está seguro de que desea realizar los cambios?", DialogButton::Yes);
-
-        if (response == DialogButton::Yes)
+        if(DevAxRefreshDataHelper::isProductionEnvironment())
         {
-                      
-            DevAxRefreshDataEnvironmentTable environmentTable;
-            DevAxRefreshDataTelemetryParameters telemetryParameters;
+            warning("@DevAxRefreshData:RFDTA007");
+            return;
+        }
+
+        this.updateEnviromentData();
+        info("@DevAxRefreshData:RFDTA005");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>updateEnviromentData</Name>
+				<Source><![CDATA[
+    protected void updateEnviromentData()
+    {
+        DevAxRefreshDataEnvironmentTable environmentTable;
+        DevAxRefreshDataTelemetryParameters telemetryParameters;
                          
-            ttsbegin;
+        ttsbegin;
 
-            str currentUrl = URLUtility::getUrl();
-            currentUrl = new System.Uri(currentUrl).Host;
+        str currentUrlHost = DevAxRefreshDataHelper::getCurrentUrlHost();
 
-            while select environmentTable
+        while select environmentTable
+        {
+            str envUrlHost = new System.Uri(environmentTable.envUrl).Host;
+
+            if(envUrlHost == currentUrlHost)
             {
-                str envUrl = environmentTable.EnvUrl;
-                envUrl = new System.Uri(environmentTable.envUrl).Host;
-                if(envUrl == currentUrl)
-                {
-                    break;
-                }
+                break;
             }
+        }
 
-            if(environmentTable)
-            {
-                select firstonly telemetryParameters;
+        if(environmentTable)
+        {
+            select firstonly telemetryParameters;
 
-                int environmentSelectionInt = environmentTable.EnviornmentMode;
-                EnvironmentSelection environmentSelection = environmentSelectionInt;
-                OperationalInsightsRegistry insightsRegistry;
+            int environmentSelectionInt = environmentTable.EnviornmentMode;
+            EnvironmentSelection environmentSelection = environmentSelectionInt;
+            OperationalInsightsRegistry insightsRegistry;
 
-                update_recordset insightsRegistry
+            update_recordset insightsRegistry
                   setting  InstrumentationKey = telemetryParameters.SysAppURI,
                            EnvironmentSelection = environmentSelection;
                 
-                SysIntegrationRegistry integrationRegistry;
+            SysIntegrationRegistry integrationRegistry;
 
-                update_recordset integrationRegistry
+            update_recordset integrationRegistry
                   setting SysAppURI = telemetryParameters.SysAppURI,
                           EnvironmentMode = environmentTable.EnviornmentMode;
 
-                SysEnvironmentModeMap modeMap;
+            SysEnvironmentModeMap modeMap;
 
-                update_recordset modeMap
+            update_recordset modeMap
                   setting SysEnvironmentid = environmentTable.SysEnvironmentid,
                           EnvironmentMode = environmentTable.EnviornmentMode;
 
-                OperationalInsightsEnvMap envMap;
+            OperationalInsightsEnvMap envMap;
                     
-                update_recordset envMap
+            update_recordset envMap
                   setting EnvironmentId = environmentTable.SysEnvironmentid,
                           EnvironmentSelection = environmentSelection;
-            }
+        }
                                                         
-            ttscommit;
-        }    
+        ttscommit;
     }
 
 ]]></Source>

@@ -18,9 +18,30 @@ public class DevAxRefreshDataApplyPersonalization
         if(_args.record() && _args.record().TableId == tableNum(DevAxRefreshDataEnvironmentTable))
         {
             DevAxRefreshDataEnvironmentTable environmentTable = _args.record();
-            applyPersonalization.changeColorTheme(environmentTable);
-            applyPersonalization.changeImageBanner(environmentTable.ImageBannerLogo,CompanyImageType::DashboardBanner);
+            applyPersonalization.run(environmentTable);
         }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    public void run(DevAxRefreshDataEnvironmentTable _environmentTable)
+    {
+        str currentUrlHost = DevAxRefreshDataHelper::getCurrentUrlHost();
+        str envUrlHost = new System.Uri(_environmentTable.envUrl).Host;
+
+        if (currentUrlHost != envUrlHost)
+        {
+            warning("@DevAxRefreshData:RFDTA012");
+            return;
+        }
+
+        this.changeColorTheme(_environmentTable);
+        this.changeImageBanner(_environmentTable.ImageBannerLogo, CompanyImageType::DashboardBanner);
+
+        info("@DevAxRefreshData:RFDTA013");
     }
 
 ]]></Source>
@@ -28,31 +49,16 @@ public class DevAxRefreshDataApplyPersonalization
 			<Method>
 				<Name>changeColorTheme</Name>
 				<Source><![CDATA[
-    public void changeColorTheme(DevAxRefreshDataEnvironmentTable _environmentTable)
+    protected void changeColorTheme(DevAxRefreshDataEnvironmentTable _environmentTable)
     {
         ttsbegin;
+        int colorThemeValue = _environmentTable.ColorTheme;
 
-        str currentUrl = URLUtility::getUrl();
-        currentUrl = new System.Uri(currentUrl).Host;
+        SysUserInfo sysUserInfo;
+        update_recordset sysUserInfo
+            setting Theme = colorThemeValue;
 
-        str envUrl = _environmentTable.EnvUrl;
-        envUrl = new System.Uri(_environmentTable.envUrl).Host;
-
-        if (envUrl == currentUrl)
-        {
-            int colorThemeValue = _environmentTable.ColorTheme;
-
-            SysUserInfo sysUserInfo;
-            update_recordset sysUserInfo
-                setting Theme = colorThemeValue;
-
-            appl.setTheme(colorThemeValue);
-        }
-        else
-        {
-            warning("La URL del entorno no coincide con la URL actual del sistema. No se puede cambiar el tema.");
-        }
-
+        appl.setTheme(colorThemeValue);
         ttscommit;
     }
 
@@ -61,7 +67,7 @@ public class DevAxRefreshDataApplyPersonalization
 			<Method>
 				<Name>changeImageBanner</Name>
 				<Source><![CDATA[
-    public void changeImageBanner(container _imageContainer, CompanyImageType _imageType)
+    protected void changeImageBanner(container _imageContainer, CompanyImageType _imageType)
     {
         ttsbegin;
   

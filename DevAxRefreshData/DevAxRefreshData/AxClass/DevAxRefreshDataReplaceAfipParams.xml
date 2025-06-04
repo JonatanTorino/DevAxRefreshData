@@ -13,6 +13,11 @@ public class DevAxRefreshDataReplaceAfipParams
 				<Source><![CDATA[
     public static void main(Args _args)
     {
+        if(!DevAxRefreshDataHelper::promptConfirmation("@DevAxRefreshData:RFDTA010"))
+        {
+            return;
+        }
+
         DevAxRefreshDataReplaceAfipParams afipParams = new DevAxRefreshDataReplaceAfipParams();
         DevAxRefreshDataEInvoiceParameters invoiceParameters = _args.record();
         afipParams.run(invoiceParameters);
@@ -25,34 +30,39 @@ public class DevAxRefreshDataReplaceAfipParams
 				<Source><![CDATA[
     public void run(DevAxRefreshDataEInvoiceParameters invoiceParameters)
     {
-        DialogButton response = Box::yesNo("Esta configuracion realizara cambios en el registro de web service afip ¿desea realizar los cambios?\n\nSe recomienda discreción y precaución al realizar esta acción.", DialogButton::Yes);
-
-        // Preguntar al usuario si está seguro de realizar los cambios
-        if (response == DialogButton::Yes)
+        if(DevAxRefreshDataHelper::isProductionEnvironment())
         {
-            response = Box::yesNo("¿Está seguro de que desea realizar los cambios?", DialogButton::Yes);
+            warning("@DevAxRefreshData:RFDTA007");
+            return;
         }
 
-        if (response == DialogButton::Yes)
-        {
+        this.updateInvoiceParameters(invoiceParameters);
+        info("@DevAxRefreshData:RFDTA011");
+    }
 
-            AxxDocEInvoiceWSParameters parameters;
+]]></Source>
+			</Method>
+			<Method>
+				<Name>updateInvoiceParameters</Name>
+				<Source><![CDATA[
+    protected void updateInvoiceParameters(DevAxRefreshDataEInvoiceParameters invoiceParameters)
+    {
+        AxxDocEInvoiceWSParameters parameters;
 
-            ttsbegin;
+        ttsbegin;
           
-                select firstonly forupdate parameters
-                where parameters.ServiceId == invoiceParameters.ServiceId;
+        select firstonly forupdate parameters
+            where parameters.ServiceId == invoiceParameters.ServiceId;
         
-                parameters.ECertificateStr = invoiceParameters.ECertificateStr;
-                parameters.CertificateFile = invoiceParameters.CertificateFile;
-                parameters.CertificatePass = invoiceParameters.CertificatePass;
-                parameters.Url = invoiceParameters.Url;
-                parameters.UrlLogin = invoiceParameters.UrlLogin;
+        parameters.ECertificateStr = invoiceParameters.ECertificateStr;
+        parameters.CertificateFile = invoiceParameters.CertificateFile;
+        parameters.CertificatePass = invoiceParameters.CertificatePass;
+        parameters.Url = invoiceParameters.Url;
+        parameters.UrlLogin = invoiceParameters.UrlLogin;
 
-                parameters.update();
+        parameters.update();
                 
-             ttscommit;            
-        }
+        ttscommit;
     }
 
 ]]></Source>
