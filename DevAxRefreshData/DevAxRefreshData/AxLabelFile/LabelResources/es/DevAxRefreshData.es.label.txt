@@ -1,2 +1,9 @@
-﻿NewLabel0= 
+﻿NewLabel0=Label files created on 06/03/2025 17:51:58 for label file Id DevAxRefreshData and language es
  ;Label file comment - see above label
+RFDTA001=Botones POS
+RFDTA002=Actualiza las URLs de los botones tipo "Open URL" en las cuadrillas especificadas, reemplazando el host por el del entorno actual.
+RFDTA003=Reemplazar datos
+RFDTA004=¿Está seguro de que desea realizar los cambios?
+RFDTA005=Los cambios se aplicaron correctamente
+RFDTA006=La URL de producción no esta configurada en los parámetros
+RFDTA007=Esta operación no se puede realizar en el entorno de producción
