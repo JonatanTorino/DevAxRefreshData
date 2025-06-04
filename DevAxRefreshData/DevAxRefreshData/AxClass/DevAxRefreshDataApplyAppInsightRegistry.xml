@@ -47,12 +47,10 @@ public class DevAxRefreshDataApplyAppInsightRegistry
     protected void updateEnviromentData()
     {
         DevAxRefreshDataEnvironmentTable environmentTable;
-        DevAxRefreshDataTelemetryParameters telemetryParameters;
-                         
+        
         ttsbegin;
 
         str currentUrlHost = DevAxRefreshDataHelper::getCurrentUrlHost();
-
         while select environmentTable
         {
             str envUrlHost = new System.Uri(environmentTable.envUrl).Host;
@@ -65,20 +63,20 @@ public class DevAxRefreshDataApplyAppInsightRegistry
 
         if(environmentTable)
         {
-            select firstonly telemetryParameters;
+            DevAxRefreshDataParameters parameters = DevAxRefreshDataParameters::find();
 
             int environmentSelectionInt = environmentTable.EnviornmentMode;
             EnvironmentSelection environmentSelection = environmentSelectionInt;
             OperationalInsightsRegistry insightsRegistry;
 
             update_recordset insightsRegistry
-                  setting  InstrumentationKey = telemetryParameters.SysAppURI,
+                  setting  InstrumentationKey = parameters.TelemetrySysAppURI,
                            EnvironmentSelection = environmentSelection;
                 
             SysIntegrationRegistry integrationRegistry;
 
             update_recordset integrationRegistry
-                  setting SysAppURI = telemetryParameters.SysAppURI,
+                  setting SysAppURI = parameters.TelemetrySysAppURI,
                           EnvironmentMode = environmentTable.EnviornmentMode;
 
             SysEnvironmentModeMap modeMap;
