@@ -1,15 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.36105.23
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "AxxDocEInvoiceWSParameters (CUS) [DevAxRefreshData]", "AxxDocEInvoiceWSParameters\AxxDocEInvoiceWSParameters.rnrproj", "{A7FFB855-2B93-4712-8E2B-BAB1BC451E56}"
+Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "AxxDocEInvoiceWSParameters (CUS) [DevAxRefreshData]", "AxxDocEInvoiceWSParameters.rnrproj", "{A7FFB855-2B93-4712-8E2B-BAB1BC451E56}"
 EndProject
-Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "DevAxRefreshData (CUS) [DevAxRefreshData]", "DevAxRefreshData\DevAxRefreshData.rnrproj", "{2344C6AD-DC30-40EF-813C-1E3F6F024C42}"
+Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "DevAxRefreshData (CUS) [DevAxRefreshData]", "DevAxRefreshData.rnrproj", "{2344C6AD-DC30-40EF-813C-1E3F6F024C42}"
 EndProject
-Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "DevAxRefreshDataUsers (CUS) [DevAxRefreshData]", "DevAxRefreshDataUsers\DevAxRefreshDataUsers.rnrproj", "{484988CD-76F0-444C-A7CB-6F82B1E3382B}"
+Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "Users (CUS) [DevAxRefreshData]", "Users.rnrproj", "{484988CD-76F0-444C-A7CB-6F82B1E3382B}"
 EndProject
-Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "DevAxRefreshDataRetailButtons (CUS) [DevAxRefreshData]", "DevAxRefreshDataRetailButtons\DevAxRefreshDataRetailButtons.rnrproj", "{C0712372-E865-41C1-903B-4F9F7838E68F}"
+Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "Retail (CUS) [DevAxRefreshData]", "Retail.rnrproj", "{C0712372-E865-41C1-903B-4F9F7838E68F}"
+EndProject
+Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "Telemetry (CUS) [DevAxRefreshData]", "Telemetry.rnrproj", "{6091F2F2-B675-4AB1-9DAB-3DBF4E2E51FC}"
+EndProject
+Project("{FC65038C-1B2F-41E1-A629-BED71D161FFF}") = "Personalization (CUS) [DevAxRefreshData]", "Personalization.rnrproj", "{25AAFB99-B97F-4B00-A819-FD719FFCFFE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +28,10 @@ Global
 		{484988CD-76F0-444C-A7CB-6F82B1E3382B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0712372-E865-41C1-903B-4F9F7838E68F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C0712372-E865-41C1-903B-4F9F7838E68F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6091F2F2-B675-4AB1-9DAB-3DBF4E2E51FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6091F2F2-B675-4AB1-9DAB-3DBF4E2E51FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25AAFB99-B97F-4B00-A819-FD719FFCFFE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25AAFB99-B97F-4B00-A819-FD719FFCFFE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
