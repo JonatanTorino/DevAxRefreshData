@@ -38,10 +38,16 @@
     <Folder Include="Forms\" />
     <Folder Include="Label Files\" />
     <Folder Include="Menu Extensions\" />
+    <Folder Include="Classes" />
     <Folder Include="Security Privileges\" />
     <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AxClass\DevAxRefreshDataHelper">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataHelper</Name>
+      <Link>Classes\DevAxRefreshDataHelper</Link>
+    </Content>
     <Content Include="AxDataEntityView\DevAxRefreshDataEnvironmentTableEntity">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataEnvironmentTableEntity</Name>

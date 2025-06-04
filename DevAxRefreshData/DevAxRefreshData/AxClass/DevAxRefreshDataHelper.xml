@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshDataHelper</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class DevAxRefreshDataHelper
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>promptConfirmation</Name>
+				<Source><![CDATA[
+    public static boolean promptConfirmation(str textDialog = "@DevAxRefreshData:RFDTA004")
+    {
+        DialogButton response = Box::yesNo(textDialog, DialogButton::Yes);
+
+        return response == DialogButton::Yes;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getCurrentUrlHost</Name>
+				<Source><![CDATA[
+    public static str getCurrentUrlHost()
+    {
+        str currentUrl = URLUtility::getUrl();
+        str currentUrlHost = new System.Uri(currentUrl).Host;
+
+        return currentUrlHost;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>isProductionEnvironment</Name>
+				<Source><![CDATA[
+    public static boolean isProductionEnvironment()
+    {
+        DevAxRefreshDataEInvoiceParameters eInvoiceParameters = DevAxRefreshDataEInvoiceParameters::find();
+
+        if (!eInvoiceParameters.UrlD365Prod)
+        {
+            error("@DevAxRefreshData:RFDTA006"); // "The D365 Production URL is not configured."
+        }
+
+        str currentUrlHost = DevAxRefreshDataHelper::getCurrentUrlHost();
+        str urlD365ProdHost = new System.Uri(eInvoiceParameters.UrlD365Prod).Host;
+
+        return currentUrlHost == urlD365ProdHost;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

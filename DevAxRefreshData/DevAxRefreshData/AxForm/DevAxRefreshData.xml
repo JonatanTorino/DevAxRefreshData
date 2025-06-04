@@ -52,10 +52,12 @@ public class DevAxRefreshData extends FormRun
             boolean enableUrl = currentUrl != urlD365Prod;
  
             DevAxRefreshDataReplaceAfipParams.enabled(enableUrl);
+            DevAxRefreshDataRetailButtonsReplaceActionProps.enabled(enableUrl);
         }
         else
         {
             DevAxRefreshDataReplaceAfipParams.enabled(false);
+            DevAxRefreshDataRetailButtonsReplaceActionProps.enabled(false);
         }
     }
 
@@ -1280,6 +1282,75 @@ public class DevAxRefreshData extends FormRun
 							</AxFormControl>
 						</Controls>
 						<Caption>Commerce</Caption>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>RetailButtonsTabPage</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>RetailButtonsHeader</Name>
+								<Skip>Yes</Skip>
+								<Type>Group</Type>
+								<WidthMode>SizeToAvailable</WidthMode>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>RetailButtonsHeaderTitle</Name>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Style>MainInstruction</Style>
+										<Text>@DevAxRefreshData:RFDTA001</Text>
+									</AxFormControl>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>RetailButtonsHeaderDescription</Name>
+										<ExtendedStyle>dialog_secondaryInstruction</ExtendedStyle>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Text>@DevAxRefreshData:RFDTA002</Text>
+									</AxFormControl>
+								</Controls>
+								<AllowUserSetup>No</AllowUserSetup>
+								<FrameType>None</FrameType>
+								<Style>TOCTitleContainer</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>RetailButtonsBody</Name>
+								<HeightMode>SizeToAvailable</HeightMode>
+								<Pattern>Custom</Pattern>
+								<Type>Group</Type>
+								<WidthMode>SizeToAvailable</WidthMode>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormMenuFunctionButtonControl">
+										<Name>DevAxRefreshDataRetailButtonsReplaceActionProps</Name>
+										<AutoDeclaration>Yes</AutoDeclaration>
+										<Type>MenuFunctionButton</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<MenuItemName>DevAxRefreshDataRetailButtonsReplaceActionProps</MenuItemName>
+										<MenuItemType>Action</MenuItemType>
+									</AxFormControl>
+								</Controls>
+								<FrameType>None</FrameType>
+							</AxFormControl>
+						</Controls>
+						<Caption>@DevAxRefreshData:RFDTA001</Caption>
 					</AxFormControl>
 				</Controls>
 				<Style>VerticalTabs</Style>
