@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <BuildTasksDirectory Condition=" '$(BuildTasksDirectory)' == ''">$(MSBuildProgramFiles32)\MSBuild\Microsoft\Dynamics\AX</BuildTasksDirectory>
+    <Model>DevAxRefreshData</Model>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <OutputPath>bin</OutputPath>
+    <SchemaVersion>2.0</SchemaVersion>
+    <GenerateCrossReferences>True</GenerateCrossReferences>
+    <RunAppCheckerRules>False</RunAppCheckerRules>
+    <LogAppcheckerDiagsAsErrors>False</LogAppcheckerDiagsAsErrors>
+    <DeployOnline>False</DeployOnline>
+    <ProjectGuid>{25aafb99-b97f-4b00-a819-fd719ffcffe3}</ProjectGuid>
+    <Name>Personalization</Name>
+    <RootNamespace>Personalization</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <Configuration>Debug</Configuration>
+    <DBSyncInBuild>False</DBSyncInBuild>
+    <GenerateFormAdaptors>False</GenerateFormAdaptors>
+    <Company>
+    </Company>
+    <Partition>initial</Partition>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DataEntityExpandParentChildRelations>False</DataEntityExpandParentChildRelations>
+    <DataEntityUseLabelTextAsFieldName>False</DataEntityUseLabelTextAsFieldName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Action Menu Items\" />
+    <Folder Include="Classes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AxClass\DevAxRefreshDataApplyPersonalization">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataApplyPersonalization</Name>
+      <Link>Classes\DevAxRefreshDataApplyPersonalization</Link>
+    </Content>
+    <Content Include="AxClass\DevAxRefreshDataUploadBanner">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUploadBanner</Name>
+      <Link>Classes\DevAxRefreshDataUploadBanner</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\DevAxRefreshDataApplyPersonalization">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataApplyPersonalization</Name>
+      <Link>Action Menu Items\DevAxRefreshDataApplyPersonalization</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\DevAxRefreshDataUploadBanner">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataUploadBanner</Name>
+      <Link>Action Menu Items\DevAxRefreshDataUploadBanner</Link>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
+  <Import Project="$(BuildTasksDirectory)\Microsoft.Dynamics.Framework.Tools.BuildTasks.17.0.targets" />
+</Project>

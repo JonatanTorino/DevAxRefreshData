@@ -12,9 +12,9 @@
     <RunAppCheckerRules>False</RunAppCheckerRules>
     <LogAppcheckerDiagsAsErrors>False</LogAppcheckerDiagsAsErrors>
     <DeployOnline>False</DeployOnline>
-    <ProjectGuid>{c0712372-e865-41c1-903b-4f9f7838e68f}</ProjectGuid>
-    <Name>DevAxRefreshDataRetailButtons</Name>
-    <RootNamespace>DevAxRefreshDataRetailButtons</RootNamespace>
+    <ProjectGuid>{6091f2f2-b675-4ab1-9dab-3dbf4e2e51fc}</ProjectGuid>
+    <Name>Telemetry</Name>
+    <RootNamespace>Telemetry</RootNamespace>
     <StartupType>Class</StartupType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
@@ -35,17 +35,23 @@
   <ItemGroup>
     <Folder Include="Action Menu Items\" />
     <Folder Include="Classes\" />
+    <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AxClass\DevAxRefreshDataRetailButtonsReplaceActionProps">
+    <Content Include="AxClass\DevAxRefreshDataApplyAppInsightRegistry">
       <SubType>Content</SubType>
-      <Name>DevAxRefreshDataRetailButtonsReplaceActionProps</Name>
-      <Link>Classes\DevAxRefreshDataRetailButtonsReplaceActionProps</Link>
+      <Name>DevAxRefreshDataApplyAppInsightRegistry</Name>
+      <Link>Classes\DevAxRefreshDataApplyAppInsightRegistry</Link>
     </Content>
-    <Content Include="AxMenuItemAction\DevAxRefreshDataRetailButtonsReplaceActionProps">
+    <Content Include="AxMenuItemAction\DevAxRefreshDataApplyAppInsightRegistry">
       <SubType>Content</SubType>
-      <Name>DevAxRefreshDataRetailButtonsReplaceActionProps</Name>
-      <Link>Action Menu Items\DevAxRefreshDataRetailButtonsReplaceActionProps</Link>
+      <Name>DevAxRefreshDataApplyAppInsightRegistry</Name>
+      <Link>Action Menu Items\DevAxRefreshDataApplyAppInsightRegistry</Link>
+    </Content>
+    <Content Include="AxTable\DevAxRefreshDataTelemetryParameters">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataTelemetryParameters</Name>
+      <Link>Tables\DevAxRefreshDataTelemetryParameters</Link>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />

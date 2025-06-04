@@ -37,65 +37,20 @@
     <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AxClass\DevAxRefreshDataApplyAppInsightRegistry">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataApplyAppInsightRegistry</Name>
-      <Link>Classes\DevAxRefreshDataApplyAppInsightRegistry</Link>
-    </Content>
-    <Content Include="AxClass\DevAxRefreshDataApplyChannelProfileConfig">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataApplyChannelProfileConfig</Name>
-      <Link>Classes\DevAxRefreshDataApplyChannelProfileConfig</Link>
-    </Content>
-    <Content Include="AxClass\DevAxRefreshDataApplyPersonalization">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataApplyPersonalization</Name>
-      <Link>Classes\DevAxRefreshDataApplyPersonalization</Link>
-    </Content>
     <Content Include="AxClass\DevAxRefreshDataReplaceAfipParams">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataReplaceAfipParams</Name>
       <Link>Classes\DevAxRefreshDataReplaceAfipParams</Link>
-    </Content>
-    <Content Include="AxClass\DevAxRefreshDataUploadBanner">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataUploadBanner</Name>
-      <Link>Classes\DevAxRefreshDataUploadBanner</Link>
-    </Content>
-    <Content Include="AxMenuItemAction\DevAxRefreshDataApplyAppInsightRegistry">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataApplyAppInsightRegistry</Name>
-      <Link>Action Menu Items\DevAxRefreshDataApplyAppInsightRegistry</Link>
-    </Content>
-    <Content Include="AxMenuItemAction\DevAxRefreshDataApplyChannelProfileConfig">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataApplyChannelProfileConfig</Name>
-      <Link>Action Menu Items\DevAxRefreshDataApplyChannelProfileConfig</Link>
-    </Content>
-    <Content Include="AxMenuItemAction\DevAxRefreshDataApplyPersonalization">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataApplyPersonalization</Name>
-      <Link>Action Menu Items\DevAxRefreshDataApplyPersonalization</Link>
     </Content>
     <Content Include="AxMenuItemAction\DevAxRefreshDataReplaceAfipParams">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataReplaceAfipParams</Name>
       <Link>Action Menu Items\DevAxRefreshDataReplaceAfipParams</Link>
     </Content>
-    <Content Include="AxMenuItemAction\DevAxRefreshDataUploadBanner">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataUploadBanner</Name>
-      <Link>Action Menu Items\DevAxRefreshDataUploadBanner</Link>
-    </Content>
     <Content Include="AxTable\DevAxRefreshDataEInvoiceParameters">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataEInvoiceParameters</Name>
       <Link>Tables\DevAxRefreshDataEInvoiceParameters</Link>
-    </Content>
-    <Content Include="AxTable\DevAxRefreshDataTelemetryParameters">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataTelemetryParameters</Name>
-      <Link>Tables\DevAxRefreshDataTelemetryParameters</Link>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
