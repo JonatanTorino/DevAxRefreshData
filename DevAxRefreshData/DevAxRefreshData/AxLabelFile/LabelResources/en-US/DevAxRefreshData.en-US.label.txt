@@ -20,3 +20,7 @@ RFDTA019=Users
 RFDTA020=User enablement
 RFDTA021=Enables user activation and email association for operating in the current environment.
 RFDTA022=Enable users
+RFDTA025=General
+RFDTA026=The Production URL field must be completed to validate and restrict the execution of processes in the production environment.
+RFDTA027=Production URL
+RFDTA028=Post-download data facilitator

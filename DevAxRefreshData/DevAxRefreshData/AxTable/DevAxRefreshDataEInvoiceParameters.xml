@@ -77,13 +77,6 @@ public class DevAxRefreshDataEInvoiceParameters extends common
 	<Fields>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldString">
-			<Name>UrlD365Prod</Name>
-			<ExtendedDataType>AxxDocURL</ExtendedDataType>
-			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
-			<Label>Url Produccion</Label>
-		</AxTableField>
-		<AxTableField xmlns=""
-			i:type="AxTableFieldString">
 			<Name>Url</Name>
 			<ExtendedDataType>AxxDocURL</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
