@@ -18,7 +18,7 @@ public class DevAxRefreshData extends FormRun
     public void init()
     {
         //find or create params
-        DevAxRefreshDataEInvoiceParameters::find();
+        DevAxRefreshDataParameters::find();
         super();
     }
 
@@ -40,7 +40,7 @@ public class DevAxRefreshData extends FormRun
 				<Source><![CDATA[
     private void enableControls()
     {
-        str urlD365Prod = DevAxRefreshDataEInvoiceParameters.UrlD365Prod;
+        str urlD365Prod = DevAxRefreshDataParameters.UrlD365Prod;
 
         if (urlD365Prod)
         {
@@ -188,6 +188,9 @@ public class DevAxRefreshData extends FormRun
 					<DataField>TelemetrySysAppURI</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
+					<DataField>UrlD365Prod</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
 					<DataField>UserDefaultEmail</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
@@ -231,9 +234,6 @@ public class DevAxRefreshData extends FormRun
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
 					<DataField>Url</DataField>
-				</AxFormDataSourceField>
-				<AxFormDataSourceField>
-					<DataField>UrlD365Prod</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
 					<DataField>UrlLogin</DataField>
@@ -314,6 +314,7 @@ public class DevAxRefreshData extends FormRun
 		<Pattern xmlns="">TableOfContents</Pattern>
 		<PatternVersion xmlns="">1.1</PatternVersion>
 		<Style xmlns="">TableOfContents</Style>
+		<UseCaptionFromMenuItem xmlns="">Yes</UseCaptionFromMenuItem>
 		<Controls xmlns="">
 			<AxFormControl xmlns=""
 				i:type="AxFormTabControl">
@@ -324,14 +325,14 @@ public class DevAxRefreshData extends FormRun
 				<Controls>
 					<AxFormControl xmlns=""
 						i:type="AxFormTabPageControl">
-						<Name>GeneralTabPageControl</Name>
+						<Name>GeneralTab</Name>
 						<Type>TabPage</Type>
 						<FormControlExtension
 							i:nil="true" />
 						<Controls>
 							<AxFormControl xmlns=""
 								i:type="AxFormGroupControl">
-								<Name>FormGroupControl1</Name>
+								<Name>GeneralTabHeader</Name>
 								<Skip>Yes</Skip>
 								<Type>Group</Type>
 								<WidthMode>SizeToAvailable</WidthMode>
@@ -340,25 +341,25 @@ public class DevAxRefreshData extends FormRun
 								<Controls>
 									<AxFormControl xmlns=""
 										i:type="AxFormStaticTextControl">
-										<Name>FormStaticTextControl3</Name>
+										<Name>GeneralTabHeaderTitle</Name>
 										<Skip>Yes</Skip>
 										<Type>StaticText</Type>
 										<WidthMode>SizeToAvailable</WidthMode>
 										<FormControlExtension
 											i:nil="true" />
 										<Style>MainInstruction</Style>
-										<Text>General</Text>
+										<Text>@DevAxRefreshData:RFDTA025</Text>
 									</AxFormControl>
 									<AxFormControl xmlns=""
 										i:type="AxFormStaticTextControl">
-										<Name>FormStaticTextControl4</Name>
+										<Name>GeneralTabHeaderDescription</Name>
 										<ExtendedStyle>dialog_secondaryInstruction</ExtendedStyle>
 										<Skip>Yes</Skip>
 										<Type>StaticText</Type>
 										<WidthMode>SizeToAvailable</WidthMode>
 										<FormControlExtension
 											i:nil="true" />
-										<Text>El campo URL Producción es necesario como validación para impedir que un usuario ejecute por error algún proceso en el entorno de producción</Text>
+										<Text>@DevAxRefreshData:RFDTA026</Text>
 									</AxFormControl>
 								</Controls>
 								<AllowUserSetup>No</AllowUserSetup>
@@ -366,47 +367,28 @@ public class DevAxRefreshData extends FormRun
 								<Style>TOCTitleContainer</Style>
 							</AxFormControl>
 							<AxFormControl xmlns=""
-								i:type="AxFormTabControl">
-								<Name>FormTabControl2</Name>
-								<Type>Tab</Type>
+								i:type="AxFormGroupControl">
+								<Name>GeneralTabBody</Name>
+								<HeightMode>SizeToAvailable</HeightMode>
+								<Type>Group</Type>
+								<WidthMode>SizeToAvailable</WidthMode>
 								<FormControlExtension
 									i:nil="true" />
 								<Controls>
 									<AxFormControl xmlns=""
-										i:type="AxFormTabPageControl">
-										<Name>GeneralTabPageControl1</Name>
-										<Pattern>Custom</Pattern>
-										<Type>TabPage</Type>
+										i:type="AxFormStringControl">
+										<Name>DevAxRefreshDataParameters_UrlD365Prod</Name>
+										<Type>String</Type>
 										<FormControlExtension
 											i:nil="true" />
-										<Controls>
-											<AxFormControl xmlns=""
-												i:type="AxFormGroupControl">
-												<Name>GeneralGroup</Name>
-												<Type>Group</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<Controls>
-													<AxFormControl xmlns=""
-														i:type="AxFormStringControl">
-														<Name>DevAxRefreshDataEInvoiceParameters_UrlD365Prod</Name>
-														<Type>String</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<DataField>UrlD365Prod</DataField>
-														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
-													</AxFormControl>
-												</Controls>
-											</AxFormControl>
-										</Controls>
-										<Columns>2</Columns>
-										<Caption>Url </Caption>
+										<DataField>UrlD365Prod</DataField>
+										<DataSource>DevAxRefreshDataParameters</DataSource>
 									</AxFormControl>
 								</Controls>
-								<Style>FastTabs</Style>
+								<FrameType>None</FrameType>
 							</AxFormControl>
 						</Controls>
-						<Caption>General</Caption>
+						<Caption>@DevAxRefreshData:RFDTA025</Caption>
 					</AxFormControl>
 					<AxFormControl xmlns=""
 						i:type="AxFormTabPageControl">

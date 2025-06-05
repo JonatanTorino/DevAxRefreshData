@@ -22,3 +22,7 @@ RFDTA021=Enables user activation and email association for operating in the curr
 RFDTA022=Enable users
 RFDTA023=Aplication Insights Registry
 RFDTA024=Parameters used to modify or add data in the Monitoring and Telemetry Parameters and Operational Insights tables, in order to update or insert new information.
+RFDTA025=General
+RFDTA026=The Production URL field must be completed to validate and restrict the execution of processes in the production environment.
+RFDTA027=Production URL
+RFDTA028=Post-download data facilitator
