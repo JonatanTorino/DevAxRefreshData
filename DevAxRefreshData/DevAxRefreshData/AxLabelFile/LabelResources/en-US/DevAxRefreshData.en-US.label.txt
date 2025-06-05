@@ -20,3 +20,5 @@ RFDTA019=Users
 RFDTA020=User enablement
 RFDTA021=Enables user activation and email association for operating in the current environment.
 RFDTA022=Enable users
+RFDTA023=Aplication Insights Registry
+RFDTA024=Parameters used to modify or add data in the Monitoring and Telemetry Parameters and Operational Insights tables, in order to update or insert new information.

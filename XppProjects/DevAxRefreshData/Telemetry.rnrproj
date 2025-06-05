@@ -35,7 +35,6 @@
   <ItemGroup>
     <Folder Include="Action Menu Items\" />
     <Folder Include="Classes\" />
-    <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AxClass\DevAxRefreshDataApplyAppInsightRegistry">
@@ -47,11 +46,6 @@
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataApplyAppInsightRegistry</Name>
       <Link>Action Menu Items\DevAxRefreshDataApplyAppInsightRegistry</Link>
-    </Content>
-    <Content Include="AxTable\DevAxRefreshDataTelemetryParameters">
-      <SubType>Content</SubType>
-      <Name>DevAxRefreshDataTelemetryParameters</Name>
-      <Link>Tables\DevAxRefreshDataTelemetryParameters</Link>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />

@@ -93,6 +93,11 @@ public class DevAxRefreshDataParameters extends common
 			<AssetClassification>Customer Content</AssetClassification>
 			<ExtendedDataType>SysMailerId</ExtendedDataType>
 		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>TelemetrySysAppURI</Name>
+			<ExtendedDataType>SysAppURI</ExtendedDataType>
+		</AxTableField>
 	</Fields>
 	<FullTextIndexes />
 	<Indexes>
