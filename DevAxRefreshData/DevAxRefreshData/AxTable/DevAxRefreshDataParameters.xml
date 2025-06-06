@@ -82,6 +82,13 @@ public class DevAxRefreshDataParameters extends common
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldString">
+			<Name>UrlD365Prod</Name>
+			<ExtendedDataType>AxxDocURL</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+			<Label>@DevAxRefreshData:RFDTA027</Label>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
 			<Name>UserDefaultEmail</Name>
 			<AssetClassification>Customer Content</AssetClassification>
 			<ExtendedDataType>EmailBase</ExtendedDataType>
@@ -97,6 +104,12 @@ public class DevAxRefreshDataParameters extends common
 			i:type="AxTableFieldString">
 			<Name>TelemetrySysAppURI</Name>
 			<ExtendedDataType>SysAppURI</ExtendedDataType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>FIFManifestXml</Name>
+			<ExtendedDataType>XML</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
 	</Fields>
 	<FullTextIndexes />
