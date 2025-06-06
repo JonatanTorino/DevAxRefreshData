@@ -29,12 +29,13 @@ public class DevAxRefreshDataUploadBanner
 				<Source><![CDATA[
     public void uploadImage(DevAxRefreshDataEnvironmentTable _environmentTable)
     {
-
         FileUploadTemporaryStorageResult fileUploadResult = File::GetFileFromUser() as FileUploadTemporaryStorageResult;
         if(fileUploadResult != null && fileUploadResult.getUploadStatus())
         {
             _environmentTable.ImageBannerLogo = ImageReference::GetPackedBinaryData(fileUploadResult.getDownloadUrl());
             _environmentTable.write();
+
+            info("@DevAxRefreshData:RFDTA008");
         }
         else
         {

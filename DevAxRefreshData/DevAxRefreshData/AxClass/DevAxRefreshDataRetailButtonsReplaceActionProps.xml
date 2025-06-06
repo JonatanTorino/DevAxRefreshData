@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshDataRetailButtonsReplaceActionProps</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class DevAxRefreshDataRetailButtonsReplaceActionProps
+{
+    int RetailOperationId_OpenURL = 1219;
+    str HostDomain_Dynamics = "dynamics.com";
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        if(!DevAxRefreshDataHelper::promptConfirmation())
+        {
+            return;
+        }
+
+        DevAxRefreshDataRetailButtonsReplaceActionProps rfdtaRetailButtonsReplaceActionProps = new DevAxRefreshDataRetailButtonsReplaceActionProps();
+        rfdtaRetailButtonsReplaceActionProps.run();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    public void run()
+    {     
+        if(DevAxRefreshDataHelper::isProductionEnvironment())
+        {
+            warning("@DevAxRefreshData:RFDTA007");
+            return;
+        }
+
+        this.updateActionButtonsOpenURL();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>updateActionButtonsOpenURL</Name>
+				<Source><![CDATA[
+    protected void updateActionButtonsOpenURL()
+    {
+        RetailButtonGridButtons retailButtonGridButtons, retailButtonGridButtonsRIL;
+        retailButtonGridButtonsRIL.setTempDB();
+        RecordInsertList rilRecordInsertList = new RecordInsertList(tableNum(RetailButtonGridButtons), true, true, true, true, true, retailButtonGridButtonsRIL);
+
+        while select retailButtonGridButtons
+            where retailButtonGridButtons.Action == this.RetailOperationId_OpenURL
+        {    
+            retailButtonGridButtonsRIL.ID = retailButtonGridButtons.ID;
+            retailButtonGridButtonsRIL.buttonGridId = retailButtonGridButtons.buttonGridId;
+            
+            // Cambio el host del boton de tipo Open URL
+            str currentUrlHost = DevAxRefreshDataHelper::getCurrentUrlHost();
+            int actionPropHostEndIndex = strScan(retailButtonGridButtons.ActionProperty, this.HostDomain_Dynamics, 0, strLen(retailButtonGridButtons.ActionProperty));
+            str actionPropQueryString = subStr(retailButtonGridButtons.ActionProperty, actionPropHostEndIndex + strLen(this.HostDomain_Dynamics), strLen(retailButtonGridButtons.ActionProperty));
+
+            retailButtonGridButtonsRIL.ActionProperty = strFmt("https://%1%2", currentUrlHost, actionPropQueryString);
+            
+            rilRecordInsertList.add(retailButtonGridButtonsRIL);
+        }
+        rilRecordInsertList.insertDatabase();
+
+        update_recordset retailButtonGridButtons
+            setting ActionProperty = retailButtonGridButtonsRIL.ActionProperty
+            where retailButtonGridButtons.Action == this.RetailOperationId_OpenURL
+            join retailButtonGridButtonsRIL
+            where retailButtonGridButtonsRIL.ID == retailButtonGridButtons.ID &&
+                retailButtonGridButtonsRIL.buttonGridId == retailButtonGridButtons.buttonGridId;
+
+        info("@DevAxRefreshData:RFDTA005");
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

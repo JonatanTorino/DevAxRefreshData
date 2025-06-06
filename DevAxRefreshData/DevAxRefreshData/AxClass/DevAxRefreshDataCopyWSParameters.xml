@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshDataCopyWSParameters</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class DevAxRefreshDataCopyWSParameters
+{
+    private DevAxRefreshDataEInvoiceParameters EInvoiceParameters;
+    private str newServiceId;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        DevAxRefreshDataEInvoiceParameters selectedData = _args.record() as DevAxRefreshDataEInvoiceParameters;
+        if (selectedData)
+        {
+            DevAxRefreshDataCopyWSParameters instance = new DevAxRefreshDataCopyWSParameters();
+            instance.setselectedData(selectedData);
+            instance.Run();
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setselectedData</Name>
+				<Source><![CDATA[
+    public void setselectedData(DevAxRefreshDataEInvoiceParameters selectedData)
+    {
+        this.EInvoiceParameters = selectedData;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setNewServiceid</Name>
+				<Source><![CDATA[
+    public void setNewServiceid(str id)
+    {
+        this.newServiceId = id;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>Run</Name>
+				<Source><![CDATA[
+    public void Run()
+    {
+        if (!this.promptDialog())
+        {
+            return;
+        }
+
+        this.createEInvoiceParameter();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>promptDialog</Name>
+				<Source><![CDATA[
+    protected boolean promptDialog()
+    {
+        Dialog dialog = new Dialog("@DevAxRefreshData:RFDTA109");
+
+        DialogField actualData = dialog.addField(extendedTypeStr(AxxDocEInvoiceServiceId), "@DevAxRefreshData:RFDTA107");
+        actualData.value(this.EInvoiceParameters.ServiceId);
+        actualData.enabled(false);
+
+        DialogField newData = dialog.addField(extendedTypeStr(AxxDocEInvoiceServiceId), "@DevAxRefreshData:RFDTA108");
+        newData.registerOverrideMethod(methodStr(FormStringControl, lookup), methodStr(DevAxRefreshDataCopyWSParameters, dialogNewDataLookUp), this);
+
+        if (dialog.run() && dialog.closedOk())
+        {
+            this.setNewServiceid(newData.value());
+            return true;
+        }
+
+        return false;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>dialogNewDataLookUp</Name>
+				<Source><![CDATA[
+    private void dialogNewDataLookUp(FormStringControl _control)
+    {
+        Query query = new Query();
+        QueryBuildDataSource qbds = query.addDataSource(tableNum(AxxDocEInvoiceWSParameters));
+        SysTableLookup sysTableLookUp = SysTableLookup::newParameters(tableNum(AxxDocEInvoiceWSParameters), _control, true);
+        sysTableLookUp.addLookupfield(fieldNum(AxxDocEInvoiceWSParameters, ServiceId));
+        sysTableLookUp.parmQuery(query);
+        sysTableLookUp.performFormLookup();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>createEInvoiceParameter</Name>
+				<Source><![CDATA[
+    protected void createEInvoiceParameter()
+    {
+
+        DevAxRefreshDataEInvoiceParameters newRegister;
+
+        ttsBegin;
+        newRegister.ServiceId = this.newServiceId;
+        newRegister.UrlLogin = this.EInvoiceParameters.UrlLogin;
+        newRegister.CertificatePass = this.EInvoiceParameters.CertificatePass;
+        newRegister.CertificateFile = this.EInvoiceParameters.CertificateFile;
+        newRegister.ECertificateStr = this.EInvoiceParameters.ECertificateStr;
+        newRegister.insert();
+        ttsCommit;
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

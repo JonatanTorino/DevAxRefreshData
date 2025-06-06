@@ -5,47 +5,17 @@
 		<Declaration><![CDATA[
 public class DevAxRefreshDataEInvoiceParameters extends common
 {
+
 }
 ]]></Declaration>
-		<Methods>
-			<Method>
-				<Name>find</Name>
-				<Source><![CDATA[
-    /// <summary>
-    ///
-    /// </summary>
-    static DevAxRefreshDataEInvoiceParameters find(boolean _forupdate = false)
-    {
-        DevAxRefreshDataEInvoiceParameters parameter;
-
-        if (_forupdate)
-        {
-            parameter.selectForUpdate(_forupdate);
-        }
-
-        select firstonly parameter
-            index Key
-            where parameter.Key == 0;
-
-        if (!parameter && !parameter.isTmp())
-        {
-            Company::createParameter(parameter);
-        }
-
-        return parameter;
-    }
-
-]]></Source>
-			</Method>
-		</Methods>
+		<Methods />
 	</SourceCode>
 	<SubscriberAccessLevel>
 		<Read>Allow</Read>
 	</SubscriberAccessLevel>
 	<AllowRowVersionChangeTracking>Yes</AllowRowVersionChangeTracking>
-	<ClusteredIndex>key</ClusteredIndex>
-	<PrimaryIndex>key</PrimaryIndex>
-	<ReplacementKey>key</ReplacementKey>
+	<ClusteredIndex>ServiceId</ClusteredIndex>
+	<PrimaryIndex>ServiceId</PrimaryIndex>
 	<DeleteActions />
 	<FieldGroups>
 		<AxTableFieldGroup>
@@ -59,11 +29,7 @@ public class DevAxRefreshDataEInvoiceParameters extends common
 		<AxTableFieldGroup>
 			<Name>AutoIdentification</Name>
 			<AutoPopulate>Yes</AutoPopulate>
-			<Fields>
-				<AxTableFieldGroupField>
-					<DataField>Key</DataField>
-				</AxTableFieldGroupField>
-			</Fields>
+			<Fields />
 		</AxTableFieldGroup>
 		<AxTableFieldGroup>
 			<Name>AutoSummary</Name>
@@ -75,13 +41,6 @@ public class DevAxRefreshDataEInvoiceParameters extends common
 		</AxTableFieldGroup>
 	</FieldGroups>
 	<Fields>
-		<AxTableField xmlns=""
-			i:type="AxTableFieldString">
-			<Name>UrlD365Prod</Name>
-			<ExtendedDataType>AxxDocURL</ExtendedDataType>
-			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
-			<Label>Url Produccion</Label>
-		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldString">
 			<Name>Url</Name>
@@ -118,24 +77,15 @@ public class DevAxRefreshDataEInvoiceParameters extends common
 			<ExtendedDataType>AxxDocECertificateStr</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
-		<AxTableField xmlns=""
-			i:type="AxTableFieldInt">
-			<Name>Key</Name>
-			<AllowEdit>No</AllowEdit>
-			<AllowEditOnCreate>No</AllowEditOnCreate>
-			<AssetClassification>Customer Content</AssetClassification>
-			<ExtendedDataType>ParametersKey</ExtendedDataType>
-			<Visible>No</Visible>
-		</AxTableField>
 	</Fields>
 	<FullTextIndexes />
 	<Indexes>
 		<AxTableIndex>
-			<Name>key</Name>
+			<Name>ServiceId</Name>
 			<AlternateKey>Yes</AlternateKey>
 			<Fields>
 				<AxTableIndexField>
-					<DataField>Key</DataField>
+					<DataField>ServiceId</DataField>
 				</AxTableIndexField>
 			</Fields>
 		</AxTableIndex>

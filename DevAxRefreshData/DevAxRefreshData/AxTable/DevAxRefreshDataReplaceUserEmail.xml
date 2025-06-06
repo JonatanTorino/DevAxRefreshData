@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AxTable xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-	<Name>DevAxRefreshDataTelemetryParameters</Name>
+	<Name>DevAxRefreshDataReplaceUserEmail</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-public class DevAxRefreshDataTelemetryParameters extends common
+public class DevAxRefreshDataReplaceUserEmail extends common
 {
 }
 ]]></Declaration>
@@ -37,13 +37,7 @@ public class DevAxRefreshDataTelemetryParameters extends common
 			<Fields />
 		</AxTableFieldGroup>
 	</FieldGroups>
-	<Fields>
-		<AxTableField xmlns=""
-			i:type="AxTableFieldString">
-			<Name>SysAppURI</Name>
-			<ExtendedDataType>SysAppURI</ExtendedDataType>
-		</AxTableField>
-	</Fields>
+	<Fields />
 	<FullTextIndexes />
 	<Indexes />
 	<Mappings />

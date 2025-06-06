@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshDataReplaceUsersEmail</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class DevAxRefreshDataReplaceUsersEmail
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        if(!DevAxRefreshDataHelper::promptConfirmation())
+        {
+            return;
+        }
+
+        DevAxRefreshDataReplaceUsersEmail replaceUsersEmail = new DevAxRefreshDataReplaceUsersEmail();
+        replaceUsersEmail.run();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    public void run()
+    {
+        if(DevAxRefreshDataHelper::isProductionEnvironment())
+        {
+            warning("@DevAxRefreshData:RFDTA007");
+            return;
+        }
+
+        this.updateUsersEmail();
+
+        info("@DevAxRefreshData:RFDTA005");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>updateUsersEmail</Name>
+				<Source><![CDATA[
+    protected void updateUsersEmail()
+    {
+        DevAxRefreshDataParameters parameters = DevAxRefreshDataParameters::find();
+        DevAxRefreshDataUsersTable usersTable;
+        SysUserInfo sysUserInfo;
+        UserInfo userInfo;
+
+        update_recordset sysUserInfo
+        setting Mailer = parameters.UserDefaultMailer, Email = parameters.UserDefaultEmail
+            join userInfo
+                where userInfo.id == sysUserInfo.id
+            join usersTable
+                where usersTable.SearchUser == SearchUser::User &&
+                  userInfo.networkAlias == usersTable.Email;   
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

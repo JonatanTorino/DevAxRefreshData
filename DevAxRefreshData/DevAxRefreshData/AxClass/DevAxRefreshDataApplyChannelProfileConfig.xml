@@ -16,6 +16,11 @@ public class DevAxRefreshDataApplyChannelProfileConfig
 				<Source><![CDATA[
     public static void main(Args _args)
     {
+        if(!DevAxRefreshDataHelper::promptConfirmation())
+        {
+            return;
+        }
+
         DevAxRefreshDataApplyChannelProfileConfig profileConfig = new DevAxRefreshDataApplyChannelProfileConfig();
         profileConfig.run();
     }
@@ -27,8 +32,16 @@ public class DevAxRefreshDataApplyChannelProfileConfig
 				<Source><![CDATA[
     public void run()
     {
+        if(DevAxRefreshDataHelper::isProductionEnvironment())
+        {
+            warning("@DevAxRefreshData:RFDTA007");
+            return;
+        }
+
         this.ApplyChannelProfileConfig();
         this.InsertRetailCDXDataStoreChannel();
+
+        info("@DevAxRefreshData:RFDTA005");
     }
 
 ]]></Source>
