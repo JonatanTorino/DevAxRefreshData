@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshDataCleanTables</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class DevAxRefreshDataCleanTables
+{    
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        if(!DevAxRefreshDataHelper::promptConfirmation("@DevAxRefreshData:RFDTA037"))
+        {
+            return;
+        }
+
+        DevAxRefreshDataCleanTables cleanTables = new DevAxRefreshDataCleanTables();
+        cleanTables.run();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    public void run()
+    {
+        if(DevAxRefreshDataHelper::isProductionEnvironment())
+        {
+            warning("@DevAxRefreshData:RFDTA007");
+            return;
+        }
+
+        this.cleanTables();
+        info("@DevAxRefreshData:RFDTA038");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>cleanTables</Name>
+				<Source><![CDATA[
+    protected void cleanTables()
+    {
+        DevAxRefreshDataTableToClean devAxRefreshDataTableToClean;
+
+        while select devAxRefreshDataTableToClean
+            {
+                TableId ti = tableName2Id(devAxRefreshDataTableToClean.TableNameToClean);
+                DictTable dt = new DictTable(ti); //Este método crea una instancia de la tabla concreta, para que el método con delete_from sepa a que tabla ejecutar la sentencia
+               
+                this.deleteFromTable(dt.makeRecord());
+            }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>deleteFromTable</Name>
+				<Source><![CDATA[
+    protected void deleteFromTable(Common _tableToClean)
+    {
+        delete_from _tableToClean;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
