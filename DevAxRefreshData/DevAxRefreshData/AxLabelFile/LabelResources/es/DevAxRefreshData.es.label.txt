@@ -26,3 +26,6 @@ RFDTA025=General
 RFDTA026=Debe completarse el campo URL Producción para validar y restringir la ejecución de procesos en el entorno de producción.
 RFDTA027=URL de producción
 RFDTA028=Facilitador post-bajada de datos
+RFDTA029=Integración fiscal
+RFDTA030=Manifiesto XML
+RFDTA031=Facilita la creación o actualización del manifiesto XML en el framework de integración fiscal.

@@ -26,3 +26,6 @@ RFDTA025=General
 RFDTA026=The Production URL field must be completed to validate and restrict the execution of processes in the production environment.
 RFDTA027=Production URL
 RFDTA028=Post-download data facilitator
+RFDTA029=Fiscal integration 
+RFDTA030=XML Manifest
+RFDTA031=Helps create or update the XML manifest in the fiscal integration framework.
