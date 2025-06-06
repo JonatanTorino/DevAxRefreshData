@@ -105,6 +105,12 @@ public class DevAxRefreshDataParameters extends common
 			<Name>TelemetrySysAppURI</Name>
 			<ExtendedDataType>SysAppURI</ExtendedDataType>
 		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>FIFManifestXml</Name>
+			<ExtendedDataType>XML</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+		</AxTableField>
 	</Fields>
 	<FullTextIndexes />
 	<Indexes>

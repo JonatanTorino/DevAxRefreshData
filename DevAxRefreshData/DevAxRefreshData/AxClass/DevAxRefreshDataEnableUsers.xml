@@ -16,7 +16,7 @@ public class DevAxRefreshDataEnableUsers
 				<Source><![CDATA[
     public static void main(Args _args)
     {
-        if(!DevAxRefreshDataHelper::promptConfirmation("@DevAxRefreshData:RFDTA010"))
+        if(!DevAxRefreshDataHelper::promptConfirmation())
         {
             return;
         }

@@ -53,6 +53,33 @@ public class DevAxRefreshDataHelper
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>callPrivateClassMethodXpp</Name>
+				<Source><![CDATA[
+    public static anytype callPrivateClassMethodXpp(Object _obj, ClassId _classId, str _methodName, boolean _isStaticMethod,
+        int _qtyParms, anytype _parm1 = null)
+    {
+        SysDictClass dictClass = new SysDictClass(_classId);
+
+        anytype ret;
+        switch(_qtyParms)
+        {
+            case 0 :
+            ret = _isStaticMethod ? dictClass.callStatic(_methodName) :
+                dictClass.callObject(_methodName, _obj);
+                dictClass.callObject(_methodName, _obj);
+                break;
+            case 1 :
+            ret = _isStaticMethod ? dictClass.callStatic(_methodName, _parm1) :
+                dictClass.callObject(_methodName, _obj, _parm1);
+                break;
+        }
+
+        return ret;
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 </AxClass>

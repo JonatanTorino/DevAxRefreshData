@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshDataFiscalIntegrationReplaceData</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class DevAxRefreshDataFiscalIntegrationReplaceData
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        if(!DevAxRefreshDataHelper::promptConfirmation())
+        {
+            return;
+        }
+
+        DevAxRefreshDataFiscalIntegrationReplaceData fiscalIntegrationReplaceData = new DevAxRefreshDataFiscalIntegrationReplaceData();
+        fiscalIntegrationReplaceData.run();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    public void run()
+    {
+        if(DevAxRefreshDataHelper::isProductionEnvironment())
+        {
+            warning("@DevAxRefreshData:RFDTA007");
+            return;
+        }
+
+        this.updateFIFManifestXml();
+        info("@DevAxRefreshData:RFDTA005");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>updateFIFManifestXml</Name>
+				<Source><![CDATA[
+    protected void updateFIFManifestXml()
+    {
+        DevAxRefreshDataParameters parameters = DevAxRefreshDataParameters::find();
+
+        RetailFiscalIntegrationConfigurationLoadHelper validationHelper = new RetailFiscalIntegrationConfigurationLoadHelper();
+                
+        DevAxRefreshDataHelper::callPrivateClassMethodXpp(
+            validationHelper, 
+            classNum(RetailFiscalIntegrationConfigurationLoadHelper),
+            methodStr(RetailFiscalIntegrationConfigurationLoadHelper, getExtensionNameFromXML),
+            false,
+            1,
+            parameters.FIFManifestXml         
+        );
+
+        DevAxRefreshDataHelper::callPrivateClassMethodXpp(
+            validationHelper,           
+            classNum(RetailFiscalIntegrationConfigurationLoadHelper),
+            methodStr(RetailFiscalIntegrationConfigurationLoadHelper, updateFiscalConnectorTable),
+            false,
+            1,
+            parameters.FIFManifestXml
+        );
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
