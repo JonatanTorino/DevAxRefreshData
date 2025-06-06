@@ -33,6 +33,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="Action Menu Items\" />
     <Folder Include="Data Entities\" />
     <Folder Include="Display Menu Items\" />
     <Folder Include="Forms\" />
@@ -43,6 +44,11 @@
     <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AxClass\DevAxDuplicateData">
+      <SubType>Content</SubType>
+      <Name>DevAxDuplicateData</Name>
+      <Link>Classes\DevAxDuplicateData</Link>
+    </Content>
     <Content Include="AxClass\DevAxRefreshDataHelper">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataHelper</Name>
@@ -72,6 +78,11 @@
       <SubType>Content</SubType>
       <Name>SystemAdministration.DevAxRefreshData</Name>
       <Link>Menu Extensions\SystemAdministration.DevAxRefreshData</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\DevAxDuplicateData">
+      <SubType>Content</SubType>
+      <Name>DevAxDuplicateData</Name>
+      <Link>Action Menu Items\DevAxDuplicateData</Link>
     </Content>
     <Content Include="AxMenuItemDisplay\DevAxRefreshData">
       <SubType>Content</SubType>
