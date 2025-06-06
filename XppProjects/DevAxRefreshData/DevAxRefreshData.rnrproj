@@ -44,10 +44,10 @@
     <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AxClass\DevAxDuplicateData">
+    <Content Include="AxClass\DevAxRefreshDataCopyWSParameters">
       <SubType>Content</SubType>
-      <Name>DevAxDuplicateData</Name>
-      <Link>Classes\DevAxDuplicateData</Link>
+      <Name>DevAxRefreshDataCopyWSParameters</Name>
+      <Link>Classes\DevAxRefreshDataCopyWSParameters</Link>
     </Content>
     <Content Include="AxClass\DevAxRefreshDataHelper">
       <SubType>Content</SubType>
@@ -79,10 +79,10 @@
       <Name>SystemAdministration.DevAxRefreshData</Name>
       <Link>Menu Extensions\SystemAdministration.DevAxRefreshData</Link>
     </Content>
-    <Content Include="AxMenuItemAction\DevAxDuplicateData">
+    <Content Include="AxMenuItemAction\DevAxRefreshDataEInvoiceParameters">
       <SubType>Content</SubType>
-      <Name>DevAxDuplicateData</Name>
-      <Link>Action Menu Items\DevAxDuplicateData</Link>
+      <Name>DevAxRefreshDataEInvoiceParameters</Name>
+      <Link>Action Menu Items\DevAxRefreshDataEInvoiceParameters</Link>
     </Content>
     <Content Include="AxMenuItemDisplay\DevAxRefreshData">
       <SubType>Content</SubType>
