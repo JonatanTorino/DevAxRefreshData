@@ -40,25 +40,9 @@ public class DevAxRefreshData extends FormRun
 				<Source><![CDATA[
     private void enableControls()
     {
-        str urlD365Prod = DevAxRefreshDataParameters.UrlD365Prod;
-
-        if (urlD365Prod)
-        {
-            urlD365Prod = new System.Uri(urlD365Prod).Host;
-
-            str currentUrl = URLUtility::getUrl();
-            currentUrl = new System.Uri(currentUrl).Host;
-
-            boolean enableUrl = currentUrl != urlD365Prod;
- 
-            DevAxRefreshDataReplaceAfipParams.enabled(enableUrl);
-            DevAxRefreshDataRetailButtonsReplaceActionProps.enabled(enableUrl);
-        }
-        else
-        {
-            DevAxRefreshDataReplaceAfipParams.enabled(false);
-            DevAxRefreshDataRetailButtonsReplaceActionProps.enabled(false);
-        }
+        boolean enableControls = !DevAxRefreshDataHelper::isProductionEnvironment();
+        DevAxRefreshDataReplaceAfipParams.enabled(enableControls);
+        DevAxRefreshDataRetailButtonsReplaceActionProps.enabled(enableControls);
     }
 
 ]]></Source>
@@ -71,7 +55,7 @@ public class DevAxRefreshData extends FormRun
         int read;
         System.Byte[] buffer = new System.Byte[32*1024]();
         System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            
+
         read = input.Read(buffer, 0, buffer.Length);
         while (read > 0)
         {
@@ -855,222 +839,6 @@ public class DevAxRefreshData extends FormRun
 					</AxFormControl>
 					<AxFormControl xmlns=""
 						i:type="AxFormTabPageControl">
-						<Name>RefreshDataTabPageControl</Name>
-						<Type>TabPage</Type>
-						<FormControlExtension
-							i:nil="true" />
-						<Controls>
-							<AxFormControl xmlns=""
-								i:type="AxFormGroupControl">
-								<Name>RefreshDataGroupControl</Name>
-								<Skip>Yes</Skip>
-								<Type>Group</Type>
-								<WidthMode>SizeToAvailable</WidthMode>
-								<FormControlExtension
-									i:nil="true" />
-								<Controls>
-									<AxFormControl xmlns=""
-										i:type="AxFormStaticTextControl">
-										<Name>FormStaticTextControl1</Name>
-										<Skip>Yes</Skip>
-										<Type>StaticText</Type>
-										<WidthMode>SizeToAvailable</WidthMode>
-										<FormControlExtension
-											i:nil="true" />
-										<Style>MainInstruction</Style>
-										<Text>Web Service</Text>
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormStaticTextControl">
-										<Name>FormStaticTextControl2</Name>
-										<ExtendedStyle>dialog_secondaryInstruction</ExtendedStyle>
-										<Skip>Yes</Skip>
-										<Type>StaticText</Type>
-										<WidthMode>SizeToAvailable</WidthMode>
-										<FormControlExtension
-											i:nil="true" />
-										<Text>Parametros de configuración para guardar datos de conexión contra el web service de homologación de AFIP, para usar posteriormente de una actualización de base de datos, con el fin de reemplazar la configuración empleada en el proceso de facturación electrónica</Text>
-									</AxFormControl>
-								</Controls>
-								<AllowUserSetup>No</AllowUserSetup>
-								<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
-								<FrameType>None</FrameType>
-								<Style>TOCTitleContainer</Style>
-							</AxFormControl>
-							<AxFormControl xmlns=""
-								i:type="AxFormTabControl">
-								<Name>RefreshDataTabControl</Name>
-								<Type>Tab</Type>
-								<FormControlExtension
-									i:nil="true" />
-								<Controls>
-									<AxFormControl xmlns=""
-										i:type="AxFormTabPageControl">
-										<Name>RefreshDataTabPageControl2</Name>
-										<Pattern>Custom</Pattern>
-										<Type>TabPage</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<Controls>
-											<AxFormControl xmlns=""
-												i:type="AxFormGroupControl">
-												<Name>ServiceGroup</Name>
-												<Type>Group</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<Controls>
-													<AxFormControl xmlns=""
-														i:type="AxFormStringControl">
-														<Name>DevAxRefreshDataEInvoiceParameters_ServiceId</Name>
-														<Type>String</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<DataField>ServiceId</DataField>
-														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
-													</AxFormControl>
-												</Controls>
-												<ColumnsMode>Fill</ColumnsMode>
-												<Caption>Service</Caption>
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormGroupControl">
-												<Name>UrlsGroup</Name>
-												<Type>Group</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<Controls>
-													<AxFormControl xmlns=""
-														i:type="AxFormStringControl">
-														<Name>DevAxRefreshDataEInvoiceParameters_UrlLogin</Name>
-														<Type>String</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<DataField>UrlLogin</DataField>
-														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
-													</AxFormControl>
-													<AxFormControl xmlns=""
-														i:type="AxFormStringControl">
-														<Name>DevAxRefreshDataEInvoiceParameters_Url</Name>
-														<Type>String</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<DataField>Url</DataField>
-														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
-													</AxFormControl>
-												</Controls>
-												<ColumnsMode>Fill</ColumnsMode>
-												<Caption>Urls</Caption>
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormGroupControl">
-												<Name>CertficateGroup</Name>
-												<Type>Group</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<Controls>
-													<AxFormControl>
-														<Name>RefreshDataFileUpload</Name>
-														<Tags>hola oy tag</Tags>
-														<FormControlExtension>
-															<Name>FileUpload</Name>
-															<ExtensionComponents />
-															<ExtensionProperties>
-																<AxFormControlExtensionProperty>
-																	<Name>fileTypesAccepted</Name>
-																	<Type>String</Type>
-																</AxFormControlExtensionProperty>
-																<AxFormControlExtensionProperty>
-																	<Name>fileNameLabel</Name>
-																	<Type>String</Type>
-																	<Value>Update file</Value>
-																</AxFormControlExtensionProperty>
-																<AxFormControlExtensionProperty>
-																	<Name>browseText</Name>
-																	<Type>String</Type>
-																	<Value>Update file</Value>
-																</AxFormControlExtensionProperty>
-																<AxFormControlExtensionProperty>
-																	<Name>style</Name>
-																	<Type>Enum</Type>
-																	<TypeName>FileUploadStyle</TypeName>
-																	<Value>Standard</Value>
-																</AxFormControlExtensionProperty>
-																<AxFormControlExtensionProperty>
-																	<Name>baseFileUploadStrategyClassName</Name>
-																	<Type>String</Type>
-																	<Value>AxxDocEInvoicePfxUploadStrategy</Value>
-																</AxFormControlExtensionProperty>
-																<AxFormControlExtensionProperty>
-																	<Name>imageMaxWidth</Name>
-																	<Type>Int32</Type>
-																	<Value>0</Value>
-																</AxFormControlExtensionProperty>
-																<AxFormControlExtensionProperty>
-																	<Name>imageMaxHeight</Name>
-																	<Type>Int32</Type>
-																	<Value>0</Value>
-																</AxFormControlExtensionProperty>
-															</ExtensionProperties>
-														</FormControlExtension>
-													</AxFormControl>
-													<AxFormControl xmlns=""
-														i:type="AxFormStringControl">
-														<Name>DevAxRefreshDataEInvoiceParameters_CertificateFile</Name>
-														<Type>String</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<DataField>CertificateFile</DataField>
-														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
-													</AxFormControl>
-													<AxFormControl xmlns=""
-														i:type="AxFormStringControl">
-														<Name>DevAxRefreshDataEInvoiceParameters_CertificatePass</Name>
-														<Type>String</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<DataField>CertificatePass</DataField>
-														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
-													</AxFormControl>
-												</Controls>
-												<ColumnsMode>Fill</ColumnsMode>
-												<Caption>Certificate</Caption>
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormGroupControl">
-												<Name>ButtonReplaceGroup</Name>
-												<Height>-2</Height>
-												<Type>Group</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<Controls>
-													<AxFormControl xmlns=""
-														i:type="AxFormMenuFunctionButtonControl">
-														<Name>DevAxRefreshDataReplaceAfipParams</Name>
-														<AutoDeclaration>Yes</AutoDeclaration>
-														<Type>MenuFunctionButton</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<MenuItemName>DevAxRefreshDataReplaceAfipParams</MenuItemName>
-														<MenuItemType>Action</MenuItemType>
-														<Text>Replace Data</Text>
-													</AxFormControl>
-												</Controls>
-												<Columns>2</Columns>
-												<ColumnsMode>Fill</ColumnsMode>
-											</AxFormControl>
-										</Controls>
-										<Columns>4</Columns>
-										<Caption>Afip connection Data</Caption>
-									</AxFormControl>
-								</Controls>
-								<DataSource>DevAxRefreshDataParameters</DataSource>
-								<Style>FastTabs</Style>
-							</AxFormControl>
-						</Controls>
-						<Caption>Web Service Afip</Caption>
-					</AxFormControl>
-					<AxFormControl xmlns=""
-						i:type="AxFormTabPageControl">
 						<Name>AplicationInsightsRegistryTabPageControl</Name>
 						<Type>TabPage</Type>
 						<FormControlExtension
@@ -1393,6 +1161,256 @@ public class DevAxRefreshData extends FormRun
 							</AxFormControl>
 						</Controls>
 						<Caption>@DevAxRefreshData:RFDTA001</Caption>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormTabPageControl">
+						<Name>WebServiceAfip</Name>
+						<Type>TabPage</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormGroupControl">
+								<Name>WebServiceAfipGroup</Name>
+								<Skip>Yes</Skip>
+								<Type>Group</Type>
+								<WidthMode>SizeToAvailable</WidthMode>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>WebServiceAfipTitle</Name>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Style>MainInstruction</Style>
+										<Text>@DevAxRefreshData:RFDTA102</Text>
+									</AxFormControl>
+									<AxFormControl xmlns=""
+										i:type="AxFormStaticTextControl">
+										<Name>WebServiceAfipSubTitle</Name>
+										<ExtendedStyle>dialog_secondaryInstruction</ExtendedStyle>
+										<Skip>Yes</Skip>
+										<Type>StaticText</Type>
+										<WidthMode>SizeToAvailable</WidthMode>
+										<FormControlExtension
+											i:nil="true" />
+										<Text>@DevAxRefreshData:RFDTA103</Text>
+									</AxFormControl>
+								</Controls>
+								<AllowUserSetup>No</AllowUserSetup>
+								<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
+								<FrameType>None</FrameType>
+								<Style>TOCTitleContainer</Style>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormTabControl">
+								<Name>WebServiceAfipTab</Name>
+								<Type>Tab</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<Controls>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>ReplaceDataTabPage</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormMenuFunctionButtonControl">
+												<Name>DevAxRefreshDataReplaceAfipParams</Name>
+												<AutoDeclaration>Yes</AutoDeclaration>
+												<Type>MenuFunctionButton</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<MenuItemName>DevAxRefreshDataReplaceAfipParams</MenuItemName>
+												<MenuItemType>Action</MenuItemType>
+												<Text>Replace Data</Text>
+											</AxFormControl>
+										</Controls>
+										<ColumnsMode>Fill</ColumnsMode>
+										<Caption>@DevAxRefreshData:RFDTA110</Caption>
+										<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
+									</AxFormControl>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>WebServiceAfipTabPage</Name>
+										<Pattern>ToolbarList</Pattern>
+										<PatternVersion>1.2</PatternVersion>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormActionPaneControl">
+												<Name>WebServiceAfipActionPane</Name>
+												<Type>ActionPane</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonGroupControl">
+														<Name>WebServiceAfipButtonGroup</Name>
+														<Type>ButtonGroup</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Controls>
+															<AxFormControl xmlns=""
+																i:type="AxFormCommandButtonControl">
+																<Name>WebServiceAfipNew</Name>
+																<Type>CommandButton</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<Command>New</Command>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormCommandButtonControl">
+																<Name>WebServiceAfipDelete</Name>
+																<Type>CommandButton</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<Command>DeleteRecord</Command>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormMenuFunctionButtonControl">
+																<Name>DevAxRefreshDataEInvoiceParameters</Name>
+																<Type>MenuFunctionButton</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<MenuItemName>DevAxRefreshDataEInvoiceParameters</MenuItemName>
+																<MenuItemType>Action</MenuItemType>
+															</AxFormControl>
+														</Controls>
+														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
+													</AxFormControl>
+												</Controls>
+												<Style>Strip</Style>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGridControl">
+												<Name>WebServiceAfipGrid</Name>
+												<Type>Grid</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataEInvoiceParameters_ServiceId</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>ServiceId</DataField>
+														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataEInvoiceParameters_UrlLogin</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>UrlLogin</DataField>
+														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataEInvoiceParameters_Url</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Url</DataField>
+														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataEInvoiceParameters_CertificateFile</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>CertificateFile</DataField>
+														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataEInvoiceParameters_CertificatePass</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>CertificatePass</DataField>
+														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
+													</AxFormControl>
+												</Controls>
+												<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>RefreshDataFileUploadControl</Name>
+												<Pattern>Custom</Pattern>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl>
+														<Name>RefreshDataFileUpload</Name>
+														<Tags>hola oy tag</Tags>
+														<FormControlExtension>
+															<Name>FileUpload</Name>
+															<ExtensionComponents />
+															<ExtensionProperties>
+																<AxFormControlExtensionProperty>
+																	<Name>fileTypesAccepted</Name>
+																	<Type>String</Type>
+																</AxFormControlExtensionProperty>
+																<AxFormControlExtensionProperty>
+																	<Name>fileNameLabel</Name>
+																	<Type>String</Type>
+																	<Value>Update file</Value>
+																</AxFormControlExtensionProperty>
+																<AxFormControlExtensionProperty>
+																	<Name>browseText</Name>
+																	<Type>String</Type>
+																	<Value>Update file</Value>
+																</AxFormControlExtensionProperty>
+																<AxFormControlExtensionProperty>
+																	<Name>style</Name>
+																	<Type>Enum</Type>
+																	<TypeName>FileUploadStyle</TypeName>
+																	<Value>Standard</Value>
+																</AxFormControlExtensionProperty>
+																<AxFormControlExtensionProperty>
+																	<Name>baseFileUploadStrategyClassName</Name>
+																	<Type>String</Type>
+																	<Value>AxxDocEInvoicePfxUploadStrategy</Value>
+																</AxFormControlExtensionProperty>
+																<AxFormControlExtensionProperty>
+																	<Name>imageMaxWidth</Name>
+																	<Type>Int32</Type>
+																	<Value>0</Value>
+																</AxFormControlExtensionProperty>
+																<AxFormControlExtensionProperty>
+																	<Name>imageMaxHeight</Name>
+																	<Type>Int32</Type>
+																	<Value>0</Value>
+																</AxFormControlExtensionProperty>
+															</ExtensionProperties>
+														</FormControlExtension>
+													</AxFormControl>
+												</Controls>
+												<ColumnsMode>Fill</ColumnsMode>
+												<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
+											</AxFormControl>
+										</Controls>
+										<Caption>@DevAxRefreshData:RFDTA104</Caption>
+									</AxFormControl>
+								</Controls>
+								<Style>FastTabs</Style>
+							</AxFormControl>
+						</Controls>
+						<Caption>@DevAxRefreshData:RFDTA101</Caption>
 					</AxFormControl>
 					<AxFormControl xmlns=""
 						i:type="AxFormTabPageControl">
