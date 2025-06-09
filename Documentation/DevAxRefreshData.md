@@ -68,7 +68,19 @@ Esta acción permite:
 
 ### Aplication Insights Registry
 
+Esta pestaña permite actualizar la configuración de los repositorios de Application Insights utilizados para el envío de datos de telemetría, tanto para el entorno de Back Office (BO) como para el de Point of Sale (POS).
+
+El sistema utiliza la Instrumentation Key para identificar y establecer las instancias correspondientes de Application Insights a las que se enviarán los registros (logs), métricas y demás información relevante para el monitoreo de cada entorno.
+
+![Texto alternativo](resources/refresh_data_model_ss5.png)
+
 ### Commerce
+
+Esta pestaña vuelve a crear el perfil de canal predeterminado en la configuración de canales del sistema POS (Point of Sale).
+
+El proceso elimina el perfil de canal actual y lo reemplaza por uno nuevo, generado con las propiedades específicas del entorno (clave y valor) para asegurar su correcto funcionamiento en escenarios de prueba o después de una baja de datos.
+
+![Texto alternativo](resources/refresh_data_model_ss6.png)
 
 ### Botones POS
 
