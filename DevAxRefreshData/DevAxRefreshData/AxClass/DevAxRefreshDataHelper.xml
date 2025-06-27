@@ -42,11 +42,11 @@ public class DevAxRefreshDataHelper
 
         if (!parameters.UrlD365Prod)
         {
-            error("@DevAxRefreshData:RFDTA006"); // "The D365 Production URL is not configured."
+            return error("@DevAxRefreshData:RFDTA006"); // "The D365 Production URL is not configured."
         }
 
         str currentUrlHost = DevAxRefreshDataHelper::getCurrentUrlHost();
-        str urlD365ProdHost = new System.Uri(parameters.UrlD365Prod).Host;
+        str urlD365ProdHost = parameters.UrlD365Prod ? new System.Uri(parameters.UrlD365Prod).Host : "";
 
         return currentUrlHost == urlD365ProdHost;
     }
