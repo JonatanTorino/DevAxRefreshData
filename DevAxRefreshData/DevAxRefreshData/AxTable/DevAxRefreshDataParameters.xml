@@ -111,6 +111,18 @@ public class DevAxRefreshDataParameters extends common
 			<ExtendedDataType>XML</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>EmailGraphAppId</Name>
+			<ExtendedDataType>SysMailerGraphAppId</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>EmailGraphSMTPPassword</Name>
+			<ExtendedDataType>SMTPPassword</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+		</AxTableField>
 	</Fields>
 	<FullTextIndexes />
 	<Indexes>
