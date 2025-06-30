@@ -19,8 +19,7 @@ public class DevAxRefreshDataReplaceAfipParams
         }
 
         DevAxRefreshDataReplaceAfipParams afipParams = new DevAxRefreshDataReplaceAfipParams();
-        DevAxRefreshDataEInvoiceParameters invoiceParameters = _args.record();
-        afipParams.run(invoiceParameters);
+        afipParams.run();
     }
 
 ]]></Source>
@@ -28,7 +27,7 @@ public class DevAxRefreshDataReplaceAfipParams
 			<Method>
 				<Name>run</Name>
 				<Source><![CDATA[
-    public void run(DevAxRefreshDataEInvoiceParameters invoiceParameters)
+    public void run()
     {
         if(DevAxRefreshDataHelper::isProductionEnvironment())
         {
@@ -36,7 +35,7 @@ public class DevAxRefreshDataReplaceAfipParams
             return;
         }
 
-        this.updateInvoiceParameters(invoiceParameters);
+        this.updateInvoiceParameters();
         info("@DevAxRefreshData:RFDTA011");
     }
 
@@ -45,23 +44,32 @@ public class DevAxRefreshDataReplaceAfipParams
 			<Method>
 				<Name>updateInvoiceParameters</Name>
 				<Source><![CDATA[
-    protected void updateInvoiceParameters(DevAxRefreshDataEInvoiceParameters invoiceParameters)
+    protected void updateInvoiceParameters()
     {
         AxxDocEInvoiceWSParameters parameters;
+        DevAxRefreshDataEInvoiceParameters invoiceParameters;
 
         ttsbegin;
-          
-        select firstonly forupdate parameters
-            where parameters.ServiceId == invoiceParameters.ServiceId;
-        
-        parameters.ECertificateStr = invoiceParameters.ECertificateStr;
-        parameters.CertificateFile = invoiceParameters.CertificateFile;
-        parameters.CertificatePass = invoiceParameters.CertificatePass;
-        parameters.Url = invoiceParameters.Url;
-        parameters.UrlLogin = invoiceParameters.UrlLogin;
 
-        parameters.update();
-                
+        // Recorrer todos los registros de destino
+        while select forupdate parameters
+        {
+            // Buscar el registro fuente correspondiente por ServiceId
+            select firstonly invoiceParameters
+            where invoiceParameters.ServiceId == parameters.ServiceId;
+
+            if (invoiceParameters.RecId != 0)
+            {
+                parameters.ECertificateStr = invoiceParameters.ECertificateStr;
+                parameters.CertificateFile = invoiceParameters.CertificateFile;
+                parameters.CertificatePass = invoiceParameters.CertificatePass;
+                parameters.Url = invoiceParameters.Url;
+                parameters.UrlLogin = invoiceParameters.UrlLogin;
+
+                parameters.update();
+            }
+        }
+
         ttscommit;
     }
 
