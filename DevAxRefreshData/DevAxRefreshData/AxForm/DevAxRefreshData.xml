@@ -220,13 +220,13 @@ public class DevAxRefreshData extends FormRun
 					<DataField>CertificatePass</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
+					<DataField>CertificateUser</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
 					<DataField>DataAreaId</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
 					<DataField>ECertificateStr</DataField>
-				</AxFormDataSourceField>
-				<AxFormDataSourceField>
-					<DataField>Key</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
 					<DataField>Partition</DataField>
@@ -1341,6 +1341,15 @@ public class DevAxRefreshData extends FormRun
 														<FormControlExtension
 															i:nil="true" />
 														<DataField>CertificatePass</DataField>
+														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>DevAxRefreshDataEInvoiceParameters_CertificateUser</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>CertificateUser</DataField>
 														<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
 													</AxFormControl>
 												</Controls>

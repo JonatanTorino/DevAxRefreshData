@@ -77,6 +77,12 @@ public class DevAxRefreshDataEInvoiceParameters extends common
 			<ExtendedDataType>AxxDocECertificateStr</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>CertificateUser</Name>
+			<ExtendedDataType>AxxDocCertificateUser</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+		</AxTableField>
 	</Fields>
 	<FullTextIndexes />
 	<Indexes>
