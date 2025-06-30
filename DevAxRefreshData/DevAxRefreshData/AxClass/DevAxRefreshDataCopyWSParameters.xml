@@ -22,6 +22,9 @@ public class DevAxRefreshDataCopyWSParameters
             DevAxRefreshDataCopyWSParameters instance = new DevAxRefreshDataCopyWSParameters();
             instance.setselectedData(selectedData);
             instance.Run();
+            FormRun fr = _args.caller() as FormRun;
+            FormDataSource fds = fr.dataSource(tableStr(DevAxRefreshDataEInvoiceParameters));
+            fds.research(); // Refresh the data source to reflect the changes made
         }
     }
 
