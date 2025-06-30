@@ -14,12 +14,7 @@ public class DevAxRefreshDataApplyPersonalization
     public static void main(Args _args)
     {
         DevAxRefreshDataApplyPersonalization applyPersonalization = new DevAxRefreshDataApplyPersonalization();
-
-        if(_args.record() && _args.record().TableId == tableNum(DevAxRefreshDataEnvironmentTable))
-        {
-            DevAxRefreshDataEnvironmentTable environmentTable = _args.record();
-            applyPersonalization.run(environmentTable);
-        }
+        applyPersonalization.run();
     }
 
 ]]></Source>
@@ -27,19 +22,22 @@ public class DevAxRefreshDataApplyPersonalization
 			<Method>
 				<Name>run</Name>
 				<Source><![CDATA[
-    public void run(DevAxRefreshDataEnvironmentTable _environmentTable)
+    public void run()
     {
         str currentUrlHost = DevAxRefreshDataHelper::getCurrentUrlHost();
-        str envUrlHost = new System.Uri(_environmentTable.envUrl).Host;
+        AxxDocURL axxDocURLFilter = strFmt("https://%1*", currentUrlHost);
+        DevAxRefreshDataEnvironmentTable targetEnvTable;
 
-        if (currentUrlHost != envUrlHost)
+        select targetEnvTable where targetEnvTable.EnvUrl like axxDocURLFilter;
+
+        if (!targetEnvTable)
         {
-            warning("@DevAxRefreshData:RFDTA012");
+            error("@DevAxRefreshData:RFDTA012");
             return;
         }
 
-        this.changeColorTheme(_environmentTable);
-        this.changeImageBanner(_environmentTable.ImageBannerLogo, CompanyImageType::DashboardBanner);
+        this.changeColorTheme(targetEnvTable);
+        this.changeImageBanner(targetEnvTable.ImageBannerLogo, CompanyImageType::DashboardBanner);
 
         info("@DevAxRefreshData:RFDTA013");
     }
