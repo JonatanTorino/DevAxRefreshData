@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>DevAxRefreshDataReplaceEmailGraphConfig</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class DevAxRefreshDataReplaceEmailGraphConfig
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+        public static void main(Args _args)
+    {
+        if(!DevAxRefreshDataHelper::promptConfirmation())
+        {
+            return;
+        }
+
+        DevAxRefreshDataReplaceEmailGraphConfig replaceEmailGraphConfig = new DevAxRefreshDataReplaceEmailGraphConfig();
+        replaceEmailGraphConfig.run();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    public void run()
+    {
+        if(DevAxRefreshDataHelper::isProductionEnvironment())
+        {
+            warning("@DevAxRefreshData:RFDTA007");
+            return;
+        }
+
+        this.updateEmailGraphConfig();
+
+        info("@DevAxRefreshData:RFDTA005");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>updateEmailGraphConfig</Name>
+				<Source><![CDATA[
+    protected void updateEmailGraphConfig()
+    {
+        DevAxRefreshDataParameters parameters = DevAxRefreshDataParameters::find();
+        SysEmailParameters sysEmailParameters;
+
+        update_recordset sysEmailParameters
+            setting GraphMailerAppId = parameters.EmailGraphAppId;
+
+        ttsbegin;
+        SysEmailSMTPPassword sysEmailSMTPPassword = SysEmailSMTPPassword::find(classStr(SysMailerGraph), '', true);
+        sysEmailSMTPPassword.passwordEdit(true, parameters.EmailGraphSMTPPassword);
+
+        sysEmailSMTPPassword.update();
+        ttscommit;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

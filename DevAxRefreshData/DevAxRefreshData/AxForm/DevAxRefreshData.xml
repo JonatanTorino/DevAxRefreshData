@@ -172,6 +172,12 @@ public class DevAxRefreshData extends FormRun
 					<DataField>DataAreaId</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
+					<DataField>EmailGraphAppId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>EmailGraphSMTPPassword</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
 					<DataField>FIFManifestXml</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
@@ -830,6 +836,48 @@ public class DevAxRefreshData extends FormRun
 											</AxFormControl>
 										</Controls>
 										<Caption>@DevAxRefreshData:RFDTA018</Caption>
+									</AxFormControl>
+									<AxFormControl xmlns=""
+										i:type="AxFormTabPageControl">
+										<Name>EmailGraphTabPage</Name>
+										<Pattern>Custom</Pattern>
+										<Type>TabPage</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormStringControl">
+												<Name>DevAxRefreshDataParameters_EmailGraphAppId</Name>
+												<Type>String</Type>
+												<Width>280</Width>
+												<WidthMode>Manual</WidthMode>
+												<FormControlExtension
+													i:nil="true" />
+												<DataField>EmailGraphAppId</DataField>
+												<DataSource>DevAxRefreshDataParameters</DataSource>
+												<Label>@ApplicationFoundation:SysMailerGraphAppId</Label>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormStringControl">
+												<Name>DevAxRefreshDataParameters_EmailGraphSMTPPassword</Name>
+												<Type>String</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<DataField>EmailGraphSMTPPassword</DataField>
+												<DataSource>DevAxRefreshDataParameters</DataSource>
+												<PasswordStyle>Yes</PasswordStyle>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormMenuFunctionButtonControl">
+												<Name>DevAxRefreshDataReplaceEmailGraphConfig</Name>
+												<Type>MenuFunctionButton</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<MenuItemName>DevAxRefreshDataReplaceEmailGraphConfig</MenuItemName>
+												<MenuItemType>Action</MenuItemType>
+											</AxFormControl>
+										</Controls>
+										<Caption>@ApplicationFoundation:SysMailerGraphParametersSection</Caption>
 									</AxFormControl>
 								</Controls>
 								<Style>FastTabs</Style>
