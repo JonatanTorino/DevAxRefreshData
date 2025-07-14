@@ -38,6 +38,7 @@ public class DevAxRefreshDataApplyPersonalization
 
         this.changeColorTheme(targetEnvTable);
         this.changeImageBanner(targetEnvTable.ImageBannerLogo, CompanyImageType::DashboardBanner);
+        this.changeDocumentBrandImage(targetEnvTable.ImageBannerLogo);
 
         info("@DevAxRefreshData:RFDTA013");
     }
@@ -89,6 +90,28 @@ public class DevAxRefreshDataApplyPersonalization
             companyImage.update();
         }
 
+        ttscommit;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>changeDocumentBrandImage</Name>
+				<Source><![CDATA[
+    protected void changeDocumentBrandImage(container _imageContainer)
+    {
+        DevAxRefreshDataParameters parameters = DevAxRefreshDataParameters::find();
+        if(!parameters.SysDocumentBranding)
+        {
+            return;
+        }
+
+        SysDocuBrandImages sysDocuBrandImages = SysDocuBrandImages::find(parameters.SysDocumentBranding);
+        sysDocuBrandImages.selectForUpdate(true);
+
+        ttsbegin;
+        sysDocuBrandImages.Image = _imageContainer;
+        sysDocuBrandImages.update();
         ttscommit;
     }
 

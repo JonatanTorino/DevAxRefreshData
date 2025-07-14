@@ -36,6 +36,7 @@ RFDTA035=Allows the clearing of specified tables by name. This process is irreve
 RFDTA036=Clean tables
 RFDTA037=Are you sure you want to proceed with the deletion of these tables contents?
 RFDTA038=The table contents were successfully deleted.
+RFDTA039=Id document branding
 RFDTA101=Web Service AFIP
 RFDTA102=Web Services
 RFDTA103=Configuration parameters to save connection data against the AFIP approval web service, for use after a database update, in order to replace the configuration used in the electronic invoicing process.
