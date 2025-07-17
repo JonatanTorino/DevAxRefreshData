@@ -82,10 +82,8 @@ public class DevAxRefreshData extends FormRun
             public boolean validate()
             {
                 boolean ret = super();
-
-                RetailFiscalIntegrationConnectorTable connectorTable;
                 RetailFiscalIntegrationConfigurationValidationHelper validationHelper = new RetailFiscalIntegrationConfigurationValidationHelper();
-                validationHelper.validateStructure(DevAxRefreshDataParameters.FIFManifestXml, connectorTable);
+                validationHelper.validateDocumentProviderStructure(DevAxRefreshDataParameters.FIFManifestXml);
 
                 return ret;
             }
