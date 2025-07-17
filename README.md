@@ -10,6 +10,7 @@ Copy and past
 $repositoryUrl = "https://github.com/JonatanTorino/DevAxRefreshData"
 $localRepoPath = "K:\Axxon\GitHub.JonatanTorino\DevAxRefreshData"
 $modelName = "DevAxRefreshData"
+$packagesLocalDirectory = "K:\AosService\PackagesLocalDirectory"
 
 # Clone or pull the repository
 git clone $repositoryUrl $localRepoPath | Wait-Process
@@ -21,12 +22,25 @@ Write-Host -ForegroundColor Yellow "Deteniendo todos los servicios de D365FO"
 Stop-D365Environment
 
 # Task 2: Create a symbolic link
-$packagesLocalDirectory = "K:\AosService\PackagesLocalDirectory"
 $targetPath = Join-Path $localRepoPath -ChildPath $modelName
 $linkPath = Join-Path $packagesLocalDirectory -ChildPath $modelName
 
-Write-Host -ForegroundColor Cyan "Remove existing directory if it exists $linkPath"
-cmd /c rmdir /q /s $linkPath
+if ([string]::IsNullOrWhiteSpace($linkPath)) {
+    Write-Warning "El valor de `\$linkPath` está vacío o no definido. Abortando operación de borrado."
+    return
+}
+
+if (-Not (Test-Path -Path $linkPath)) {
+    Write-Host -ForegroundColor Yellow "El directorio '$linkPath' no existe. Nada que eliminar."
+    return
+}
+
+# Validación extra: prevenir eliminación de raíz del sistema o carpeta crítica
+$resolvedPath = Resolve-Path -Path $linkPath
+if ($resolvedPath.Path -match "^[A-Z]:\\$") {
+    Write-Error "Intento de eliminar una unidad raíz ('$resolvedPath'). Operación no permitida."
+    return
+}
 
 Write-Host -ForegroundColor Cyan "Create a symbolic link to $targetPath"
 New-Item -ItemType SymbolicLink -Path $linkPath -Target $targetPath
