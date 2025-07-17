@@ -51,23 +51,17 @@ public class DevAxRefreshDataReplaceAfipParams
 
         ttsbegin;
 
-        // Recorrer todos los registros de destino
         while select forupdate parameters
+            join invoiceParameters where parameters.ServiceId == invoiceParameters.ServiceId
         {
-            // Buscar el registro fuente correspondiente por ServiceId
-            select firstonly invoiceParameters
-            where invoiceParameters.ServiceId == parameters.ServiceId;
+            parameters.ECertificateStr = invoiceParameters.ECertificateStr;
+            parameters.CertificateFile = invoiceParameters.CertificateFile;
+            parameters.CertificatePass = invoiceParameters.CertificatePass;
+            parameters.Url = invoiceParameters.Url;
+            parameters.UrlLogin = invoiceParameters.UrlLogin;
+            parameters.CertificateUser = invoiceParameters.CertificateUser;
 
-            if (invoiceParameters.RecId != 0)
-            {
-                parameters.ECertificateStr = invoiceParameters.ECertificateStr;
-                parameters.CertificateFile = invoiceParameters.CertificateFile;
-                parameters.CertificatePass = invoiceParameters.CertificatePass;
-                parameters.Url = invoiceParameters.Url;
-                parameters.UrlLogin = invoiceParameters.UrlLogin;
-
-                parameters.update();
-            }
+            parameters.update();
         }
 
         ttscommit;
