@@ -25,23 +25,6 @@ Stop-D365Environment
 $targetPath = Join-Path $localRepoPath -ChildPath $modelName
 $linkPath = Join-Path $packagesLocalDirectory -ChildPath $modelName
 
-if ([string]::IsNullOrWhiteSpace($linkPath)) {
-    Write-Warning "El valor de `\$linkPath` está vacío o no definido. Abortando operación de borrado."
-    return
-}
-
-if (-Not (Test-Path -Path $linkPath)) {
-    Write-Host -ForegroundColor Yellow "El directorio '$linkPath' no existe. Nada que eliminar."
-    return
-}
-
-# Validación extra: prevenir eliminación de raíz del sistema o carpeta crítica
-$resolvedPath = Resolve-Path -Path $linkPath
-if ($resolvedPath.Path -match "^[A-Z]:\\$") {
-    Write-Error "Intento de eliminar una unidad raíz ('$resolvedPath'). Operación no permitida."
-    return
-}
-
 Write-Host -ForegroundColor Cyan "Create a symbolic link to $targetPath"
 New-Item -ItemType SymbolicLink -Path $linkPath -Target $targetPath
 
