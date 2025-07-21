@@ -123,6 +123,13 @@ public class DevAxRefreshDataParameters extends common
 			<ExtendedDataType>SMTPPassword</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>SysDocumentBranding</Name>
+			<ExtendedDataType>SysDocuBrandImageRef</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+			<Label>@DevAxRefreshData:RFDTA039</Label>
+		</AxTableField>
 	</Fields>
 	<FullTextIndexes />
 	<Indexes>
@@ -137,6 +144,22 @@ public class DevAxRefreshDataParameters extends common
 		</AxTableIndex>
 	</Indexes>
 	<Mappings />
-	<Relations />
+	<Relations>
+		<AxTableRelation>
+			<Name>SysDocuBrandImages</Name>
+			<Cardinality>ZeroMore</Cardinality>
+			<RelatedTable>SysDocuBrandImages</RelatedTable>
+			<RelatedTableCardinality>ExactlyOne</RelatedTableCardinality>
+			<RelationshipType>Association</RelationshipType>
+			<Constraints>
+				<AxTableRelationConstraint xmlns=""
+					i:type="AxTableRelationConstraintField">
+					<Name>SysDocumentBranding</Name>
+					<Field>SysDocumentBranding</Field>
+					<RelatedField>Name</RelatedField>
+				</AxTableRelationConstraint>
+			</Constraints>
+		</AxTableRelation>
+	</Relations>
 	<StateMachines />
 </AxTable>
