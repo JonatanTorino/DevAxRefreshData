@@ -1212,14 +1212,14 @@ public class DevAxRefreshData extends FormRun
 					</AxFormControl>
 					<AxFormControl xmlns=""
 						i:type="AxFormTabPageControl">
-						<Name>WebServiceAfip</Name>
+						<Name>WebServiceAfipTab</Name>
 						<Type>TabPage</Type>
 						<FormControlExtension
 							i:nil="true" />
 						<Controls>
 							<AxFormControl xmlns=""
 								i:type="AxFormGroupControl">
-								<Name>WebServiceAfipGroup</Name>
+								<Name>WebServiceAfipHeader</Name>
 								<Skip>Yes</Skip>
 								<Type>Group</Type>
 								<WidthMode>SizeToAvailable</WidthMode>
@@ -1228,7 +1228,7 @@ public class DevAxRefreshData extends FormRun
 								<Controls>
 									<AxFormControl xmlns=""
 										i:type="AxFormStaticTextControl">
-										<Name>WebServiceAfipTitle</Name>
+										<Name>WebServiceAfipHeaderTitle</Name>
 										<Skip>Yes</Skip>
 										<Type>StaticText</Type>
 										<WidthMode>SizeToAvailable</WidthMode>
@@ -1239,7 +1239,7 @@ public class DevAxRefreshData extends FormRun
 									</AxFormControl>
 									<AxFormControl xmlns=""
 										i:type="AxFormStaticTextControl">
-										<Name>WebServiceAfipSubTitle</Name>
+										<Name>WebServiceAfipHeaderDescription</Name>
 										<ExtendedStyle>dialog_secondaryInstruction</ExtendedStyle>
 										<Skip>Yes</Skip>
 										<Type>StaticText</Type>
@@ -1256,35 +1256,11 @@ public class DevAxRefreshData extends FormRun
 							</AxFormControl>
 							<AxFormControl xmlns=""
 								i:type="AxFormTabControl">
-								<Name>WebServiceAfipTab</Name>
+								<Name>WebServiceAfipBody</Name>
 								<Type>Tab</Type>
 								<FormControlExtension
 									i:nil="true" />
 								<Controls>
-									<AxFormControl xmlns=""
-										i:type="AxFormTabPageControl">
-										<Name>ReplaceDataTabPage</Name>
-										<Pattern>Custom</Pattern>
-										<Type>TabPage</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<Controls>
-											<AxFormControl xmlns=""
-												i:type="AxFormMenuFunctionButtonControl">
-												<Name>DevAxRefreshDataReplaceAfipParams</Name>
-												<AutoDeclaration>Yes</AutoDeclaration>
-												<Type>MenuFunctionButton</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<MenuItemName>DevAxRefreshDataReplaceAfipParams</MenuItemName>
-												<MenuItemType>Action</MenuItemType>
-												<Text>Replace Data</Text>
-											</AxFormControl>
-										</Controls>
-										<ColumnsMode>Fill</ColumnsMode>
-										<Caption>@DevAxRefreshData:RFDTA110</Caption>
-										<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
-									</AxFormControl>
 									<AxFormControl xmlns=""
 										i:type="AxFormTabPageControl">
 										<Name>WebServiceAfipTabPage</Name>
@@ -1402,6 +1378,17 @@ public class DevAxRefreshData extends FormRun
 													</AxFormControl>
 												</Controls>
 												<DataSource>DevAxRefreshDataEInvoiceParameters</DataSource>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormMenuFunctionButtonControl">
+												<Name>DevAxRefreshDataReplaceAfipParams</Name>
+												<AutoDeclaration>Yes</AutoDeclaration>
+												<Type>MenuFunctionButton</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<MenuItemName>DevAxRefreshDataReplaceAfipParams</MenuItemName>
+												<MenuItemType>Action</MenuItemType>
+												<Text>@DevAxRefreshData:RFDTA003</Text>
 											</AxFormControl>
 											<AxFormControl xmlns=""
 												i:type="AxFormGroupControl">
