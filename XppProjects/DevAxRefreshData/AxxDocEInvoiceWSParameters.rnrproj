@@ -37,6 +37,11 @@
     <Folder Include="Tables\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AxClass\DevAxRefreshDataCopyWSParameters">
+      <SubType>Content</SubType>
+      <Name>DevAxRefreshDataCopyWSParameters</Name>
+      <Link>Classes\DevAxRefreshDataCopyWSParameters</Link>
+    </Content>
     <Content Include="AxClass\DevAxRefreshDataReplaceAfipParams">
       <SubType>Content</SubType>
       <Name>DevAxRefreshDataReplaceAfipParams</Name>
