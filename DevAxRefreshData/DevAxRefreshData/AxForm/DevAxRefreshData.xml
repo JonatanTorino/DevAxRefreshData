@@ -196,6 +196,9 @@ public class DevAxRefreshData extends FormRun
 					<DataField>RecId</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
+					<DataField>SysDocumentBranding</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
 					<DataField>TableId</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
@@ -437,14 +440,14 @@ public class DevAxRefreshData extends FormRun
 					</AxFormControl>
 					<AxFormControl xmlns=""
 						i:type="AxFormTabPageControl">
-						<Name>Personalization</Name>
+						<Name>PersonalizationTab</Name>
 						<Type>TabPage</Type>
 						<FormControlExtension
 							i:nil="true" />
 						<Controls>
 							<AxFormControl xmlns=""
 								i:type="AxFormGroupControl">
-								<Name>PersGrpControl</Name>
+								<Name>PersonalizationHeader</Name>
 								<Skip>Yes</Skip>
 								<Type>Group</Type>
 								<WidthMode>SizeToAvailable</WidthMode>
@@ -453,7 +456,7 @@ public class DevAxRefreshData extends FormRun
 								<Controls>
 									<AxFormControl xmlns=""
 										i:type="AxFormStaticTextControl">
-										<Name>FormStaticTextControl7</Name>
+										<Name>PersonalizationHeaderTitle</Name>
 										<Skip>Yes</Skip>
 										<Type>StaticText</Type>
 										<WidthMode>SizeToAvailable</WidthMode>
@@ -464,7 +467,7 @@ public class DevAxRefreshData extends FormRun
 									</AxFormControl>
 									<AxFormControl xmlns=""
 										i:type="AxFormStaticTextControl">
-										<Name>FormStaticTextControl2Copy1</Name>
+										<Name>PersonalizationHeaderDescription</Name>
 										<ExtendedStyle>dialog_secondaryInstruction</ExtendedStyle>
 										<Skip>Yes</Skip>
 										<Type>StaticText</Type>
@@ -480,14 +483,14 @@ public class DevAxRefreshData extends FormRun
 							</AxFormControl>
 							<AxFormControl xmlns=""
 								i:type="AxFormTabControl">
-								<Name>PersTabControl</Name>
+								<Name>PersonalizationBody</Name>
 								<Type>Tab</Type>
 								<FormControlExtension
 									i:nil="true" />
 								<Controls>
 									<AxFormControl xmlns=""
 										i:type="AxFormTabPageControl">
-										<Name>PersonalizationTabPageControl</Name>
+										<Name>PersonalizationTabPage</Name>
 										<Pattern>ToolbarList</Pattern>
 										<PatternVersion>1.2</PatternVersion>
 										<Type>TabPage</Type>
@@ -496,7 +499,7 @@ public class DevAxRefreshData extends FormRun
 										<Controls>
 											<AxFormControl xmlns=""
 												i:type="AxFormActionPaneControl">
-												<Name>PersonalizationActionPaneControl</Name>
+												<Name>PersonalizationActionPane</Name>
 												<Type>ActionPane</Type>
 												<FormControlExtension
 													i:nil="true" />
@@ -551,23 +554,8 @@ public class DevAxRefreshData extends FormRun
 												<Style>Strip</Style>
 											</AxFormControl>
 											<AxFormControl xmlns=""
-												i:type="AxFormGroupControl">
-												<Name>PersonalizationGroupControl</Name>
-												<Pattern>CustomFilters</Pattern>
-												<PatternVersion>1.1</PatternVersion>
-												<Type>Group</Type>
-												<WidthMode>SizeToAvailable</WidthMode>
-												<FormControlExtension
-													i:nil="true" />
-												<Controls />
-												<ArrangeMethod>HorizontalLeft</ArrangeMethod>
-												<FrameType>None</FrameType>
-												<Style>CustomFilter</Style>
-												<ViewEditMode>Edit</ViewEditMode>
-											</AxFormControl>
-											<AxFormControl xmlns=""
 												i:type="AxFormGridControl">
-												<Name>PersonalizationGridControl</Name>
+												<Name>PersonalizationGrid</Name>
 												<Type>Grid</Type>
 												<FormControlExtension
 													i:nil="true" />
@@ -623,26 +611,25 @@ public class DevAxRefreshData extends FormRun
 												<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
 											</AxFormControl>
 											<AxFormControl xmlns=""
-												i:type="AxFormGroupControl">
-												<Name>ApplyPersonalizationGroupControl</Name>
-												<Type>Group</Type>
+												i:type="AxFormStringControl">
+												<Name>DevAxRefreshDataParameters_SysDocumentBranding</Name>
+												<Type>String</Type>
 												<FormControlExtension
 													i:nil="true" />
-												<Controls>
-													<AxFormControl xmlns=""
-														i:type="AxFormMenuFunctionButtonControl">
-														<Name>DevAxRefreshDataApplyPersonalization</Name>
-														<AutoDeclaration>Yes</AutoDeclaration>
-														<Type>MenuFunctionButton</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
-														<MenuItemName>DevAxRefreshDataApplyPersonalization</MenuItemName>
-														<MenuItemType>Action</MenuItemType>
-														<Text>Apply</Text>
-													</AxFormControl>
-												</Controls>
-												<Caption>Apply Personalization</Caption>
+												<DataField>SysDocumentBranding</DataField>
+												<DataSource>DevAxRefreshDataParameters</DataSource>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormMenuFunctionButtonControl">
+												<Name>DevAxRefreshDataApplyPersonalization</Name>
+												<AutoDeclaration>Yes</AutoDeclaration>
+												<Type>MenuFunctionButton</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
+												<MenuItemName>DevAxRefreshDataApplyPersonalization</MenuItemName>
+												<MenuItemType>Action</MenuItemType>
+												<Text>Apply</Text>
 											</AxFormControl>
 										</Controls>
 										<Caption>Personalization</Caption>
@@ -652,7 +639,6 @@ public class DevAxRefreshData extends FormRun
 							</AxFormControl>
 						</Controls>
 						<Caption>Personalization</Caption>
-						<DataSource>DevAxRefreshDataEnvironmentTable</DataSource>
 					</AxFormControl>
 					<AxFormControl xmlns=""
 						i:type="AxFormTabPageControl">
