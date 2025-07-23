@@ -488,8 +488,7 @@ public class DevAxRefreshData extends FormRun
 									<AxFormControl xmlns=""
 										i:type="AxFormTabPageControl">
 										<Name>PersonalizationTabPageControl</Name>
-										<Pattern>ToolbarList</Pattern>
-										<PatternVersion>1.2</PatternVersion>
+										<Pattern>Custom</Pattern>
 										<Type>TabPage</Type>
 										<FormControlExtension
 											i:nil="true" />
@@ -1288,8 +1287,7 @@ public class DevAxRefreshData extends FormRun
 									<AxFormControl xmlns=""
 										i:type="AxFormTabPageControl">
 										<Name>WebServiceAfipTabPage</Name>
-										<Pattern>ToolbarList</Pattern>
-										<PatternVersion>1.2</PatternVersion>
+										<Pattern>Custom</Pattern>
 										<Type>TabPage</Type>
 										<FormControlExtension
 											i:nil="true" />
