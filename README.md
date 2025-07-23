@@ -25,6 +25,9 @@ Stop-D365Environment
 $targetPath = Join-Path $localRepoPath -ChildPath $modelName
 $linkPath = Join-Path $packagesLocalDirectory -ChildPath $modelName
 
+Write-Host -ForegroundColor Blue "Remove existing directory if it exists $linkPath"
+Remove-Item -Path $linkPath -Recurse -Force
+
 Write-Host -ForegroundColor Cyan "Create a symbolic link to $targetPath"
 New-Item -ItemType SymbolicLink -Path $linkPath -Target $targetPath
 
